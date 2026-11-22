@@ -1,213 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Victor Jeansen — Corporate Finance & Quantitative Research</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victor Jeansen — Strategy Consulting & Quantitative Finance Portfolio</title>
+  <meta name="description" content="Strategy Consulting, M&A & Quantitative Risk Analysis Portfolio — Victor Jeansen (Global BBA, emlyon business school)" />
   <style>
     :root {
-      --bg: #0b0f17;
-      --surface: #111827;
-      --border: #1f2937;
-      --text: #f3f4f6;
-      --muted: #9ca3af;
-      --accent: #3b82f6;
-      --accent-hover: #2563eb;
-      --green-bg: rgba(16, 185, 129, 0.12);
-      --green-text: #34d399;
-      --amber-bg: rgba(245, 158, 11, 0.12);
-      --amber-text: #fbbf24;
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --text: #111827;
+      --muted: #4b5563;
+      --subtle: #6b7280;
+      --border: #e5e7eb;
+      --accent: #1e3a5f;
+      --tag-bg: #eef2f6;
+      --tag-text: #1e3a5f;
+      --wip-bg: #fef9ec;
+      --wip-text: #92400e;
+      --wip-border: #fde68a;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      padding: 3rem 1.5rem;
+      line-height: 1.65;
+      font-size: 15.5px;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 920px;
+      max-width: 820px;
       margin: 0 auto;
+      padding: 64px 24px 80px;
     }
 
+    /* Header */
     header {
       border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem;
-      margin-bottom: 2.5rem;
+      padding-bottom: 32px;
+      margin-bottom: 44px;
     }
 
     h1 {
-      font-size: 2.25rem;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 2.1rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
+      color: var(--text);
+      margin-bottom: 6px;
     }
 
     .subtitle {
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 16px;
     }
 
-    .header-links {
+    .bio {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+
+    .contact-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .header-links a {
-      color: var(--text);
-      text-decoration: none;
+      gap: 18px;
       font-size: 0.9rem;
-      padding: 0.45rem 0.9rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--surface);
-      transition: border-color 0.2s;
     }
 
-    .header-links a:hover {
-      border-color: var(--accent);
+    .contact-bar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+    }
+
+    .contact-bar a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 48px;
     }
 
     h2 {
-      font-size: 1.35rem;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Project Cards */
+    .project {
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background-color: var(--bg);
+      margin-bottom: 18px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .project:hover {
+      border-color: #cbd5e1;
+      background-color: var(--surface);
+    }
+
+    .project.wip {
+      border-style: dashed;
+      border-color: #cbd5e1;
+      background-color: #fcfcfd;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
       font-weight: 600;
-      margin-bottom: 1.25rem;
+      font-size: 1.05rem;
       color: var(--text);
     }
 
-    .projects-grid {
-      display: grid;
-      gap: 1.5rem;
+    .project-date {
+      font-size: 0.85rem;
+      color: var(--subtle);
+      font-variant-numeric: tabular-nums;
     }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.75rem;
-      transition: border-color 0.2s;
+    .status-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background-color: var(--wip-bg);
+      color: var(--wip-text);
+      border: 1px solid var(--wip-border);
     }
 
-    .card:hover {
-      border-color: #374151;
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 14px;
     }
 
-    .card-header {
+    .project-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.75rem;
-      gap: 1rem;
-    }
-
-    .category {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .badge {
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-    }
-
-    .badge-done {
-      background: var(--green-bg);
-      color: var(--green-text);
-      border: 1px solid rgba(52, 211, 153, 0.25);
-    }
-
-    .badge-wip {
-      background: var(--amber-bg);
-      color: var(--amber-text);
-      border: 1px solid rgba(251, 191, 36, 0.25);
-    }
-
-    .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.1rem;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.35rem;
+      gap: 6px;
     }
 
     .tag {
+      background-color: var(--tag-bg);
+      color: var(--tag-text);
       font-size: 0.78rem;
-      color: #d1d5db;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 0.25rem 0.6rem;
-      border-radius: 5px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .btn {
-      display: inline-block;
-      font-size: 0.88rem;
       font-weight: 500;
-      padding: 0.55rem 1rem;
-      border-radius: 6px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      font-size: 0.88rem;
+    }
+
+    .links a {
+      color: var(--accent);
       text-decoration: none;
-      transition: background-color 0.2s, border-color 0.2s;
+      font-weight: 600;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: #ffffff;
+    .links a:hover {
+      text-decoration: underline;
     }
 
-    .btn-primary:hover {
-      background: var(--accent-hover);
+    /* Skills & Credentials Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
+    @media (max-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding-top: 40px;
+      }
+    }
+
+    .info-box {
+      padding: 16px 18px;
+      background-color: var(--surface);
       border: 1px solid var(--border);
+      border-radius: 6px;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--muted);
+    .info-box h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 8px;
     }
 
-    .btn-disabled {
-      background: rgba(255, 255, 255, 0.04);
+    .info-box p, .info-box li {
+      font-size: 0.92rem;
       color: var(--muted);
-      border: 1px solid var(--border);
-      cursor: default;
     }
 
+    .info-box ul {
+      list-style: none;
+    }
+
+    .info-box li {
+      margin-bottom: 4px;
+    }
+
+    /* Footer */
     footer {
-      margin-top: 3.5rem;
-      padding-top: 1.5rem;
+      margin-top: 64px;
+      padding-top: 20px;
       border-top: 1px solid var(--border);
-      color: var(--muted);
       font-size: 0.85rem;
-      text-align: center;
+      color: var(--subtle);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
     }
   </style>
 </head>
@@ -215,87 +267,111 @@
   <div class="container">
     <header>
       <h1>Victor Jeansen</h1>
-      <p class="subtitle">Global BBA (English Track) — emlyon business school | Corporate Finance, M&A & Quantitative Risk</p>
-      <div class="header-links">
-        <a href="https://github.com/victorjeansen" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/victor-jeansen" target="_blank">LinkedIn</a>
-        <a href="mailto:victor.jeansen@edu.em-lyon.com">Contact</a>
+      <div class="subtitle">Global BBA (English Track) — emlyon business school | Strategy & Quantitative Finance</div>
+      <p class="bio">
+        First-year Global BBA student at emlyon business school (Lyon, France), focused on strategy consulting, corporate finance, and quantitative risk modeling. Combining structured strategic decision-making with empirical financial analysis.
+      </p>
+      <div class="contact-bar">
+        <a href="mailto:Victor.jeansen@edu.em-lyon.com">Victor.jeansen@edu.em-lyon.com</a>
+        <a href="https://github.com/victorjeansen" target="_blank" rel="noopener">GitHub</a>
       </div>
     </header>
 
-    <main>
-      <h2>Selected Projects & Research Notes</h2>
-      <div class="projects-grid">
+    <section id="projects">
+      <h2>Selected Work & Case Studies</h2>
 
-        <!-- Project 1: Business Case -->
-        <article class="card">
-          <div class="card-header">
-            <span class="category">Corporate Strategy & Capital Budgeting</span>
-            <span class="badge badge-done">Completed</span>
-          </div>
-          <h3>Industrial Capex & Strategic Business Case</h3>
-          <p>
-            Comprehensive financial feasibility study, operating margin sensitivity, and capital allocation recommendation structured around institutional risk thresholds.
-          </p>
+      <article class="project">
+        <div class="project-header">
+          <span class="project-title">Go-to-Market & White-Label Commercialization Business Case (Redacted under NDA)</span>
+          <span class="project-date">November 2026</span>
+        </div>
+        <p class="project-desc">
+          Full-scope strategic and financial feasibility study assessing the global white-label launch of a hardware/software system across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and multi-variable sensitivity stress-testing.
+        </p>
+        <div class="project-footer">
           <div class="tags">
-            <span class="tag">Financial Modeling</span>
-            <span class="tag">DCF & IRR</span>
+            <span class="tag">Strategy Consulting</span>
+            <span class="tag">Market Sizing</span>
+            <span class="tag">5-Year P&L</span>
+            <span class="tag">B2B Pricing</span>
             <span class="tag">Sensitivity Analysis</span>
-            <span class="tag">Executive Advisory</span>
           </div>
-          <div class="actions">
-            <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" class="btn btn-primary">Read Business Case (PDF)</a>
+          <div class="links">
+            <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- Project 2: FX Hedging Engine -->
-        <article class="card">
-          <div class="card-header">
-            <span class="category">Quantitative Treasury & Derivatives</span>
-            <span class="badge badge-done">Completed</span>
-          </div>
-          <h3>Corporate FX Hedging & Monte Carlo Risk Engine</h3>
-          <p>
-            Stochastic evaluation of EUR/USD hedging policies ($100M USD receivables vs. €75M EUR fixed costs) across 10,000 Geometric Brownian Motion paths. Calibrates a 12-month Zero-Cost Option Collar (1.0745–1.1200) via Garman-Kohlhagen pricing and Brent's root-finding to protect a €12.0M EBIT bank covenant.
-          </p>
+      <article class="project">
+        <div class="project-header">
+          <span class="project-title">Corporate FX Hedging & Monte Carlo Risk Engine — EUR/USD Margin Sensitivity</span>
+          <span class="project-date">November 2026</span>
+        </div>
+        <p class="project-desc">
+          Stochastic simulation framework modeling 12-month operating margin distributions for a European exporter exposed to USD revenues ($100M USD sales vs. €75M EUR fixed costs). Calibrates a Zero-Cost Option Collar (1.0745–1.1200) via Garman-Kohlhagen pricing and Brent's root-finding across 10,000 GBM paths, securing a €14.29M EBIT floor against a €12.0M bank covenant.
+        </p>
+        <div class="project-footer">
           <div class="tags">
-            <span class="tag">Python (NumPy / SciPy)</span>
-            <span class="tag">Monte Carlo (GBM)</span>
-            <span class="tag">Garman-Kohlhagen</span>
-            <span class="tag">VaR / CVaR & IFRS 9</span>
+            <span class="tag">Python</span>
+            <span class="tag">Monte Carlo Simulation</span>
+            <span class="tag">Option Pricing & VaR</span>
+            <span class="tag">Corporate Treasury</span>
           </div>
-          <div class="actions">
-            <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" class="btn btn-primary">Read Research Note (PDF)</a>
-            <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" class="btn btn-secondary">View Code</a>
+          <div class="links">
+            <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Research Note (PDF) →</a>
+            <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" rel="noopener">View Code →</a>
           </div>
-        </article>
+        </div>
+      </article>
+    </section>
 
-        <!-- Project 3: M&A Teaser -->
-        <article class="card">
-          <div class="card-header">
-            <span class="category">Mergers & Acquisitions</span>
-            <span class="badge badge-wip">In Progress</span>
-          </div>
-          <h3>Mid-Cap Industrial M&A Investment Teaser</h3>
-          <p>
-            Four-slide institutional sell-side teaser structured under the Minto Pyramid Principle, covering investment thesis, normalized EBITDA bridge, trading multiples, and transaction perimeter.
-          </p>
+    <section id="wip">
+      <h2>Current Research & Work in Progress</h2>
+
+      <article class="project wip">
+        <div class="project-header">
+          <span class="project-title">M&A Acquisition Pitch & Valuation Teaser — European Mid-Cap Target</span>
+          <span class="status-badge">In Progress</span>
+        </div>
+        <p class="project-desc">
+          Minto-structured 4-slide executive M&A teaser evaluating a bolt-on acquisition opportunity, combining strategic rationale, quantified revenue/cost synergies, trading multiples, and DCF valuation sensitivity.
+        </p>
+        <div class="project-footer">
           <div class="tags">
             <span class="tag">M&A Advisory</span>
-            <span class="tag">EBITDA Normalization</span>
-            <span class="tag">Valuation Multiples</span>
             <span class="tag">Minto Pyramid</span>
+            <span class="tag">DCF & Multiples</span>
+            <span class="tag">Synergy Modeling</span>
           </div>
-          <div class="actions">
-            <span class="btn btn-disabled">Upcoming Deliverable</span>
-          </div>
-        </article>
+        </div>
+      </article>
+    </section>
 
+    <section id="credentials">
+      <h2>Technical Stack & Credentials</h2>
+      <div class="grid-2">
+        <div class="info-box">
+          <h3>Analytical & Financial Tools</h3>
+          <ul>
+            <li><strong>Modeling & Strategy:</strong> Excel (Financial Modeling, Sensitivity Analysis), PowerPoint</li>
+            <li><strong>Programming & Data:</strong> Python (pandas, NumPy, SciPy), Pine Script</li>
+            <li><strong>Market Terminals:</strong> Bloomberg Terminal (BMC Candidate), Quantower, TradingView</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h3>Academic & Languages</h3>
+          <ul>
+            <li><strong>Education:</strong> Global BBA (English Track), emlyon business school</li>
+            <li><strong>Honors:</strong> 3rd Overall — René Merckhoffer Mathematics Olympiads</li>
+            <li><strong>Languages:</strong> French (Native), English (Bilingual), German (Intermediate)</li>
+          </ul>
+        </div>
       </div>
-    </main>
+    </section>
 
     <footer>
-      © 2026 Victor Jeansen — Lyon, France
+      <span>© 2026 Victor Jeansen</span>
+      <span>Lyon, France</span>
     </footer>
   </div>
 </body>
