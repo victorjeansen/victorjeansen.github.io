@@ -7,26 +7,22 @@
   <meta name="description" content="Strategy Consulting, M&A & Quantitative Risk Analysis Portfolio — Victor Jeansen (Global BBA, emlyon business school)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fafaf9;
+      --bg: #f8f8f6;
       --surface: #ffffff;
-      --surface-subtle: #f4f5f7;
-      --text: #0f172a;
-      --muted: #475569;
-      --subtle: #64748b;
-      --border: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --accent: #14284b;
-      --accent-light: #1e3a6d;
-      --gold: #9a7b3e;
-      --tag-bg: #f1f5f9;
-      --tag-text: #1e293b;
-      --wip-bg: #fffbeb;
-      --wip-text: #92400e;
-      --wip-border: #fde68a;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ink: #141413;
+      --ink-body: #3f3f3c;
+      --ink-muted: #71716b;
+      --rule: #dcdad3;
+      --rule-dark: #141413;
+      --accent: #1c3d36;
+      --accent-hover: #122924;
+      --accent-soft: #edf2f0;
+      --wip-ink: #7c4a15;
+      --wip-bg: #f6efe6;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * {
@@ -35,380 +31,237 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       line-height: 1.65;
       font-size: 15px;
       -webkit-font-smoothing: antialiased;
-      background-image: radial-gradient(#e2e8f0 0.75px, transparent 0.75px);
-      background-size: 24px 24px;
+      border-top: 4px solid var(--accent);
     }
 
-    /* Scroll Progress Bar */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2.5px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--gold));
-      z-index: 100;
-      transition: width 0.08s linear;
-    }
-
-    /* Top Navigation */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(250, 250, 249, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-    }
-
-    .nav-inner {
-      max-width: 880px;
+    .container {
+      max-width: 860px;
       margin: 0 auto;
-      padding: 14px 24px;
+      padding: 64px 28px 84px;
+    }
+
+    /* Header */
+    header {
+      padding-bottom: 32px;
+      border-bottom: 1.5px solid var(--rule-dark);
+      margin-bottom: 48px;
+    }
+
+    .header-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .nav-monogram {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 56px 24px 88px;
-    }
-
-    /* Hero Header */
-    header {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 40px 42px;
-      margin-bottom: 36px;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 8px 24px rgba(15, 23, 42, 0.02);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
       font-size: 0.78rem;
-      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      display: inline-block;
-      width: 18px;
-      height: 1.5px;
-      background-color: var(--gold);
+      letter-spacing: 0.09em;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin-bottom: 14px;
     }
 
     h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2.45rem;
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 2.25rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      line-height: 1.15;
-      color: var(--text);
+      line-height: 1.2;
+      color: var(--ink);
       margin-bottom: 8px;
     }
 
     .subtitle {
-      font-size: 1.02rem;
+      font-size: 1rem;
       color: var(--accent);
       font-weight: 500;
       margin-bottom: 18px;
     }
 
     .bio {
-      color: var(--muted);
-      max-width: 680px;
-      margin-bottom: 26px;
-      font-size: 0.96rem;
-    }
-
-    .contact-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 15px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border-radius: 6px;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid var(--border-strong);
-      background: var(--surface);
-      color: var(--text);
-      transition: all 0.2s var(--ease-out);
-      font-family: inherit;
-    }
-
-    .btn-action:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-1px);
-      box-shadow: 0 3px 10px rgba(20, 40, 75, 0.06);
-    }
-
-    .btn-action.primary {
-      background: var(--accent);
-      color: #ffffff;
-      border-color: var(--accent);
-    }
-
-    .btn-action.primary:hover {
-      background: var(--accent-light);
-      color: #ffffff;
-    }
-
-    /* Key Metrics Strip */
-    .metrics-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 48px;
-    }
-
-    .metric-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px 18px;
-      transition: border-color 0.2s ease, transform 0.2s var(--ease-out);
-    }
-
-    .metric-card:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
-    }
-
-    .metric-val {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--accent);
-      font-variant-numeric: tabular-nums;
-      margin-bottom: 2px;
-    }
-
-    .metric-label {
-      font-size: 0.78rem;
-      color: var(--subtle);
-      line-height: 1.35;
-    }
-
-    /* Section Headers & Filters */
-    section {
-      margin-bottom: 52px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 12px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
+      color: var(--ink-body);
+      max-width: 690px;
+      font-size: 0.95rem;
       margin-bottom: 24px;
     }
 
-    h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .filter-group {
+    .contact-row {
       display: flex;
-      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.88rem;
     }
 
-    .filter-btn {
+    .text-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding-bottom: 2px;
+      background-image: linear-gradient(var(--accent), var(--accent));
+      background-size: 0% 1.5px;
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      transition: background-size 0.25s var(--ease), color 0.2s ease;
+    }
+
+    .text-link:hover {
+      background-size: 100% 1.5px;
+      color: var(--accent-hover);
+    }
+
+    .copy-btn {
       background: transparent;
-      border: 1px solid transparent;
-      color: var(--subtle);
+      border: 1px solid var(--rule);
+      color: var(--ink-body);
+      font-family: inherit;
       font-size: 0.8rem;
       font-weight: 500;
       padding: 4px 10px;
-      border-radius: 5px;
+      border-radius: 3px;
       cursor: pointer;
-      font-family: inherit;
-      transition: all 0.18s ease;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
     }
 
-    .filter-btn:hover {
-      color: var(--text);
-      background: var(--surface-subtle);
-    }
-
-    .filter-btn.active {
-      background: var(--accent);
-      color: #ffffff;
-    }
-
-    /* Project Cards */
-    .project {
-      position: relative;
-      padding: 24px 26px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+    .copy-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink);
       background-color: var(--surface);
-      margin-bottom: 18px;
-      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.25s ease;
     }
 
-    .project::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 16px;
-      bottom: 16px;
-      width: 3px;
-      background-color: var(--accent);
-      border-radius: 0 3px 3px 0;
-      opacity: 0;
-      transition: opacity 0.25s ease;
+    /* Sections */
+    section {
+      margin-bottom: 54px;
     }
 
-    .project:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
-    }
-
-    .project:hover::before {
-      opacity: 1;
-    }
-
-    .project.wip {
-      border-style: dashed;
-      border-color: var(--border-strong);
-      background-color: rgba(255, 255, 255, 0.7);
-    }
-
-    .project.wip::before {
-      background-color: var(--gold);
-    }
-
-    .project.hidden {
-      display: none;
-    }
-
-    .project-header {
+    .section-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 12px;
+      border-bottom: 1px solid var(--rule-dark);
+      padding-bottom: 10px;
+      margin-bottom: 4px;
     }
 
-    .project-title {
-      font-weight: 600;
-      font-size: 1.06rem;
-      color: var(--text);
+    h2 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
     }
 
-    .project-date {
+    /* Minimal Editorial Tabs */
+    .tabs {
+      display: flex;
+      gap: 16px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 2px 0 4px;
+      font-family: inherit;
       font-size: 0.82rem;
-      color: var(--subtle);
+      font-weight: 500;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--ink);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Editorial Dossier Entries */
+    .entry {
+      display: grid;
+      grid-template-columns: 165px 1fr;
+      gap: 24px;
+      padding: 24px 12px;
+      border-bottom: 1px solid var(--rule);
+      transition: background-color 0.22s var(--ease);
+    }
+
+    .entry:hover {
+      background-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .entry.hidden {
+      display: none;
+    }
+
+    .entry-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 2px;
+    }
+
+    .entry-date {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
       font-variant-numeric: tabular-nums;
       font-weight: 500;
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .entry-domain {
       font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
       font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 999px;
+    }
+
+    .status-tag {
+      display: inline-block;
+      width: fit-content;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 2px 7px;
+      border-radius: 2px;
       background-color: var(--wip-bg);
-      color: var(--wip-text);
-      border: 1px solid var(--wip-border);
+      color: var(--wip-ink);
     }
 
-    .pulse-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: #d97706;
-      animation: pulse 2.2s infinite;
+    .entry-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 8px;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+    .entry-desc {
+      color: var(--ink-body);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
     }
 
-    .project-desc {
-      color: var(--muted);
-      font-size: 0.93rem;
-      margin-bottom: 16px;
-    }
-
-    .project-footer {
+    .entry-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--surface-subtle);
+      gap: 12px;
     }
 
     .tags {
@@ -418,306 +271,241 @@
     }
 
     .tag {
-      background-color: var(--tag-bg);
-      color: var(--tag-text);
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      padding: 3px 9px;
-      border-radius: 4px;
+      color: var(--ink-body);
+      background-color: var(--accent-soft);
+      padding: 2px 8px;
+      border-radius: 2px;
     }
 
-    .links {
+    .entry-links {
       display: flex;
-      gap: 16px;
-      font-size: 0.86rem;
+      gap: 18px;
+      font-size: 0.85rem;
     }
 
-    .links a {
+    .entry-links a {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.15s ease;
     }
 
-    .links a .arrow {
-      display: inline-block;
-      transition: transform 0.2s var(--ease-out);
+    .entry-links a .arrow {
+      transition: transform 0.2s var(--ease);
     }
 
-    .links a:hover {
-      color: var(--gold);
+    .entry-links a:hover .arrow {
+      transform: translateX(3px);
     }
 
-    .links a:hover .arrow {
-      transform: translateX(4px);
-    }
-
-    /* Credentials Grid */
-    .grid-2 {
+    /* Credentials Two-Column Table */
+    .credentials-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 32px;
+      padding-top: 20px;
     }
 
-    .info-box {
-      padding: 20px 22px;
-      background-color: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
-
-    .info-box h3 {
-      font-size: 0.82rem;
+    .cred-col h3 {
+      font-size: 0.78rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--accent);
       margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .info-box ul {
+    .cred-col ul {
       list-style: none;
     }
 
-    .info-box li {
+    .cred-col li {
       font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-      padding-left: 12px;
-      position: relative;
+      color: var(--ink-body);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--rule);
     }
 
-    .info-box li::before {
-      content: "▪";
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-size: 0.8rem;
+    .cred-col li:last-child {
+      border-bottom: none;
     }
 
-    .info-box li:last-child {
-      margin-bottom: 0;
+    .cred-col strong {
+      color: var(--ink);
+      font-weight: 600;
     }
 
     /* Footer */
     footer {
       margin-top: 64px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
-      font-size: 0.84rem;
-      color: var(--subtle);
+      padding-top: 18px;
+      border-top: 1px solid var(--rule-dark);
+      font-size: 0.82rem;
+      color: var(--ink-muted);
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
     }
 
-    /* Motion / Entrance Reveals */
-    .hero-anim {
+    /* Subtle Entrance Motion */
+    .fade-in {
       opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 0.65s var(--ease-out) forwards;
+      transform: translateY(8px);
+      animation: appear 0.5s var(--ease) forwards;
     }
-    .delay-1 { animation-delay: 0.08s; }
-    .delay-2 { animation-delay: 0.16s; }
-    .delay-3 { animation-delay: 0.24s; }
+    .stagger-1 { animation-delay: 0.06s; }
+    .stagger-2 { animation-delay: 0.12s; }
+    .stagger-3 { animation-delay: 0.18s; }
 
-    @keyframes fadeUp {
+    @keyframes appear {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--text);
-      color: #ffffff;
-      font-size: 0.84rem;
-      font-weight: 500;
-      padding: 10px 16px;
-      border-radius: 6px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: all 0.25s var(--ease-out);
-      z-index: 200;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 720px) {
-      header { padding: 28px 22px; }
-      h1 { font-size: 1.95rem; }
-      .metrics-strip { grid-template-columns: repeat(2, 1fr); }
-      .grid-2 { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+    @media (max-width: 680px) {
+      .container { padding: 42px 20px 64px; }
+      h1 { font-size: 1.85rem; }
+      .entry {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 20px 6px;
+      }
+      .entry-aside {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+      }
+      .credentials-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-anim, .reveal { opacity: 1; transform: none; animation: none; transition: none; }
-      .pulse-dot { animation: none; }
+      .fade-in { opacity: 1; transform: none; animation: none; }
     }
   </style>
 </head>
 <body>
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="nav-monogram">V. JEANSEN</a>
-      <div class="nav-links">
-        <a href="#projects">Selected Work</a>
-        <a href="#wip">In Progress</a>
-        <a href="#credentials">Credentials</a>
-      </div>
-    </div>
-  </nav>
-
   <div class="container">
-    <header>
-      <div class="eyebrow hero-anim">Research & Advisory Portfolio</div>
-      <h1 class="hero-anim delay-1">Victor Jeansen</h1>
-      <div class="subtitle hero-anim delay-1">Global BBA (English Track) — emlyon business school | Strategy & Quantitative Finance</div>
-      <p class="bio hero-anim delay-2">
-        First-year Global BBA student at emlyon business school (Lyon, France), focused on strategy consulting, corporate finance, and quantitative risk modeling. Combining structured strategic decision-making with empirical financial analysis.
+    <header class="fade-in">
+      <div class="header-meta">
+        <span>Portfolio & Research Index</span>
+        <span>Lyon, France</span>
+      </div>
+      <h1>Victor Jeansen</h1>
+      <div class="subtitle">Global BBA (English Track) — emlyon business school | Strategy & Quantitative Finance</div>
+      <p class="bio">
+        First-year Global BBA student at emlyon business school, focused on strategy consulting, corporate finance, and quantitative risk modeling. Combining structured strategic decision-making with empirical financial analysis.
       </p>
-      <div class="contact-bar hero-anim delay-3">
-        <a href="mailto:Victor.jeansen@edu.em-lyon.com" class="btn-action primary">Get in Touch</a>
-        <button type="button" class="btn-action" id="copyEmailBtn" data-email="Victor.jeansen@edu.em-lyon.com">Copy Email</button>
-        <a href="https://github.com/victorjeansen" target="_blank" rel="noopener" class="btn-action">GitHub ↗</a>
+      <div class="contact-row">
+        <a href="mailto:Victor.jeansen@edu.em-lyon.com" class="text-link">Victor.jeansen@edu.em-lyon.com</a>
+        <button type="button" class="copy-btn" id="copyBtn" data-email="Victor.jeansen@edu.em-lyon.com">Copy email</button>
+        <a href="https://www.linkedin.com/in/jeansen-victor" target="_blank" rel="noopener" class="text-link">LinkedIn ↗</a>
+        <a href="https://github.com/victorjeansen" target="_blank" rel="noopener" class="text-link">GitHub ↗</a>
       </div>
     </header>
 
-    <!-- Key Analytical Highlights -->
-    <div class="metrics-strip reveal">
-      <div class="metric-card">
-        <div class="metric-val">+€8.06M</div>
-        <div class="metric-label">5-Yr Net Profit modeled on €4.1M CapEx case</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-val">10,000</div>
-        <div class="metric-label">GBM stochastic paths in FX risk engine</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-val">€14.29M</div>
-        <div class="metric-label">Guaranteed EBIT floor via Zero-Cost Collar</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-val">3rd Overall</div>
-        <div class="metric-label">René Merckhoffer Mathematics Olympiads</div>
-      </div>
-    </div>
-
-    <section id="projects" class="reveal">
-      <div class="section-head">
+    <section id="projects" class="fade-in stagger-1">
+      <div class="section-header">
         <h2>Selected Work & Case Studies</h2>
-        <div class="filter-group" role="tablist" aria-label="Filter projects">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="strategy">Strategy</button>
-          <button class="filter-btn" data-filter="quant">Quantitative Risk</button>
+        <div class="tabs" role="tablist">
+          <button class="tab-btn active" data-filter="all">All (2)</button>
+          <button class="tab-btn" data-filter="strategy">Strategy</button>
+          <button class="tab-btn" data-filter="quant">Quantitative Risk</button>
         </div>
       </div>
 
-      <article class="project" data-category="strategy">
-        <div class="project-header">
-          <span class="project-title">Go-to-Market & White-Label Commercialization Business Case (Redacted under NDA)</span>
-          <span class="project-date">November 2026</span>
+      <article class="entry" data-category="strategy">
+        <div class="entry-aside">
+          <span class="entry-date">November 2026</span>
+          <span class="entry-domain">Strategy</span>
         </div>
-        <p class="project-desc">
-          Full-scope strategic and financial feasibility study assessing the global white-label launch of a hardware/software system across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and multi-variable sensitivity stress-testing.
-        </p>
-        <div class="project-footer">
-          <div class="tags">
-            <span class="tag">Strategy Consulting</span>
-            <span class="tag">Market Sizing</span>
-            <span class="tag">5-Year P&L</span>
-            <span class="tag">B2B Pricing</span>
-            <span class="tag">Sensitivity Analysis</span>
-          </div>
-          <div class="links">
-            <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) <span class="arrow">→</span></a>
+        <div class="entry-main">
+          <h3 class="entry-title">Go-to-Market & White-Label Commercialization Business Case (Redacted under NDA)</h3>
+          <p class="entry-desc">
+            Full-scope strategic and financial feasibility study assessing the global white-label launch of a hardware/software system across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and multi-variable sensitivity stress-testing.
+          </p>
+          <div class="entry-bottom">
+            <div class="tags">
+              <span class="tag">Strategy Consulting</span>
+              <span class="tag">Market Sizing</span>
+              <span class="tag">5-Year P&L</span>
+              <span class="tag">B2B Pricing</span>
+            </div>
+            <div class="entry-links">
+              <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) <span class="arrow">→</span></a>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project" data-category="quant">
-        <div class="project-header">
-          <span class="project-title">Corporate FX Hedging & Monte Carlo Risk Engine — EUR/USD Margin Sensitivity</span>
-          <span class="project-date">November 2026</span>
+      <article class="entry" data-category="quant">
+        <div class="entry-aside">
+          <span class="entry-date">November 2026</span>
+          <span class="entry-domain">Quantitative Risk</span>
         </div>
-        <p class="project-desc">
-          Stochastic simulation framework modeling 12-month operating margin distributions for a European exporter exposed to USD revenues ($100M USD sales vs. €75M EUR fixed costs). Calibrates a Zero-Cost Option Collar (1.0745–1.1200) via Garman-Kohlhagen pricing and Brent's root-finding across 10,000 GBM paths, securing a €14.29M EBIT floor against a €12.0M bank covenant.
-        </p>
-        <div class="project-footer">
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Monte Carlo Simulation</span>
-            <span class="tag">Option Pricing & VaR</span>
-            <span class="tag">Corporate Treasury</span>
-          </div>
-          <div class="links">
-            <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Research Note (PDF) <span class="arrow">→</span></a>
-            <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" rel="noopener">View Code <span class="arrow">→</span></a>
+        <div class="entry-main">
+          <h3 class="entry-title">Corporate FX Hedging & Monte Carlo Risk Engine — EUR/USD Margin Sensitivity</h3>
+          <p class="entry-desc">
+            Stochastic simulation framework modeling 12-month operating margin distributions for a European exporter exposed to USD revenues ($100M USD sales vs. €75M EUR fixed costs). Calibrates a Zero-Cost Option Collar (1.0745–1.1200) via Garman-Kohlhagen pricing and Brent's root-finding across 10,000 GBM paths, securing a €14.29M EBIT floor against a €12.0M bank covenant.
+          </p>
+          <div class="entry-bottom">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Monte Carlo (GBM)</span>
+              <span class="tag">Garman-Kohlhagen</span>
+              <span class="tag">VaR & CVaR</span>
+            </div>
+            <div class="entry-links">
+              <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Research Note (PDF) <span class="arrow">→</span></a>
+              <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" rel="noopener">View Code <span class="arrow">→</span></a>
+            </div>
           </div>
         </div>
       </article>
     </section>
 
-    <section id="wip" class="reveal">
-      <div class="section-head">
+    <section id="wip" class="fade-in stagger-2">
+      <div class="section-header">
         <h2>Current Research & Work in Progress</h2>
       </div>
 
-      <article class="project wip">
-        <div class="project-header">
-          <span class="project-title">M&A Acquisition Pitch & Valuation Teaser — European Mid-Cap Target</span>
-          <span class="status-badge"><span class="pulse-dot"></span>In Progress</span>
+      <article class="entry">
+        <div class="entry-aside">
+          <span class="status-tag">In Progress</span>
+          <span class="entry-domain">M&A Advisory</span>
         </div>
-        <p class="project-desc">
-          Minto-structured 4-slide executive M&A teaser evaluating a bolt-on acquisition opportunity, combining strategic rationale, quantified revenue/cost synergies, trading multiples, and DCF valuation sensitivity.
-        </p>
-        <div class="project-footer">
-          <div class="tags">
-            <span class="tag">M&A Advisory</span>
-            <span class="tag">Minto Pyramid</span>
-            <span class="tag">DCF & Multiples</span>
-            <span class="tag">Synergy Modeling</span>
+        <div class="entry-main">
+          <h3 class="entry-title">M&A Acquisition Pitch & Valuation Teaser — European Mid-Cap Target</h3>
+          <p class="entry-desc">
+            Minto-structured 4-slide executive M&A teaser evaluating a bolt-on acquisition opportunity, combining strategic rationale, quantified revenue/cost synergies, trading multiples, and DCF valuation sensitivity.
+          </p>
+          <div class="entry-bottom">
+            <div class="tags">
+              <span class="tag">M&A Advisory</span>
+              <span class="tag">Minto Pyramid</span>
+              <span class="tag">DCF & Multiples</span>
+              <span class="tag">Synergy Modeling</span>
+            </div>
           </div>
         </div>
       </article>
     </section>
 
-    <section id="credentials" class="reveal">
-      <div class="section-head">
+    <section id="credentials" class="fade-in stagger-3">
+      <div class="section-header">
         <h2>Technical Stack & Credentials</h2>
       </div>
-      <div class="grid-2">
-        <div class="info-box">
+      <div class="credentials-grid">
+        <div class="cred-col">
           <h3>Analytical & Financial Tools</h3>
           <ul>
             <li><strong>Modeling & Strategy:</strong> Excel (Financial Modeling, Sensitivity Analysis), PowerPoint</li>
@@ -725,7 +513,7 @@
             <li><strong>Market Terminals:</strong> Bloomberg Terminal (BMC Candidate), Quantower, TradingView</li>
           </ul>
         </div>
-        <div class="info-box">
+        <div class="cred-col">
           <h3>Academic & Languages</h3>
           <ul>
             <li><strong>Education:</strong> Global BBA (English Track), emlyon business school</li>
@@ -738,61 +526,32 @@
 
     <footer>
       <span>© 2026 Victor Jeansen</span>
-      <span>Lyon, France</span>
+      <span>emlyon business school — Global BBA</span>
     </footer>
   </div>
 
-  <div class="toast" id="toast">Email copied to clipboard</div>
-
   <script>
-    // Top reading progress bar
-    const progressBar = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = pct + '%';
-    }, { passive: true });
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const entries = document.querySelectorAll('#projects .entry');
 
-    // Scroll reveal observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Category filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projects = document.querySelectorAll('#projects .project');
-
-    filterBtns.forEach(btn => {
+    tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
+        tabBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const filter = btn.dataset.filter;
 
-        projects.forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
+        entries.forEach(entry => {
+          entry.classList.toggle('hidden', filter !== 'all' && entry.dataset.category !== filter);
         });
       });
     });
 
-    // One-click email copy with toast
-    const copyBtn = document.getElementById('copyEmailBtn');
-    const toast = document.getElementById('toast');
+    const copyBtn = document.getElementById('copyBtn');
     copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText(copyBtn.dataset.email).then(() => {
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2200);
+        const original = copyBtn.textContent;
+        copyBtn.textContent = 'Copied';
+        setTimeout(() => { copyBtn.textContent = original; }, 1800);
       });
     });
   </script>
