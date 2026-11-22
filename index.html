@@ -138,7 +138,7 @@
     /* Iterative Rigor Chart Band */
     .rigor-band {
       display: grid;
-      grid-template-columns: 235px 1fr;
+      grid-template-columns: 225px 1fr;
       border-top: 1.5px solid var(--rule-dark);
       border-bottom: 1.5px solid var(--rule-dark);
       background-color: var(--surface);
@@ -187,7 +187,7 @@
     }
 
     .rigor-chart-wrap {
-      padding: 14px 22px 10px;
+      padding: 14px 20px 10px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -218,7 +218,7 @@
 
     #revisionChart {
       width: 100%;
-      height: 108px;
+      height: 114px;
       display: block;
       overflow: visible;
     }
@@ -492,7 +492,7 @@
         padding: 16px 18px;
       }
       .rigor-chart-wrap {
-        padding: 14px 18px 12px;
+        padding: 14px 16px 12px;
       }
       .entry {
         grid-template-columns: 1fr;
@@ -535,7 +535,7 @@
       </div>
     </header>
 
-    <!-- Iterative Rigor Strip (Auto-calculates mean & updates chart) -->
+    <!-- Iterative Rigor Chart Band (Auto-calculates mean & updates chart) -->
     <div class="rigor-band fade-in stagger-1" aria-label="Deliverable revision history">
       <div class="rigor-summary">
         <div class="rigor-kicker">Execution Standard</div>
@@ -545,10 +545,10 @@
       </div>
       <div class="rigor-chart-wrap">
         <div class="rigor-chart-header">
-          <span>Draft versions across chronological deliverables</span>
+          <span>Draft versions across chronological deliverables (hover for details)</span>
           <span class="rigor-legend"><span class="rigor-legend-line"></span> Rolling mean</span>
         </div>
-        <svg id="revisionChart" viewBox="0 0 540 108" role="img" aria-label="Chart of draft versions per deliverable"></svg>
+        <svg id="revisionChart" viewBox="0 0 540 114" role="img" aria-label="Chart of draft versions per deliverable"></svg>
       </div>
     </div>
 
@@ -568,20 +568,20 @@
           <span class="entry-domain">Strategy</span>
         </div>
         <div class="entry-main">
-          <h3 class="entry-title">Go-to-Market & White-Label Commercialization Business Case (Redacted under NDA)</h3>
+          <h3 class="entry-title">MedTech Go-to-Market & White-Label Business Model (Capgemini Internship, Client Redacted)</h3>
           <p class="entry-desc">
-            Full-scope strategic and financial feasibility study assessing the global white-label launch of a hardware/software system across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and multi-variable sensitivity stress-testing.
+            Strategic and financial feasibility business model built during a consulting internship at Capgemini, evaluating the global white-label commercialization of a MedTech hardware/software platform across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and sensitivity stress-testing.
           </p>
           <div class="entry-bottom">
             <div class="tags">
-              <span class="tag">Strategy Consulting</span>
+              <span class="tag">Capgemini Internship</span>
               <span class="tag">Market Sizing</span>
               <span class="tag">5-Year P&L</span>
               <span class="tag">B2B Pricing</span>
             </div>
             <div class="entry-links">
               <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) <span class="arrow">→</span></a>
-              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20Go-to-Market%20%26%20White-Label%20Business%20Case" class="inquire-link">Inquire <span class="arrow">→</span></a>
+              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20MedTech%20Go-to-Market%20Business%20Model" class="inquire-link">Inquire <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -679,10 +679,16 @@
     // DATA SOURCE: Add a new object here after each deliverable to auto-update
     // =========================================================================
     const deliverables = [
-      { label: "GTM Business Case", revisions: 8 },
-      { label: "FX Monte Carlo Engine", revisions: 14 },
-      { label: "Market One-Pager", revisions: 9 },
-      { label: "Research Note IV", revisions: 11 }
+      { short: "CPI", title: "BEM: CPI Basket & Growth Analysis", revisions: 9 },
+      { short: "SSP", title: "SSP: SDG15 & La Grappe", revisions: 22 },
+      { short: "Benchmark", title: "Decoding Research: Academic Benchmark", revisions: 11 },
+      { short: "ACM", title: "ACM: C2C Market Analysis", revisions: 14 },
+      { short: "Labor", title: "BEM: Regional Income & US Labor Dynamics", revisions: 7 },
+      { short: "CAC 40", title: "BEM: CAC 40 Returns & Macro Volatility", revisions: 8 },
+      { short: "NQ1", title: "NQ1: Market One-Pager", revisions: 9 },
+      { short: "VERA", title: "Le Wagon: VERA Consulting Agent", revisions: 17 },
+      { short: "MedTech", title: "Capgemini: MedTech Business Model", revisions: 8 },
+      { short: "FX", title: "FX Engine: FX Hedging & Monte Carlo Engine", revisions: 14 }
     ];
 
     function renderRevisionChart(data) {
@@ -698,15 +704,15 @@
       sampleEl.textContent = `n = ${n} deliverables`;
 
       const width = 540;
-      const height = 108;
-      const padLeft = 28;
-      const padRight = 24;
-      const padTop = 18;
+      const height = 114;
+      const padLeft = 32;
+      const padRight = 22;
+      const padTop = 20;
       const padBottom = 24;
       const plotW = width - padLeft - padRight;
       const plotH = height - padTop - padBottom;
 
-      const maxVal = Math.max(...data.map(d => d.revisions), 16);
+      const maxVal = Math.max(...data.map(d => d.revisions)) * 1.18;
       const minVal = 0;
 
       const xPos = (i) => n === 1
@@ -723,28 +729,28 @@
         <line x1="${padLeft}" y1="${baseLineY}" x2="${width - padRight}" y2="${baseLineY}" stroke="#dcdad3" stroke-width="1" />
         <!-- Rolling Mean Benchmark Line -->
         <line x1="${padLeft}" y1="${meanY}" x2="${width - padRight}" y2="${meanY}" stroke="#1c3d36" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.85" />
-        <text x="${padLeft - 6}" y="${parseFloat(meanY) + 3}" text-anchor="end" font-size="9.5" font-weight="600" fill="#1c3d36">${mean.toFixed(1)}</text>
+        <text x="${padLeft - 6}" y="${parseFloat(meanY) + 3}" text-anchor="end" font-size="9" font-weight="600" fill="#1c3d36">${mean.toFixed(1)}</text>
       `;
 
       // Connecting trajectory path
       if (n > 1) {
         const points = data.map((d, i) => `${xPos(i).toFixed(1)},${yPos(d.revisions).toFixed(1)}`).join(' ');
-        svgContent += `<polyline fill="none" stroke="#141413" stroke-width="1.6" points="${points}" />`;
+        svgContent += `<polyline fill="none" stroke="#141413" stroke-width="1.5" points="${points}" />`;
       }
 
       // Data points, stems, value labels & x-axis labels
       data.forEach((d, i) => {
         const cx = xPos(i).toFixed(1);
         const cy = yPos(d.revisions).toFixed(1);
-        const labelY = (parseFloat(cy) - 8).toFixed(1);
+        const labelY = (parseFloat(cy) - 7).toFixed(1);
 
         svgContent += `
           <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${baseLineY}" stroke="#dcdad3" stroke-width="1" />
-          <circle class="chart-dot" cx="${cx}" cy="${cy}" r="4" fill="#1c3d36" stroke="#ffffff" stroke-width="1.5">
-            <title>${d.label}: ${d.revisions} draft versions</title>
+          <circle class="chart-dot" cx="${cx}" cy="${cy}" r="3.8" fill="#1c3d36" stroke="#ffffff" stroke-width="1.5">
+            <title>${d.title} — ${d.revisions} draft versions</title>
           </circle>
-          <text x="${cx}" y="${labelY}" text-anchor="middle" font-size="10" font-weight="600" fill="#141413">${d.revisions}v</text>
-          <text x="${cx}" y="${height - 5}" text-anchor="middle" font-size="9.5" fill="#71716b">${d.label}</text>
+          <text x="${cx}" y="${labelY}" text-anchor="middle" font-size="9.5" font-weight="600" fill="#141413">${d.revisions}v</text>
+          <text x="${cx}" y="${height - 5}" text-anchor="middle" font-size="8.5" fill="#71716b">${d.short}</text>
         `;
       });
 
