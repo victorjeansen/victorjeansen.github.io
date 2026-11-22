@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Victor Jeansen — Strategy Consulting & Quantitative Finance</title>
-  <meta name="description" content="Strategy Consulting, M&A & Quantitative Risk Analysis Portfolio — Victor Jeansen (Global BBA, emlyon business school)" />
+  <title>Victor Jeansen — Strategy & Quantitative Finance Projects</title>
+  <meta name="description" content="Project portfolio in strategy, corporate finance and quantitative risk modeling — Victor Jeansen (Global BBA, emlyon business school)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f8f8f6;
@@ -22,17 +22,6 @@
       --accent-soft: #edf2f0;
       --wip-ink: #7c4a15;
       --wip-bg: #f6efe6;
-
-      /* Quant Tear-Sheet Palette */
-      --term-bg: #111615;
-      --term-surface: #171e1c;
-      --term-border: #26302d;
-      --term-grid: #1e2624;
-      --term-ink: #f2f4f3;
-      --term-muted: #8a9692;
-      --term-emerald: #34d399;
-      --term-amber: #f59e0b;
-
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -163,20 +152,6 @@
       margin-bottom: 4px;
     }
 
-    .section-note {
-      font-size: 0.78rem;
-      color: var(--ink-muted);
-      font-weight: 500;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .section-intro {
-      color: var(--ink-body);
-      font-size: 0.91rem;
-      margin: 14px 0 22px;
-      max-width: 740px;
-    }
-
     h2 {
       font-family: 'Libre Baskerville', Georgia, serif;
       font-size: 1.2rem;
@@ -185,7 +160,7 @@
       letter-spacing: -0.01em;
     }
 
-    /* Minimal Editorial Tabs */
+    /* Tabs */
     .tabs {
       display: flex;
       gap: 16px;
@@ -214,7 +189,7 @@
       font-weight: 600;
     }
 
-    /* Editorial Dossier Entries */
+    /* Entries */
     .entry {
       display: grid;
       grid-template-columns: 165px 1fr;
@@ -329,6 +304,11 @@
       border-left: 1px solid var(--rule);
     }
 
+    .entry-links a.inquire-link.solo {
+      border-left: none;
+      padding-left: 0;
+    }
+
     .entry-links a.inquire-link:hover {
       color: var(--accent);
     }
@@ -341,223 +321,7 @@
       transform: translateX(3px);
     }
 
-    /* =====================================================================
-       QUANT TEAR-SHEET CARD (Dark Slate Financial Terminal Module)
-       ===================================================================== */
-    .quant-card {
-      background: radial-gradient(120% 100% at 85% 0%, #192623 0%, var(--term-bg) 62%);
-      border: 1px solid var(--term-border);
-      border-radius: 4px;
-      color: var(--term-ink);
-      box-shadow: 0 12px 32px -12px rgba(17, 22, 21, 0.28);
-      overflow: hidden;
-    }
-
-    .quant-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 18px;
-      padding: 20px 24px 18px;
-      border-bottom: 1px solid var(--term-border);
-    }
-
-    .quant-kpis {
-      display: flex;
-      align-items: baseline;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-
-    .q-kpi {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .q-kpi-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.66rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--term-muted);
-    }
-
-    .q-kpi-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--term-ink);
-      line-height: 1.1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .q-kpi-val.emerald {
-      color: var(--term-emerald);
-    }
-
-    .q-kpi-sub {
-      font-size: 0.72rem;
-      font-weight: 400;
-      color: var(--term-muted);
-      margin-left: 5px;
-    }
-
-    .quant-legend {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--term-muted);
-    }
-
-    .q-leg-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .q-leg-line {
-      width: 14px;
-      height: 2px;
-      background-color: var(--term-emerald);
-      box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
-    }
-
-    .q-leg-mean {
-      width: 15px;
-      border-top: 1.5px dashed var(--term-amber);
-    }
-
-    .quant-canvas-wrap {
-      padding: 20px 24px 10px;
-      position: relative;
-    }
-
-    #revisionChart {
-      width: 100%;
-      height: 205px;
-      display: block;
-      overflow: visible;
-      cursor: crosshair;
-      touch-action: pan-y;
-    }
-
-    /* Motion Animations for Chart Reveal */
-    .chart-curve-anim {
-      transition: stroke-dashoffset 1.25s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .chart-area-anim {
-      opacity: 0;
-      transition: opacity 0.9s ease 0.35s;
-    }
-
-    .quant-card.is-visible .chart-area-anim {
-      opacity: 1;
-    }
-
-    .chart-node-group {
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-    }
-
-    .quant-card.is-visible .chart-node-group {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes livePulse {
-      0% {
-        r: 4.5;
-        opacity: 0.75;
-      }
-      70% {
-        r: 13;
-        opacity: 0;
-      }
-      100% {
-        r: 13;
-        opacity: 0;
-      }
-    }
-
-    .live-pulse-ring {
-      animation: livePulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-    }
-
-    /* Fixed-height Terminal Ticker Bar (Zero Layout Shift) */
-    .quant-ticker {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      height: 40px;
-      padding: 0 24px;
-      background-color: var(--term-surface);
-      border-top: 1px solid var(--term-border);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      font-variant-numeric: tabular-nums;
-      overflow: hidden;
-    }
-
-    .ticker-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .ticker-badge {
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--term-bg);
-      background-color: var(--term-emerald);
-      padding: 1px 6px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-
-    .ticker-badge.amber {
-      background-color: var(--term-amber);
-    }
-
-    .ticker-title {
-      color: var(--term-ink);
-      font-weight: 500;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .ticker-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-
-    .ticker-val {
-      color: var(--term-ink);
-      font-weight: 600;
-    }
-
-    .ticker-delta.pos {
-      color: var(--term-emerald);
-    }
-
-    .ticker-delta.neg {
-      color: var(--term-amber);
-    }
-
-    /* Credentials Two-Column Table */
+    /* Skills Two-Column Table */
     .credentials-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -616,7 +380,6 @@
     .stagger-1 { animation-delay: 0.06s; }
     .stagger-2 { animation-delay: 0.12s; }
     .stagger-3 { animation-delay: 0.18s; }
-    .stagger-4 { animation-delay: 0.24s; }
 
     @keyframes appear {
       to {
@@ -628,10 +391,6 @@
     @media (max-width: 680px) {
       .container { padding: 42px 20px 64px; }
       h1 { font-size: 1.85rem; }
-      .quant-header { padding: 16px; }
-      .quant-kpis { gap: 18px; }
-      .quant-canvas-wrap { padding: 14px 12px 8px; }
-      .quant-ticker { padding: 0 14px; font-size: 0.68rem; }
       .entry {
         grid-template-columns: 1fr;
         gap: 8px;
@@ -650,8 +409,6 @@
 
     @media (prefers-reduced-motion: reduce) {
       .fade-in { opacity: 1; transform: none; animation: none; }
-      .chart-curve-anim, .chart-area-anim, .chart-node-group { transition: none !important; opacity: 1 !important; transform: none !important; }
-      .live-pulse-ring { animation: none; opacity: 0; }
     }
   </style>
 </head>
@@ -659,13 +416,13 @@
   <div class="container">
     <header class="fade-in">
       <div class="header-meta">
-        <span>Portfolio & Research Index</span>
+        <span>Project Portfolio</span>
         <span>Lyon, France</span>
       </div>
       <h1>Victor Jeansen</h1>
-      <div class="subtitle">Global BBA (English Track) — emlyon business school | Strategy & Quantitative Finance</div>
+      <div class="subtitle">Global BBA (English Track) — emlyon business school</div>
       <p class="bio">
-        First-year Global BBA student at emlyon business school, focused on strategy consulting, corporate finance, and quantitative risk modeling. Combining structured strategic decision-making with empirical financial analysis.
+        First-year Global BBA student at emlyon business school, building hands-on projects in strategy, corporate finance and quantitative risk modeling. Looking for internship opportunities in finance and consulting.
       </p>
       <div class="contact-row">
         <a href="mailto:Victor.jeansen@edu.em-lyon.com" class="text-link">Victor.jeansen@edu.em-lyon.com</a>
@@ -677,13 +434,39 @@
 
     <section id="projects" class="fade-in stagger-1">
       <div class="section-header">
-        <h2>Selected Work & Case Studies</h2>
+        <h2>Selected Projects</h2>
         <div class="tabs" role="tablist">
-          <button class="tab-btn active" data-filter="all">All (2)</button>
-          <button class="tab-btn" data-filter="strategy">Strategy</button>
-          <button class="tab-btn" data-filter="quant">Quantitative Risk</button>
+          <button type="button" class="tab-btn active" data-filter="all">All (2)</button>
+          <button type="button" class="tab-btn" data-filter="quant">Quantitative Risk</button>
+          <button type="button" class="tab-btn" data-filter="strategy">Strategy</button>
         </div>
       </div>
+
+      <article class="entry" data-category="quant">
+        <div class="entry-aside">
+          <span class="entry-date">November 2026</span>
+          <span class="entry-domain">Quantitative Risk</span>
+        </div>
+        <div class="entry-main">
+          <h3 class="entry-title">Corporate FX Hedging &amp; Monte Carlo Risk Engine — EUR/USD Margin Sensitivity</h3>
+          <p class="entry-desc">
+            Personal project. Monte Carlo simulation of 12-month operating margin distributions for a hypothetical European exporter with USD revenues ($100M USD sales vs. €75M EUR fixed costs). Calibrates a zero-cost option collar (1.0745–1.1200) using Garman-Kohlhagen pricing and Brent's root-finding over 10,000 GBM paths. In this scenario, the hedge sets a €14.29M EBIT floor, above a €12.0M bank covenant.
+          </p>
+          <div class="entry-bottom">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Monte Carlo (GBM)</span>
+              <span class="tag">Garman-Kohlhagen</span>
+              <span class="tag">VaR &amp; CVaR</span>
+            </div>
+            <div class="entry-links">
+              <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Project Note (PDF) <span class="arrow">→</span></a>
+              <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" rel="noopener">View Code <span class="arrow">→</span></a>
+              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20Corporate%20FX%20Hedging%20%26%20Monte%20Carlo%20Engine" class="inquire-link">Inquire <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </article>
 
       <article class="entry" data-category="strategy">
         <div class="entry-aside">
@@ -691,15 +474,15 @@
           <span class="entry-domain">Strategy</span>
         </div>
         <div class="entry-main">
-          <h3 class="entry-title">MedTech Go-to-Market & White-Label Business Model (Capgemini Internship, Client Redacted)</h3>
+          <h3 class="entry-title">MedTech Go-to-Market &amp; White-Label Business Model</h3>
           <p class="entry-desc">
-            Strategic and financial feasibility business model built during a consulting internship at Capgemini, evaluating the global white-label commercialization of a MedTech hardware/software platform across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and sensitivity stress-testing.
+            Case study (all company and client details anonymized) on the strategic and financial feasibility of a global white-label commercialization of a MedTech hardware/software platform across the US, EU-27, China and India. Covers TAM/SAM sizing (~1.28M annual units), a 5-year P&amp;L model (+€8.06M net result on €4.1M CapEx), B2B pricing with a make-vs-buy comparison (4.5x cost advantage), and sensitivity analysis.
           </p>
           <div class="entry-bottom">
             <div class="tags">
-              <span class="tag">Capgemini Internship</span>
+              <span class="tag">Case Study</span>
               <span class="tag">Market Sizing</span>
-              <span class="tag">5-Year P&L</span>
+              <span class="tag">5-Year P&amp;L</span>
               <span class="tag">B2B Pricing</span>
             </div>
             <div class="entry-links">
@@ -709,131 +492,56 @@
           </div>
         </div>
       </article>
-
-      <article class="entry" data-category="quant">
-        <div class="entry-aside">
-          <span class="entry-date">November 2026</span>
-          <span class="entry-domain">Quantitative Risk</span>
-        </div>
-        <div class="entry-main">
-          <h3 class="entry-title">Corporate FX Hedging & Monte Carlo Risk Engine — EUR/USD Margin Sensitivity</h3>
-          <p class="entry-desc">
-            Stochastic simulation framework modeling 12-month operating margin distributions for a European exporter exposed to USD revenues ($100M USD sales vs. €75M EUR fixed costs). Calibrates a Zero-Cost Option Collar (1.0745–1.1200) via Garman-Kohlhagen pricing and Brent's root-finding across 10,000 GBM paths, securing a €14.29M EBIT floor against a €12.0M bank covenant.
-          </p>
-          <div class="entry-bottom">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Monte Carlo (GBM)</span>
-              <span class="tag">Garman-Kohlhagen</span>
-              <span class="tag">VaR & CVaR</span>
-            </div>
-            <div class="entry-links">
-              <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Research Note (PDF) <span class="arrow">→</span></a>
-              <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" rel="noopener">View Code <span class="arrow">→</span></a>
-              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20Corporate%20FX%20Hedging%20%26%20Monte%20Carlo%20Engine" class="inquire-link">Inquire <span class="arrow">→</span></a>
-            </div>
-          </div>
-        </div>
-      </article>
     </section>
 
     <section id="wip" class="fade-in stagger-2">
       <div class="section-header">
-        <h2>Current Research & Work in Progress</h2>
+        <h2>Work in Progress</h2>
       </div>
 
       <article class="entry">
         <div class="entry-aside">
           <span class="status-tag">In Progress</span>
-          <span class="entry-domain">M&A Advisory</span>
+          <span class="entry-domain">M&amp;A</span>
         </div>
         <div class="entry-main">
-          <h3 class="entry-title">M&A Acquisition Pitch & Valuation Teaser — European Mid-Cap Target</h3>
+          <h3 class="entry-title">M&amp;A Acquisition Pitch &amp; Valuation Teaser — European Mid-Cap Target</h3>
           <p class="entry-desc">
-            Minto-structured 4-slide executive M&A teaser evaluating a bolt-on acquisition opportunity, combining strategic rationale, quantified revenue/cost synergies, trading multiples, and DCF valuation sensitivity.
+            4-slide teaser, structured top-down (Minto pyramid), evaluating a bolt-on acquisition: strategic rationale, revenue and cost synergies, trading multiples, and DCF valuation sensitivity.
           </p>
           <div class="entry-bottom">
             <div class="tags">
-              <span class="tag">M&A Advisory</span>
+              <span class="tag">M&amp;A</span>
               <span class="tag">Minto Pyramid</span>
-              <span class="tag">DCF & Multiples</span>
+              <span class="tag">DCF &amp; Multiples</span>
               <span class="tag">Synergy Modeling</span>
             </div>
             <div class="entry-links">
-              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20M%26A%20Acquisition%20Pitch%20%26%20Valuation%20Teaser" class="inquire-link" style="border-left: none; padding-left: 0;">Inquire <span class="arrow">→</span></a>
+              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20M%26A%20Acquisition%20Pitch%20%26%20Valuation%20Teaser" class="inquire-link solo">Inquire <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
       </article>
     </section>
 
-    <section id="methodology" class="fade-in stagger-3" aria-label="Deliverable revision history">
+    <section id="skills" class="fade-in stagger-3">
       <div class="section-header">
-        <h2>Iteration & Version Log</h2>
-        <span class="section-note" id="headerSampleNote">n = 10 projects</span>
-      </div>
-      <p class="section-intro">
-        This chart shows the real work required to take each deliverable from a blank page to final submission. I log file versions to keep a concrete record of the iteration depth behind my work.
-      </p>
-
-      <div class="quant-card" id="quantCard">
-        <div class="quant-header">
-          <div class="quant-kpis">
-            <div class="q-kpi">
-              <span class="q-kpi-label">Mean Iterations</span>
-              <span class="q-kpi-val emerald" id="meanRevisionStat">11.9x</span>
-            </div>
-            <div class="q-kpi">
-              <span class="q-kpi-label">Cumulative Drafts</span>
-              <span class="q-kpi-val"><span id="totalRevisionStat">119</span><span class="q-kpi-sub" id="sampleCountStat">/ 10 projects</span></span>
-            </div>
-            <div class="q-kpi">
-              <span class="q-kpi-label">Peak Depth</span>
-              <span class="q-kpi-val"><span id="peakRevisionStat">22v</span><span class="q-kpi-sub" id="peakLabelStat">(SSP)</span></span>
-            </div>
-          </div>
-          <div class="quant-legend">
-            <span class="q-leg-item"><span class="q-leg-line"></span> Iterations</span>
-            <span class="q-leg-item"><span class="q-leg-mean"></span> Rolling Mean</span>
-          </div>
-        </div>
-
-        <div class="quant-canvas-wrap">
-          <svg id="revisionChart" viewBox="0 0 800 205" role="img" aria-label="Chart of draft versions per deliverable"></svg>
-        </div>
-
-        <div class="quant-ticker" aria-live="polite">
-          <div class="ticker-left">
-            <span class="ticker-badge" id="inspIdx">#10</span>
-            <span class="ticker-title" id="inspTitle">FX Engine: FX Hedging & Monte Carlo Engine</span>
-          </div>
-          <div class="ticker-right">
-            <span class="ticker-val" id="inspCount">14v</span>
-            <span class="ticker-delta pos" id="inspDelta">+2.1v vs. mean</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="credentials" class="fade-in stagger-4">
-      <div class="section-header">
-        <h2>Technical Stack & Credentials</h2>
+        <h2>Skills &amp; Education</h2>
       </div>
       <div class="credentials-grid">
         <div class="cred-col">
-          <h3>Analytical & Financial Tools</h3>
+          <h3>Tools</h3>
           <ul>
-            <li><strong>Modeling & Strategy:</strong> Excel (Financial Modeling, Sensitivity Analysis), PowerPoint</li>
-            <li><strong>Programming & Data:</strong> Python (pandas, NumPy, SciPy), Pine Script</li>
-            <li><strong>Market Terminals:</strong> Bloomberg Terminal (BMC Candidate), Quantower, TradingView</li>
+            <li><strong>Modeling &amp; Presentation:</strong> Excel (financial modeling, sensitivity analysis), PowerPoint</li>
+            <li><strong>Programming &amp; Data:</strong> Python (pandas, NumPy, SciPy), Pine Script</li>
+            <li><strong>Market Platforms:</strong> Quantower, TradingView</li>
           </ul>
         </div>
         <div class="cred-col">
-          <h3>Academic & Languages</h3>
+          <h3>Education &amp; Languages</h3>
           <ul>
-            <li><strong>Education:</strong> Global BBA (English Track), emlyon business school</li>
-            <li><strong>Honors:</strong> 3rd Overall — René Merckhoffer Mathematics Olympiads</li>
-            <li><strong>Languages:</strong> French (Native), English (Bilingual), German (Intermediate)</li>
+            <li><strong>Education:</strong> Global BBA (English Track), emlyon business school, 2026–present</li>
+            <li><strong>Languages:</strong> French (native), English (bilingual), German (intermediate)</li>
           </ul>
         </div>
       </div>
@@ -846,299 +554,6 @@
   </div>
 
   <script>
-    // =========================================================================
-    // DATA SOURCE: Add a new object here after each deliverable to auto-update
-    // =========================================================================
-    const deliverables = [
-      { short: "CPI", title: "BEM: CPI Basket & Growth Analysis", revisions: 9 },
-      { short: "SSP", title: "SSP: SDG15 & La Grappe", revisions: 22 },
-      { short: "Benchmark", title: "Decoding Research: Academic Benchmark", revisions: 11 },
-      { short: "ACM", title: "ACM: C2C Market Analysis", revisions: 14 },
-      { short: "Labor", title: "BEM: Regional Income & US Labor Dynamics", revisions: 7 },
-      { short: "CAC 40", title: "BEM: CAC 40 Returns & Macro Volatility", revisions: 8 },
-      { short: "NQ1", title: "NQ1: Market One-Pager", revisions: 9 },
-      { short: "VERA", title: "Le Wagon: VERA Consulting Agent", revisions: 17 },
-      { short: "MedTech", title: "Capgemini: MedTech Business Model", revisions: 8 },
-      { short: "FX", title: "FX Engine: FX Hedging & Monte Carlo Engine", revisions: 14 }
-    ];
-
-    // Monotone cubic spline generator
-    function buildSmoothPath(pts) {
-      if (pts.length === 0) return "";
-      if (pts.length === 1) return `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
-
-      const n = pts.length;
-      const d = [];
-      for (let i = 0; i < n - 1; i++) {
-        d.push((pts[i + 1].y - pts[i].y) / (pts[i + 1].x - pts[i].x));
-      }
-
-      const m = [d[0]];
-      for (let i = 1; i < n - 1; i++) {
-        if (d[i - 1] * d[i] <= 0) {
-          m.push(0);
-        } else {
-          m.push((2 * d[i - 1] * d[i]) / (d[i - 1] + d[i]));
-        }
-      }
-      m.push(d[n - 2]);
-
-      let path = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
-      for (let i = 0; i < n - 1; i++) {
-        const dx = (pts[i + 1].x - pts[i].x) / 3;
-        const cp1x = pts[i].x + dx;
-        const cp1y = pts[i].y + m[i] * dx;
-        const cp2x = pts[i + 1].x - dx;
-        const cp2y = pts[i + 1].y - m[i + 1] * dx;
-        path += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${pts[i + 1].x.toFixed(1)} ${pts[i + 1].y.toFixed(1)}`;
-      }
-      return path;
-    }
-
-    // Smooth numeric counter for KPI reveal
-    function animateNumber(el, target, decimals, suffix) {
-      const duration = 950;
-      const start = performance.now();
-      function frame(now) {
-        const t = Math.min(1, (now - start) / duration);
-        const eased = 1 - Math.pow(1 - t, 3);
-        const current = target * eased;
-        el.textContent = current.toFixed(decimals) + suffix;
-        if (t < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-
-    function renderQuantChart(data) {
-      const card = document.getElementById('quantCard');
-      const svg = document.getElementById('revisionChart');
-      const headerNoteEl = document.getElementById('headerSampleNote');
-      const meanEl = document.getElementById('meanRevisionStat');
-      const totalEl = document.getElementById('totalRevisionStat');
-      const sampleEl = document.getElementById('sampleCountStat');
-      const peakEl = document.getElementById('peakRevisionStat');
-      const peakLabelEl = document.getElementById('peakLabelStat');
-
-      const inspIdx = document.getElementById('inspIdx');
-      const inspTitle = document.getElementById('inspTitle');
-      const inspCount = document.getElementById('inspCount');
-      const inspDelta = document.getElementById('inspDelta');
-
-      const n = data.length;
-      const sum = data.reduce((acc, item) => acc + item.revisions, 0);
-      const mean = sum / n;
-      const peakItem = data.reduce((best, cur) => cur.revisions > best.revisions ? cur : best, data[0]);
-
-      headerNoteEl.textContent = `n = ${n} projects`;
-      meanEl.textContent = mean.toFixed(1) + 'x';
-      totalEl.textContent = sum;
-      sampleEl.textContent = `/ ${n} projects`;
-      peakEl.textContent = peakItem.revisions + 'v';
-      peakLabelEl.textContent = `(${peakItem.short})`;
-
-      const width = 800;
-      const height = 205;
-      const padLeft = 36;
-      const padRight = 66;
-      const padTop = 28;
-      const padBottom = 32;
-      const plotW = width - padLeft - padRight;
-      const plotH = height - padTop - padBottom;
-
-      const maxVal = Math.ceil(peakItem.revisions * 1.18);
-      const minVal = 0;
-
-      const colStep = plotW / n;
-      const xPos = (i) => padLeft + colStep * (i + 0.5);
-      const yPos = (val) => padTop + plotH - ((val - minVal) / (maxVal - minVal)) * plotH;
-
-      const pts = data.map((d, i) => ({
-        x: xPos(i),
-        y: yPos(d.revisions),
-        aboveMean: d.revisions >= mean,
-        ...d
-      }));
-
-      const meanY = yPos(mean);
-      const baseLineY = padTop + plotH;
-      const curveD = buildSmoothPath(pts);
-      const areaD = `${curveD} L ${pts[pts.length - 1].x.toFixed(1)} ${baseLineY.toFixed(1)} L ${pts[0].x.toFixed(1)} ${baseLineY.toFixed(1)} Z`;
-
-      // Horizontal terminal gridlines
-      const gridTicks = [0, 10, 20].filter(v => v <= maxVal);
-      const gridMarkup = gridTicks.map(v => {
-        const gy = yPos(v).toFixed(1);
-        const isBase = v === 0;
-        return `
-          <line x1="${padLeft}" y1="${gy}" x2="${width - padRight}" y2="${gy}" stroke="${isBase ? '#2e3a37' : '#1b2321'}" stroke-width="1" />
-          <text x="${padLeft - 9}" y="${parseFloat(gy) + 3.5}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#63706c">${v}</text>
-        `;
-      }).join('');
-
-      let svgContent = `
-        <defs>
-          <linearGradient id="emeraldAreaGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#34d399" stop-opacity="0.24" />
-            <stop offset="75%" stop-color="#34d399" stop-opacity="0.04" />
-            <stop offset="100%" stop-color="#34d399" stop-opacity="0.0" />
-          </linearGradient>
-          <filter id="emeraldGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="2.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        ${gridMarkup}
-
-        <!-- Area Fill -->
-        <path class="chart-area-anim" d="${areaD}" fill="url(#emeraldAreaGrad)" />
-
-        <!-- Rolling Mean Benchmark Line + Terminal Tag -->
-        <line x1="${padLeft}" y1="${meanY.toFixed(1)}" x2="${width - padRight}" y2="${meanY.toFixed(1)}" stroke="#f59e0b" stroke-width="1.3" stroke-dasharray="4 3" opacity="0.85" />
-        <rect x="${width - padRight + 6}" y="${(meanY - 9.5).toFixed(1)}" width="58" height="19" rx="2" fill="#272013" stroke="#785315" stroke-width="0.9" />
-        <text x="${width - padRight + 35}" y="${(meanY + 3.5).toFixed(1)}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.2" font-weight="600" fill="#fbbf24">AVG ${mean.toFixed(1)}</text>
-
-        <!-- Smooth Glowing Equity-Style Curve -->
-        <path id="mainCurvePath" class="chart-curve-anim" d="${curveD}" fill="none" stroke="#34d399" stroke-width="2.4" stroke-linecap="round" filter="url(#emeraldGlow)" />
-
-        <!-- Active Laser Crosshair & Highlight Column -->
-        <rect id="activeColBand" x="0" y="${padTop - 8}" width="${colStep.toFixed(1)}" height="${(plotH + 8).toFixed(1)}" fill="#34d399" opacity="0" rx="2" />
-        <line id="activeCrosshair" x1="0" y1="${padTop - 8}" x2="0" y2="${baseLineY.toFixed(1)}" stroke="#34d399" stroke-width="1" stroke-dasharray="2 2" opacity="0" />
-      `;
-
-      pts.forEach((p, i) => {
-        const cx = p.x.toFixed(1);
-        const cy = p.y.toFixed(1);
-        const labelY = (p.y - 11).toFixed(1);
-        const color = p.aboveMean ? '#34d399' : '#f59e0b';
-        const isLast = i === n - 1;
-        const delay = (0.18 + i * 0.065).toFixed(2);
-
-        svgContent += `
-          <g class="chart-node-group" style="transition-delay: ${delay}s">
-            <!-- Vertical Stem -->
-            <line id="stem-${i}" x1="${cx}" y1="${cy}" x2="${cx}" y2="${baseLineY.toFixed(1)}" stroke="${color}" stroke-width="1.1" opacity="0.22" />
-            <!-- Hover Halo -->
-            <circle id="halo-${i}" cx="${cx}" cy="${cy}" r="10" fill="${color}" opacity="0" />
-            ${isLast ? `<circle class="live-pulse-ring" cx="${cx}" cy="${cy}" r="4.5" fill="none" stroke="#34d399" stroke-width="1.5" />` : ''}
-            <!-- Data Point -->
-            <circle id="dot-${i}" cx="${cx}" cy="${cy}" r="4.2" fill="${color}" stroke="#111615" stroke-width="2" />
-            <!-- Value Tag -->
-            <text id="val-${i}" x="${cx}" y="${labelY}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#e5e9e7" style="paint-order: stroke; stroke: #111615; stroke-width: 3.5px; stroke-linejoin: round;">${p.revisions}v</text>
-            <!-- X-Axis Label -->
-            <text id="lbl-${i}" x="${cx}" y="${height - 8}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#7d8a86">${p.short}</text>
-          </g>
-        `;
-      });
-
-      svg.innerHTML = svgContent;
-
-      // Setup SVG stroke draw animation
-      const curvePath = document.getElementById('mainCurvePath');
-      const pathLen = curvePath.getTotalLength();
-      curvePath.style.strokeDasharray = pathLen;
-      curvePath.style.strokeDashoffset = pathLen;
-
-      // Reveal animation when scrolled into view
-      let hasAnimated = false;
-      function triggerReveal() {
-        if (hasAnimated) return;
-        hasAnimated = true;
-        card.classList.add('is-visible');
-        curvePath.style.strokeDashoffset = '0';
-        animateNumber(meanEl, mean, 1, 'x');
-        animateNumber(totalEl, sum, 0, '');
-      }
-
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting) {
-            triggerReveal();
-            observer.disconnect();
-          }
-        }, { threshold: 0.25 });
-        observer.observe(card);
-      } else {
-        triggerReveal();
-      }
-
-      // Continuous, zero-gap horizontal tracking across entire SVG
-      const activeColBand = document.getElementById('activeColBand');
-      const activeCrosshair = document.getElementById('activeCrosshair');
-      const defaultIdx = n - 1;
-      let currentIdx = null;
-
-      function selectItem(idx) {
-        if (currentIdx === idx) return;
-
-        if (currentIdx !== null) {
-          const prevDot = document.getElementById(`dot-${currentIdx}`);
-          const prevHalo = document.getElementById(`halo-${currentIdx}`);
-          const prevStem = document.getElementById(`stem-${currentIdx}`);
-          const prevLbl = document.getElementById(`lbl-${currentIdx}`);
-          if (prevDot) prevDot.setAttribute('r', '4.2');
-          if (prevHalo) prevHalo.setAttribute('opacity', '0');
-          if (prevStem) prevStem.setAttribute('opacity', '0.22');
-          if (prevLbl) {
-            prevLbl.setAttribute('fill', '#7d8a86');
-            prevLbl.setAttribute('font-weight', '400');
-          }
-        }
-
-        currentIdx = idx;
-        const p = pts[idx];
-
-        activeColBand.setAttribute('x', (padLeft + colStep * idx).toFixed(1));
-        activeColBand.setAttribute('opacity', '0.07');
-
-        activeCrosshair.setAttribute('x1', p.x.toFixed(1));
-        activeCrosshair.setAttribute('x2', p.x.toFixed(1));
-        activeCrosshair.setAttribute('opacity', '0.5');
-
-        const dot = document.getElementById(`dot-${idx}`);
-        const halo = document.getElementById(`halo-${idx}`);
-        const stem = document.getElementById(`stem-${idx}`);
-        const lbl = document.getElementById(`lbl-${idx}`);
-
-        if (dot) dot.setAttribute('r', '5.8');
-        if (halo) halo.setAttribute('opacity', '0.22');
-        if (stem) stem.setAttribute('opacity', '0.65');
-        if (lbl) {
-          lbl.setAttribute('fill', '#ffffff');
-          lbl.setAttribute('font-weight', '600');
-        }
-
-        const delta = p.revisions - mean;
-        inspIdx.textContent = `#${String(idx + 1).padStart(2, '0')}`;
-        inspIdx.className = `ticker-badge ${p.aboveMean ? '' : 'amber'}`;
-        inspTitle.textContent = p.title;
-        inspCount.textContent = `${p.revisions} versions`;
-        inspDelta.textContent = `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}v vs. mean`;
-        inspDelta.className = `ticker-delta ${delta >= 0 ? 'pos' : 'neg'}`;
-      }
-
-      selectItem(defaultIdx);
-
-      function handlePointer(clientX) {
-        const rect = svg.getBoundingClientRect();
-        const svgX = ((clientX - rect.left) / rect.width) * width;
-        const rawIdx = Math.floor((svgX - padLeft) / colStep);
-        const clampedIdx = Math.max(0, Math.min(n - 1, rawIdx));
-        selectItem(clampedIdx);
-      }
-
-      svg.addEventListener('mousemove', (e) => handlePointer(e.clientX));
-      svg.addEventListener('mouseleave', () => selectItem(defaultIdx));
-      svg.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) handlePointer(e.touches[0].clientX);
-      }, { passive: true });
-    }
-
-    renderQuantChart(deliverables);
-
     // Filter tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const entries = document.querySelectorAll('#projects .entry');
@@ -1148,7 +563,6 @@
         tabBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const filter = btn.dataset.filter;
-
         entries.forEach(entry => {
           entry.classList.toggle('hidden', filter !== 'all' && entry.dataset.category !== filter);
         });
