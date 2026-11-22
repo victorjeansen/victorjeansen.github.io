@@ -7,7 +7,7 @@
   <meta name="description" content="Project portfolio in strategy, corporate finance and quantitative risk modeling — Victor Jeansen (Global BBA, emlyon business school)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f8f8f6;
@@ -22,7 +22,41 @@
       --accent-soft: #edf2f0;
       --wip-ink: #7c4a15;
       --wip-bg: #f6efe6;
+      --hover: rgba(255, 255, 255, 0.72);
+      --card-border: #e4e2dc;
+
+      /* Terminal palette (FX card) */
+      --term-bg: #111615;
+      --term-surface: #171e1c;
+      --term-border: #26302d;
+      --term-grid: #1e2624;
+      --term-ink: #f2f4f3;
+      --term-muted: #8a9692;
+      --term-emerald: #34d399;
+      --term-amber: #f59e0b;
+      --term-red: #f87171;
+
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121413;
+        --surface: #1a1d1c;
+        --ink: #ecedea;
+        --ink-body: #c4c6c1;
+        --ink-muted: #8f918b;
+        --rule: #2c302e;
+        --rule-dark: #e6e7e3;
+        --accent: #7fc4b3;
+        --accent-hover: #a3d9cb;
+        --accent-soft: #1f2a27;
+        --wip-ink: #f0b878;
+        --wip-bg: #2e2418;
+        --hover: rgba(255, 255, 255, 0.03);
+        --card-border: #2c302e;
+      }
     }
 
     * {
@@ -200,7 +234,7 @@
     }
 
     .entry:hover {
-      background-color: rgba(255, 255, 255, 0.72);
+      background-color: var(--hover);
     }
 
     .entry.hidden {
@@ -321,6 +355,401 @@
       transform: translateX(3px);
     }
 
+    /* Key-figure strip */
+    .kpi-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 0 0 16px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .kpi {
+      flex: 1 1 0;
+      min-width: 140px;
+      padding: 10px 14px 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .kpi + .kpi {
+      padding-left: 14px;
+      border-left: 1px solid var(--rule);
+    }
+
+    .kpi-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.2;
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    /* Preview thumbnails */
+    .preview {
+      margin: 0 0 16px;
+    }
+
+    .preview-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      background: var(--surface);
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+
+    .preview-link:hover {
+      border-color: var(--accent);
+      box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .preview-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 12px 16px 0;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .preview-cta {
+      color: var(--accent);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .preview svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* PDF buttons */
+    .pdf-btn,
+    .entry-links a.pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 3px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, transform 0.2s var(--ease);
+    }
+
+    .pdf-btn:hover,
+    .entry-links a.pdf-btn:hover {
+      background: var(--accent-hover);
+      color: var(--bg);
+      transform: translateY(-1px);
+    }
+
+    .pdf-btn .arrow { transition: transform 0.2s var(--ease); }
+    .pdf-btn:hover .arrow { transform: translateX(3px); }
+
+    .pdf-btn.term {
+      background: var(--term-emerald);
+      color: var(--term-bg);
+    }
+
+    .pdf-btn.term:hover { background: #6ee7b7; color: var(--term-bg); }
+
+    .fx-legend-row {
+      padding: 6px 18px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--term-muted);
+    }
+
+    /* MedTech interactive card */
+    .mt-card {
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      background: var(--surface);
+      margin: 0 0 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.25);
+    }
+
+    .mt-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      padding: 12px 18px 0;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .mt-head .preview-cta { text-decoration: none; font-weight: 600; }
+    .mt-head .preview-cta:hover { color: var(--accent-hover); }
+
+    #mtChart { display: block; width: 100%; height: auto; }
+
+    .mt-controls { padding: 2px 18px 12px; }
+
+    .mt-controls label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .mt-tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 0 6px;
+      border-radius: 2px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    #mtSlider { width: 100%; accent-color: var(--accent); cursor: ew-resize; }
+
+    .mt-readout {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--rule);
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mt-readout div { padding: 9px 16px; display: flex; flex-direction: column; gap: 1px; }
+    .mt-readout div + div { border-left: 1px solid var(--rule); }
+    .mt-ro-label { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); }
+    .mt-ro-val { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+    .mt-ro-val.pos { color: var(--accent); }
+    .mt-ro-val.neg { color: #d9534f; }
+
+    .mt-stress {
+      padding: 10px 16px 12px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .mt-stress-title {
+      display: block;
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .mt-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .mt-chip {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 2px;
+      border: 1px solid var(--rule);
+      color: var(--ink-body);
+    }
+
+    .mt-chip b { font-family: 'JetBrains Mono', monospace; font-weight: 600; margin-left: 4px; }
+    .mt-chip.pos b { color: var(--accent); }
+    .mt-chip.neg b { color: #d9534f; }
+
+    .mt-note {
+      padding: 7px 16px 9px;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      border-top: 1px solid var(--rule);
+    }
+
+    /* FX interactive card */
+    .fx-card {
+      background: radial-gradient(120% 100% at 85% 0%, #192623 0%, var(--term-bg) 62%);
+      border: 1px solid var(--term-border);
+      border-radius: 4px;
+      color: var(--term-ink);
+      box-shadow: 0 12px 32px -14px rgba(17, 22, 21, 0.35);
+      overflow: hidden;
+      margin: 0 0 16px;
+    }
+
+    #fx3d {
+      display: block;
+      width: 100%;
+      height: 360px;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+
+    #fx3d:active { cursor: grabbing; }
+
+    .fx-drag {
+      font-style: normal;
+      text-transform: none;
+      letter-spacing: 0;
+      opacity: 0.7;
+    }
+
+    .fx-controls input + label { margin-top: 8px; }
+
+    .fx-note-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .fx-surface-cta {
+      flex-shrink: 0;
+      white-space: nowrap;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--term-bg);
+      background: var(--term-emerald);
+      padding: 5px 10px;
+      border-radius: 2px;
+      opacity: 0.92;
+      transition: opacity 0.2s ease;
+    }
+
+    .fx-surface-cta:hover { opacity: 1; }
+
+    @media (max-width: 680px) {
+      .fx-note-row { flex-direction: column; align-items: flex-start; }
+      #fx3d { height: 280px; }
+    }
+
+    .fx-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      padding: 12px 18px 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--term-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .fx-legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .fx-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lg {
+      width: 14px;
+      height: 0;
+      border-top: 2px solid;
+    }
+
+    .lg.hedged { border-color: var(--term-emerald); }
+    .lg.unhedged { border-color: var(--term-amber); }
+    .lg.cov { border-top: 1.5px dashed var(--term-red); }
+
+    .fx-controls {
+      padding: 4px 18px 12px;
+    }
+
+    .fx-controls label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--term-muted);
+      margin-bottom: 4px;
+    }
+
+    #fxSlider, #hrSlider {
+      width: 100%;
+      accent-color: var(--term-emerald);
+      cursor: ew-resize;
+    }
+
+    .fx-readout {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background-color: var(--term-surface);
+      border-top: 1px solid var(--term-border);
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .fx-readout div {
+      padding: 9px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .fx-readout div + div {
+      border-left: 1px solid var(--term-border);
+    }
+
+    .ro-label {
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--term-muted);
+    }
+
+    .ro-val {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--term-ink);
+    }
+
+    .ro-val.ok { color: var(--term-emerald); }
+    .ro-val.warn { color: var(--term-amber); }
+    .ro-val.bad { color: var(--term-red); }
+
+    .fx-note {
+      padding: 7px 18px 9px;
+      font-size: 0.7rem;
+      color: var(--term-muted);
+      border-top: 1px solid var(--term-border);
+    }
+
     /* Skills Two-Column Table */
     .credentials-grid {
       display: grid;
@@ -405,6 +834,13 @@
         grid-template-columns: 1fr;
         gap: 24px;
       }
+      .fx-readout { grid-template-columns: repeat(2, 1fr); }
+      .fx-readout div:nth-child(3) { border-left: none; }
+      .fx-readout div:nth-child(n+3) { border-top: 1px solid var(--term-border); }
+      .kpi { min-width: 0; }
+      .mt-readout { grid-template-columns: 1fr 1fr 1fr; }
+      .mt-readout div { padding: 8px 10px; }
+      .mt-ro-val { font-size: 0.85rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -452,6 +888,45 @@
           <p class="entry-desc">
             Personal project. Monte Carlo simulation of 12-month operating margin distributions for a hypothetical European exporter with USD revenues ($100M USD sales vs. €75M EUR fixed costs). Calibrates a zero-cost option collar (1.0745–1.1200) using Garman-Kohlhagen pricing and Brent's root-finding over 10,000 GBM paths. In this scenario, the hedge sets a €14.29M EBIT floor, above a €12.0M bank covenant.
           </p>
+
+          <div class="kpi-strip">
+            <div class="kpi"><span class="kpi-val">10,000</span><span class="kpi-label">GBM paths</span></div>
+            <div class="kpi"><span class="kpi-val">€14.29M</span><span class="kpi-label">EBIT floor</span></div>
+            <div class="kpi"><span class="kpi-val">€0</span><span class="kpi-label">Upfront premium</span></div>
+          </div>
+
+          <div class="fx-card" id="fxCard">
+            <div class="fx-head">
+              <span>EBIT surface · EUR/USD × hedge ratio</span>
+              <a class="pdf-btn term" href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read the note (PDF) <span class="arrow">→</span></a>
+
+            </div>
+            <div class="fx-legend-row">
+              <div class="fx-legend">
+                <span><i class="lg hedged"></i>Above covenant</span>
+                <span><i class="lg unhedged"></i>Near covenant</span>
+                <span><i class="lg cov"></i>Covenant plane €12.0M</span>
+                <em class="fx-drag">· drag to rotate</em>
+              </div>
+            </div>
+            <canvas id="fx3d" aria-label="3D surface of operating EBIT as a function of the EUR/USD rate and the share of revenue hedged with the collar"></canvas>
+            <div class="fx-controls">
+              <label for="fxSlider">EUR/USD at maturity → <span id="fxRateLabel">1.1800</span></label>
+              <input type="range" id="fxSlider" min="0.98" max="1.24" step="0.0005" value="1.18" />
+              <label for="hrSlider">Share of USD revenue hedged → <span id="hrLabel">100%</span></label>
+              <input type="range" id="hrSlider" min="0" max="1" step="0.01" value="1" />
+            </div>
+            <div class="fx-readout" aria-live="polite">
+              <div><span class="ro-label">EUR/USD</span><span class="ro-val" id="roRate">—</span></div>
+              <div><span class="ro-label">Hedge ratio</span><span class="ro-val" id="roHr">—</span></div>
+              <div><span class="ro-label">EBIT</span><span class="ro-val ok" id="roEbit">—</span></div>
+              <div><span class="ro-label">Covenant</span><span class="ro-val" id="roCov">—</span></div>
+            </div>
+            <div class="fx-note fx-note-row">
+              <span>Illustrative: USD revenue converted at maturity; hedged share collared at 1.0745 / 1.1200; fixed costs €75M. EBIT = h·$100M ÷ clamp(rate) + (1−h)·$100M ÷ rate − €75M.</span>
+            </div>
+          </div>
+
           <div class="entry-bottom">
             <div class="tags">
               <span class="tag">Python</span>
@@ -460,7 +935,7 @@
               <span class="tag">VaR &amp; CVaR</span>
             </div>
             <div class="entry-links">
-              <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Project Note (PDF) <span class="arrow">→</span></a>
+              <a class="pdf-btn" href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Project Note (PDF) <span class="arrow">→</span></a>
               <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" rel="noopener">View Code <span class="arrow">→</span></a>
               <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20Corporate%20FX%20Hedging%20%26%20Monte%20Carlo%20Engine" class="inquire-link">Inquire <span class="arrow">→</span></a>
             </div>
@@ -476,8 +951,42 @@
         <div class="entry-main">
           <h3 class="entry-title">MedTech Go-to-Market &amp; White-Label Business Model</h3>
           <p class="entry-desc">
-            Case study (all company and client details anonymized) on the strategic and financial feasibility of a global white-label commercialization of a MedTech hardware/software platform across the US, EU-27, China and India. Covers TAM/SAM sizing (~1.28M annual units), a 5-year P&amp;L model (+€8.06M net result on €4.1M CapEx), B2B pricing with a make-vs-buy comparison (4.5x cost advantage), and sensitivity analysis.
+            Case study (all company and client details anonymized) on the strategic and financial feasibility of a global white-label commercialization of a MedTech hardware/software platform across the US, EU-27, China and India. Covers market sizing (~1.28M units/yr across four regions), a 5-year P&amp;L model (+€8.06M result on €4.1M development cost), B2B pricing with a make-vs-buy comparison (4.5x cost advantage), and sensitivity analysis.
           </p>
+
+          <div class="kpi-strip">
+            <div class="kpi"><span class="kpi-val">~1.28M</span><span class="kpi-label">Total market (units/yr)</span></div>
+            <div class="kpi"><span class="kpi-val">+€8.06M</span><span class="kpi-label">5-year result</span></div>
+            <div class="kpi"><span class="kpi-val">4.5x</span><span class="kpi-label">Make-vs-buy advantage</span></div>
+          </div>
+
+          <div class="mt-card" id="mtCard">
+            <div class="mt-head">
+              <span>5-year result bridge · €M · realistic scenario</span>
+              <a class="pdf-btn" href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read the full case (PDF) <span class="arrow">→</span></a>
+            </div>
+            <svg id="mtChart" viewBox="0 0 640 250" role="img" aria-label="Waterfall chart of the 5-year result: device, consumables, software and customisation margins, minus development and fixed costs"></svg>
+            <div class="mt-controls">
+              <label for="mtSlider">Volume covered → <span id="mtVolLabel">82,750</span> units/yr <span id="mtBaseTag" class="mt-tag">base case</span></label>
+              <input type="range" id="mtSlider" min="20000" max="120000" step="250" value="82750" />
+            </div>
+            <div class="mt-readout" aria-live="polite">
+              <div><span class="mt-ro-label">5-year result</span><span class="mt-ro-val" id="mtRes">—</span></div>
+              <div><span class="mt-ro-label">vs. break-even</span><span class="mt-ro-val" id="mtBe">—</span></div>
+              <div><span class="mt-ro-label">Client manufacturers</span><span class="mt-ro-val" id="mtClients">—</span></div>
+            </div>
+            <div class="mt-stress">
+              <span class="mt-stress-title">Stress tests (from the case)</span>
+              <div class="mt-chips">
+                <span class="mt-chip pos">Base <b>+€8.06M</b></span>
+                <span class="mt-chip pos">45% discount <b>+€5.65M</b></span>
+                <span class="mt-chip pos">Combined risks <b>+€2.08M</b></span>
+                <span class="mt-chip neg">Combined risks + 60k units/yr <b>−€0.44M</b></span>
+              </div>
+            </div>
+            <div class="mt-note">Margins scale with volume; development (€4.1M) and fixed costs (€0.35M/yr) do not. Break-even ≈ 34,800 units/yr. Combined risks = 20% discount, 30% adoption, development +30%.</div>
+          </div>
+
           <div class="entry-bottom">
             <div class="tags">
               <span class="tag">Case Study</span>
@@ -486,7 +995,7 @@
               <span class="tag">B2B Pricing</span>
             </div>
             <div class="entry-links">
-              <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) <span class="arrow">→</span></a>
+              <a class="pdf-btn" href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) <span class="arrow">→</span></a>
               <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20MedTech%20Go-to-Market%20Business%20Model" class="inquire-link">Inquire <span class="arrow">→</span></a>
             </div>
           </div>
@@ -554,6 +1063,343 @@
   </div>
 
   <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+    // =====================================================================
+    // FX COLLAR — interactive 3D EBIT surface (canvas, no library)
+    // x = EUR/USD at maturity, y = share of USD revenue hedged (h), z = EBIT.
+    // EBIT = h * $100M / clamp(S, 1.0745, 1.12) + (1 - h) * $100M / S - €75M
+    // =====================================================================
+    const FX = { usdRev: 100, eurCost: 75, kLow: 1.0745, kHigh: 1.12, covenant: 12,
+                 sMin: 0.98, sMax: 1.24, zMin: 0, zMax: 30 };
+    const clampS = (s) => Math.min(Math.max(s, FX.kLow), FX.kHigh);
+    const ebit = (s, h) => h * FX.usdRev / clampS(s) + (1 - h) * FX.usdRev / s - FX.eurCost;
+    const fmtM = (v) => (v < 0 ? '−€' : '€') + Math.abs(v).toFixed(2) + 'M';
+
+    function initFx3d() {
+      const canvas = document.getElementById('fx3d');
+      const sS = document.getElementById('fxSlider');
+      const sH = document.getElementById('hrSlider');
+      if (!canvas || !canvas.getContext) return;
+      const ctx = canvas.getContext('2d');
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // World mapping into a box [-1,1] x [-0.75,0.75] x [-0.55,0.55]
+      const wx = (s) => ((s - FX.sMin) / (FX.sMax - FX.sMin)) * 2 - 1;
+      const wy = (h) => (h - 0.5) * 1.5;
+      const wz = (z) => ((z - FX.zMin) / (FX.zMax - FX.zMin) - 0.5) * 1.1;
+
+      // Camera state (yaw follows the EUR/USD slider, plus gentle idle sway and drag)
+      let yaw = -0.55, pitch = 0.5, yawTarget = -0.55, pitchTarget = 0.5;
+      let userYaw = 0, userPitch = 0, t0 = performance.now();
+      let W = 0, H = 0, dpr = 1;
+
+      function resize() {
+        const r = canvas.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = r.width; H = r.height;
+        canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function project(x, y, z) {
+        const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+        const x1 = x * cy - y * sy, y1 = x * sy + y * cy;
+        const y2 = y1 * cp - z * sp, z2 = y1 * sp + z * cp;
+        const D = 4.2, f = D / (D + y2);
+        const scale = Math.min(W * (W < 520 ? 0.31 : 0.27), H * 0.45);
+        return { x: W * 0.5 + x1 * f * scale, y: H * 0.45 - z2 * f * scale, d: y2 };
+      }
+
+      // Colour: red below covenant -> amber around it -> emerald above
+      function colour(z, shade) {
+        const stops = [[6, [248, 113, 113]], [12, [245, 158, 11]], [15, [52, 211, 153]], [22, [16, 185, 129]]];
+        let c = stops[0][1];
+        if (z >= stops[stops.length - 1][0]) c = stops[stops.length - 1][1];
+        else for (let i = 0; i < stops.length - 1; i++) {
+          const [za, ca] = stops[i], [zb, cb] = stops[i + 1];
+          if (z >= za && z <= zb) { const t = (z - za) / (zb - za); c = ca.map((v, k) => v + (cb[k] - v) * t); break; }
+        }
+        return `rgb(${c.map(v => Math.round(v * shade)).join(',')})`;
+      }
+
+      const NS_ = 44, NH = 16;
+      // Precompute grid values
+      const grid = [];
+      for (let i = 0; i <= NS_; i++) {
+        grid.push([]);
+        const s = FX.sMin + (FX.sMax - FX.sMin) * i / NS_;
+        for (let j = 0; j <= NH; j++) { const h = j / NH; grid[i].push({ s, h, z: ebit(s, h) }); }
+      }
+
+      const light = (() => { const v = [-0.35, -0.55, 0.75]; const n = Math.hypot(...v); return v.map(a => a / n); })();
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const S = parseFloat(sS.value), Hh = parseFloat(sH.value);
+        const P = grid.map(col => col.map(p => ({ ...project(wx(p.s), wy(p.h), wz(p.z)), z: p.z, s: p.s, h: p.h })));
+
+        // Base box outline
+        const corners = [[-1, -0.75], [1, -0.75], [1, 0.75], [-1, 0.75]].map(([x, y]) => project(x, y, wz(0)));
+        ctx.strokeStyle = '#26302d'; ctx.lineWidth = 1;
+        ctx.beginPath(); corners.forEach((c, k) => k ? ctx.lineTo(c.x, c.y) : ctx.moveTo(c.x, c.y)); ctx.closePath(); ctx.stroke();
+        // Vertical axis + gridlines on the back-left edge
+        ctx.font = '10px "JetBrains Mono", monospace'; ctx.fillStyle = '#63706c';
+        [0, 10, 20, 30].forEach(v => {
+          const a = project(-1, 0.75, wz(v)), b = project(1, 0.75, wz(v)), c = project(-1, -0.75, wz(v));
+          ctx.strokeStyle = v === 0 ? '#2e3a37' : '#1c2523';
+          ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          ctx.textAlign = 'right'; ctx.fillText(`€${v}M`, c.x - 6, c.y + 3);
+        });
+        // X ticks along the front edge (h = 0)
+        ctx.textAlign = 'center';
+        [1.00, 1.05, 1.10, 1.15, 1.20].forEach(s => { const p = project(wx(s), -0.75, wz(0)); ctx.fillText(s.toFixed(2), p.x, p.y + 15); });
+        const xl = project(0, -0.75, wz(0)); ctx.fillStyle = '#8a9692'; ctx.fillText('EUR/USD', xl.x, xl.y + 29);
+        // H ticks along the right edge
+        ctx.fillStyle = '#63706c'; ctx.textAlign = 'left';
+        [0, 0.5, 1].forEach(h => { const p = project(1, wy(h), wz(0)); ctx.fillText(`${Math.round(h * 100)}%`, p.x + 8, p.y + 4); });
+        const hl = project(1, 0.95, wz(0)); ctx.fillStyle = '#8a9692'; ctx.fillText('hedged', hl.x + 8, hl.y + 4);
+
+        // Collect quads: surface + covenant plane, painter's algorithm
+        const quads = [];
+        for (let i = 0; i < NS_; i++) for (let j = 0; j < NH; j++) {
+          const a = P[i][j], b = P[i + 1][j], c = P[i + 1][j + 1], d = P[i][j + 1];
+          const zAvg = (a.z + b.z + c.z + d.z) / 4;
+          // Lambert shading from world-space normal
+          const ga = grid[i][j], gb = grid[i + 1][j], gd = grid[i][j + 1];
+          const u = [wx(gb.s) - wx(ga.s), 0, wz(gb.z) - wz(ga.z)], v = [0, wy(gd.h) - wy(ga.h), wz(gd.z) - wz(ga.z)];
+          let n = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]];
+          const nl = Math.hypot(...n); n = n.map(k => k / nl);
+          const shade = 0.55 + 0.45 * Math.max(0, n[0] * light[0] + n[1] * light[1] + n[2] * light[2]);
+          quads.push({ pts: [a, b, c, d], d: (a.d + b.d + c.d + d.d) / 4, fill: colour(zAvg, shade), stroke: 'rgba(10,14,13,0.35)' });
+        }
+        const NP = 8;
+        for (let i = 0; i < NP; i++) for (let j = 0; j < NP; j++) {
+          const x0 = -1 + 2 * i / NP, x1 = -1 + 2 * (i + 1) / NP, y0 = -0.75 + 1.5 * j / NP, y1 = -0.75 + 1.5 * (j + 1) / NP, z = wz(FX.covenant);
+          const pts = [project(x0, y0, z), project(x1, y0, z), project(x1, y1, z), project(x0, y1, z)];
+          quads.push({ pts, d: pts.reduce((a, p) => a + p.d, 0) / 4 + 0.001, fill: 'rgba(248,113,113,0.10)', stroke: 'rgba(248,113,113,0.18)' });
+        }
+        quads.sort((p, q) => q.d - p.d);
+        quads.forEach(q => {
+          ctx.beginPath(); q.pts.forEach((p, k) => k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)); ctx.closePath();
+          ctx.fillStyle = q.fill; ctx.fill(); ctx.strokeStyle = q.stroke; ctx.lineWidth = 0.6; ctx.stroke();
+        });
+
+        // Curve along the selected hedge ratio
+        ctx.beginPath();
+        for (let i = 0; i <= 80; i++) {
+          const s = FX.sMin + (FX.sMax - FX.sMin) * i / 80, p = project(wx(s), wy(Hh), wz(ebit(s, Hh)));
+          i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y);
+        }
+        ctx.strokeStyle = 'rgba(242,244,243,0.85)'; ctx.lineWidth = 1.6; ctx.stroke();
+
+        // Marker with drop line
+        const z = ebit(S, Hh), top = project(wx(S), wy(Hh), wz(z)), base = project(wx(S), wy(Hh), wz(0));
+        ctx.setLineDash([3, 3]); ctx.strokeStyle = 'rgba(215,222,219,0.6)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(top.x, top.y); ctx.lineTo(base.x, base.y); ctx.stroke(); ctx.setLineDash([]);
+        const pulse = reduceMotion ? 0 : (Math.sin((performance.now() - t0) / 380) + 1) / 2;
+        ctx.beginPath(); ctx.arc(top.x, top.y, 6 + pulse * 6, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(242,244,243,${0.5 - pulse * 0.45})`; ctx.lineWidth = 1.5; ctx.stroke();
+        ctx.beginPath(); ctx.arc(top.x, top.y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#f2f4f3'; ctx.fill(); ctx.strokeStyle = '#111615'; ctx.lineWidth = 2; ctx.stroke();
+        ctx.font = '600 11px "JetBrains Mono", monospace'; ctx.textAlign = 'left'; ctx.fillStyle = '#f2f4f3';
+        ctx.fillText(fmtM(z), top.x + 10, top.y - 8);
+      }
+
+      function updateReadout() {
+        const S = parseFloat(sS.value), h = parseFloat(sH.value), z = ebit(S, h);
+        document.getElementById('fxRateLabel').textContent = S.toFixed(4);
+        document.getElementById('hrLabel').textContent = Math.round(h * 100) + '%';
+        document.getElementById('roRate').textContent = S.toFixed(4);
+        document.getElementById('roHr').textContent = Math.round(h * 100) + '%';
+        const e = document.getElementById('roEbit');
+        e.textContent = fmtM(z);
+        e.className = 'ro-val ' + (z < FX.covenant ? 'bad' : z < FX.covenant + 2 ? 'warn' : 'ok');
+        const c = document.getElementById('roCov');
+        c.textContent = z >= FX.covenant ? 'Respected' : 'Breached';
+        c.className = 'ro-val ' + (z >= FX.covenant ? 'ok' : 'bad');
+        // Camera follows the sliders: the chart turns as the inputs move
+        yawTarget = -0.95 + 0.8 * (S - FX.sMin) / (FX.sMax - FX.sMin);
+        pitchTarget = 0.42 + 0.14 * (1 - h);
+      }
+
+      // Drag to rotate
+      let dragging = false, lx = 0, ly = 0;
+      canvas.addEventListener('pointerdown', (e) => { dragging = true; lx = e.clientX; ly = e.clientY; canvas.setPointerCapture(e.pointerId); });
+      canvas.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        userYaw += (e.clientX - lx) * 0.008; userPitch += (e.clientY - ly) * 0.006;
+        userYaw = Math.max(-0.6, Math.min(0.6, userYaw)); userPitch = Math.max(-0.2, Math.min(0.45, userPitch));
+        lx = e.clientX; ly = e.clientY;
+      });
+      const endDrag = () => { dragging = false; };
+      canvas.addEventListener('pointerup', endDrag);
+      canvas.addEventListener('pointercancel', endDrag);
+
+      sS.addEventListener('input', updateReadout);
+      sH.addEventListener('input', updateReadout);
+
+      let visible = true;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((en) => { visible = en[0].isIntersecting; }, { threshold: 0 }).observe(canvas);
+      }
+
+      function loop(now) {
+        if (visible) {
+          const sway = reduceMotion || dragging ? 0 : Math.sin((now - t0) / 4200) * 0.12;
+          const k = reduceMotion ? 1 : 0.08;
+          yaw += (yawTarget + userYaw + sway - yaw) * k;
+          pitch += (pitchTarget + userPitch - pitch) * k;
+          draw();
+        }
+        requestAnimationFrame(loop);
+      }
+
+      resize();
+      updateReadout();
+      yaw = yawTarget; pitch = pitchTarget;
+      if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas); else window.addEventListener('resize', resize);
+      requestAnimationFrame(loop);
+    }
+
+    initFx3d();
+
+    // =====================================================================
+    // MEDTECH — static preview (figures from the business case)
+    // =====================================================================
+    // =====================================================================
+    // MEDTECH — animated 5-year result bridge + volume slider
+    // Figures from the business case (realistic scenario, 82,750 units/yr):
+    // margins: devices +7.67, consumables +4.11, software +1.37, customisation +0.76
+    // costs: development -4.10, fixed -1.75  => result +8.06 (€M)
+    // Margins scale linearly with volume; break-even ≈ 34,800 units/yr.
+    // =====================================================================
+    function initMedtech() {
+      const svg = document.getElementById('mtChart');
+      const slider = document.getElementById('mtSlider');
+      if (!svg || !slider) return;
+
+      const BASE_VOL = 82750, CLIENT_SIZE = 5950;
+      const items = [
+        { label: 'Devices', v: 7.67, scales: true },
+        { label: 'Consumables', v: 4.11, scales: true },
+        { label: 'Software', v: 1.37, scales: true },
+        { label: 'Custom.', v: 0.76, scales: true },
+        { label: 'Development', v: -4.10, scales: false },
+        { label: 'Fixed costs', v: -1.75, scales: false }
+      ];
+      const marginBase = items.filter(i => i.scales).reduce((a, i) => a + i.v, 0);   // 13.91
+      const costBase = items.filter(i => !i.scales).reduce((a, i) => a + i.v, 0);    // -5.85
+      const result = (vol) => marginBase * vol / BASE_VOL + costBase;
+      const breakEven = -costBase / marginBase * BASE_VOL;                             // ≈ 34,800
+
+      let W = 640;
+      const Hh = 250, pl = 40, pr = 10, pt = 22, pb = 34;
+      const shortLabels = ['Devices', 'Consum.', 'Software', 'Custom.', 'Dev.', 'Fixed'];
+      const yMin = -7, yMax = 21;
+      const ys = (v) => pt + (yMax - v) / (yMax - yMin) * (Hh - pt - pb);
+      const n = items.length + 1;
+      let slot = (W - pl - pr) / n, bw = slot * 0.56;
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fmt = (v) => (v < 0 ? '−' : '+') + Math.abs(v).toFixed(2);
+
+      let shown = 0;          // animation progress for the intro (0 -> 1)
+      let volShown = BASE_VOL; // eased volume
+      let volTarget = BASE_VOL;
+      let started = false;
+
+      function draw() {
+        const css = (k) => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+        const accent = css('--accent'), ink = css('--ink'), muted = css('--ink-muted'), rule = css('--rule'), neg = '#d9534f';
+        const narrow = svg.clientWidth > 0 && svg.clientWidth < 520;
+        W = narrow ? 400 : 640;
+        svg.setAttribute('viewBox', `0 0 ${W} ${Hh}`);
+        slot = (W - pl - pr) / n; bw = slot * 0.6;
+        const k = volShown / BASE_VOL;
+        const vals = items.map(i => (i.scales ? i.v * k : i.v) * shown);
+        const res = vals.reduce((a, v) => a + v, 0);
+
+        let g = '';
+        [-5, 0, 5, 10, 15, 20].forEach(v => {
+          g += `<line x1="${pl}" x2="${W - pr}" y1="${ys(v)}" y2="${ys(v)}" stroke="${rule}" stroke-width="${v === 0 ? 1.2 : 0.7}" ${v === 0 ? '' : 'stroke-dasharray="2 3"'}/>`;
+          g += `<text x="${pl - 8}" y="${ys(v) + 3.5}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="${muted}">${v}</text>`;
+        });
+
+        let cum = 0;
+        vals.forEach((v, i) => {
+          const x = pl + slot * i + (slot - bw) / 2;
+          const y0 = ys(cum), y1 = ys(cum + v);
+          const top = Math.min(y0, y1), h = Math.max(Math.abs(y1 - y0), 0.5);
+          const col = v >= 0 ? accent : neg;
+          g += `<rect x="${x}" y="${top}" width="${bw}" height="${h}" rx="1.5" fill="${col}" opacity="${items[i].scales ? 0.85 : 0.75}"/>`;
+          // connector to next bar
+          const nx = pl + slot * (i + 1) + (slot - bw) / 2;
+          g += `<line x1="${x + bw}" x2="${nx}" y1="${y1}" y2="${y1}" stroke="${muted}" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.7"/>`;
+          const ly = v >= 0 ? top - 6 : top + h + 13;
+          g += `<text x="${x + bw / 2}" y="${ly}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600" fill="${ink}" opacity="${shown}">${fmt(v)}</text>`;
+          g += `<text x="${x + bw / 2}" y="${Hh - 12}" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="${muted}">${narrow ? shortLabels[i] : items[i].label}</text>`;
+          cum += v;
+        });
+
+        // Result bar
+        const rx = pl + slot * items.length + (slot - bw) / 2;
+        const rTop = Math.min(ys(0), ys(res)), rH = Math.max(Math.abs(ys(res) - ys(0)), 0.5);
+        g += `<rect x="${rx}" y="${rTop}" width="${bw}" height="${rH}" rx="1.5" fill="${res >= 0 ? ink : neg}"/>`;
+        g += `<text x="${rx + bw / 2}" y="${res >= 0 ? rTop - 6 : rTop + rH + 13}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="${res >= 0 ? ink : neg}" opacity="${shown}">${fmt(res)}</text>`;
+        g += `<text x="${rx + bw / 2}" y="${Hh - 12}" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="${ink}">Result</text>`;
+        svg.innerHTML = g;
+
+        // Readout
+        const r = result(volShown);
+        const resEl = document.getElementById('mtRes');
+        resEl.textContent = (r < 0 ? '−€' : '+€') + Math.abs(r).toFixed(2) + 'M';
+        resEl.className = 'mt-ro-val ' + (r >= 0 ? 'pos' : 'neg');
+        const pct = (volShown / breakEven - 1) * 100;
+        const beEl = document.getElementById('mtBe');
+        beEl.textContent = (pct >= 0 ? '+' : '−') + Math.abs(pct).toFixed(0) + '% volume';
+        beEl.className = 'mt-ro-val ' + (pct >= 0 ? 'pos' : 'neg');
+        document.getElementById('mtClients').textContent = '≈ ' + Math.max(1, Math.round(volShown / CLIENT_SIZE));
+      }
+
+      function onInput() {
+        volTarget = parseFloat(slider.value);
+        document.getElementById('mtVolLabel').textContent = Math.round(volTarget).toLocaleString('en-US');
+        const tag = document.getElementById('mtBaseTag');
+        const nearBase = Math.abs(volTarget - BASE_VOL) < 400, nearBe = Math.abs(volTarget - breakEven) < 600;
+        tag.textContent = nearBase ? 'base case' : nearBe ? 'break-even' : volTarget < breakEven ? 'loss' : 'profit';
+        tag.style.visibility = 'visible';
+        if (reduceMotion) { volShown = volTarget; draw(); }
+      }
+      slider.addEventListener('input', onInput);
+
+      function loop() {
+        let moving = false;
+        if (shown < 1) { shown = Math.min(1, shown + 0.035); moving = true; }
+        if (Math.abs(volTarget - volShown) > 1) { volShown += (volTarget - volShown) * 0.18; moving = true; }
+        else volShown = volTarget;
+        draw();
+        if (moving) requestAnimationFrame(loop); else running = false;
+      }
+      let running = false;
+      const kick = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
+      slider.addEventListener('input', () => { if (!reduceMotion) kick(); });
+
+      const start = () => {
+        if (started) return; started = true;
+        if (reduceMotion) { shown = 1; draw(); } else kick();
+      };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((en) => { if (en[0].isIntersecting) { start(); io.disconnect(); } }, { threshold: 0.3 });
+        io.observe(svg);
+      } else start();
+
+      draw();
+      window.__mtRedraw = draw;
+    }
+
+    initMedtech();
+
     // Filter tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const entries = document.querySelectorAll('#projects .entry');
