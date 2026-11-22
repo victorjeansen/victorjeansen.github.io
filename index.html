@@ -7,7 +7,7 @@
   <meta name="description" content="Strategy Consulting, M&A & Quantitative Risk Analysis Portfolio — Victor Jeansen (Global BBA, emlyon business school)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f8f8f6;
@@ -20,9 +20,19 @@
       --accent: #1c3d36;
       --accent-hover: #122924;
       --accent-soft: #edf2f0;
-      --amber: #b4651e;
       --wip-ink: #7c4a15;
       --wip-bg: #f6efe6;
+
+      /* Quant Tear-Sheet Palette */
+      --term-bg: #111615;
+      --term-surface: #171e1c;
+      --term-border: #26302d;
+      --term-grid: #1e2624;
+      --term-ink: #f2f4f3;
+      --term-muted: #8a9692;
+      --term-emerald: #34d399;
+      --term-amber: #f59e0b;
+
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -142,10 +152,6 @@
       margin-bottom: 54px;
     }
 
-    #wip {
-      margin-bottom: 42px;
-    }
-
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -155,6 +161,19 @@
       border-bottom: 1px solid var(--rule-dark);
       padding-bottom: 10px;
       margin-bottom: 4px;
+    }
+
+    .section-note {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .section-intro {
+      color: var(--ink-body);
+      font-size: 0.91rem;
+      margin: 14px 0 22px;
+      max-width: 740px;
     }
 
     h2 {
@@ -321,143 +340,220 @@
       transform: translateX(3px);
     }
 
-    /* Iterative Rigor Chart Band (Placed after Current Research) */
-    .rigor-band {
-      display: grid;
-      grid-template-columns: 225px 1fr;
-      border-top: 1.5px solid var(--rule-dark);
-      border-bottom: 1.5px solid var(--rule-dark);
-      background-color: var(--surface);
-      margin-bottom: 54px;
+    /* =====================================================================
+       QUANT TEAR-SHEET CARD (Dark Slate Financial Terminal Module)
+       ===================================================================== */
+    .quant-card {
+      background: radial-gradient(120% 100% at 85% 0%, #192623 0%, var(--term-bg) 62%);
+      border: 1px solid var(--term-border);
+      border-radius: 4px;
+      color: var(--term-ink);
+      box-shadow: 0 12px 32px -12px rgba(17, 22, 21, 0.28);
+      overflow: hidden;
     }
 
-    .rigor-summary {
-      padding: 20px 22px;
-      border-right: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .rigor-kicker {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink-muted);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .rigor-stat {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: var(--accent);
-      font-variant-numeric: tabular-nums;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-
-    .rigor-desc {
-      font-size: 0.82rem;
-      color: var(--ink-body);
-      line-height: 1.4;
-    }
-
-    .rigor-sample {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 0.74rem;
-      color: var(--ink-muted);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .rigor-chart-wrap {
-      padding: 14px 20px 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .rigor-chart-header {
+    .quant-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      font-size: 0.74rem;
-      color: var(--ink-muted);
-      min-height: 1.5em;
-      margin-bottom: 6px;
+      gap: 18px;
+      padding: 20px 24px 18px;
+      border-bottom: 1px solid var(--term-border);
+    }
+
+    .quant-kpis {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .q-kpi {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .q-kpi-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--term-muted);
+    }
+
+    .q-kpi-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--term-ink);
+      line-height: 1.1;
       font-variant-numeric: tabular-nums;
     }
 
-    .chart-readout {
-      color: var(--ink-muted);
-      transition: color 0.15s ease;
+    .q-kpi-val.emerald {
+      color: var(--term-emerald);
     }
 
-    .chart-readout strong {
-      color: var(--ink);
-      font-weight: 600;
+    .q-kpi-sub {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--term-muted);
+      margin-left: 5px;
     }
 
-    .readout-v {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .readout-pos {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .readout-neg {
-      color: var(--amber);
-      font-weight: 500;
-    }
-
-    .rigor-legends {
-      display: inline-flex;
+    .quant-legend {
+      display: flex;
       align-items: center;
-      gap: 14px;
-      margin-left: auto;
+      gap: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--term-muted);
     }
 
-    .rigor-legend {
+    .q-leg-item {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-weight: 500;
-      color: var(--ink-body);
     }
 
-    .rigor-legend-curve {
-      display: inline-block;
+    .q-leg-line {
       width: 14px;
       height: 2px;
-      background-color: var(--accent);
+      background-color: var(--term-emerald);
+      box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
     }
 
-    .rigor-legend-mean {
-      display: inline-block;
-      width: 16px;
-      border-top: 1.5px dashed var(--amber);
+    .q-leg-mean {
+      width: 15px;
+      border-top: 1.5px dashed var(--term-amber);
+    }
+
+    .quant-canvas-wrap {
+      padding: 20px 24px 10px;
+      position: relative;
     }
 
     #revisionChart {
       width: 100%;
-      height: 118px;
+      height: 205px;
       display: block;
       overflow: visible;
+      cursor: crosshair;
+      touch-action: pan-y;
     }
 
-    .point-hit {
-      cursor: pointer;
+    /* Motion Animations for Chart Reveal */
+    .chart-curve-anim {
+      transition: stroke-dashoffset 1.25s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .point-hit:focus {
-      outline: none;
+    .chart-area-anim {
+      opacity: 0;
+      transition: opacity 0.9s ease 0.35s;
+    }
+
+    .quant-card.is-visible .chart-area-anim {
+      opacity: 1;
+    }
+
+    .chart-node-group {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+
+    .quant-card.is-visible .chart-node-group {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes livePulse {
+      0% {
+        r: 4.5;
+        opacity: 0.75;
+      }
+      70% {
+        r: 13;
+        opacity: 0;
+      }
+      100% {
+        r: 13;
+        opacity: 0;
+      }
+    }
+
+    .live-pulse-ring {
+      animation: livePulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+
+    /* Fixed-height Terminal Ticker Bar (Zero Layout Shift) */
+    .quant-ticker {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      height: 40px;
+      padding: 0 24px;
+      background-color: var(--term-surface);
+      border-top: 1px solid var(--term-border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-variant-numeric: tabular-nums;
+      overflow: hidden;
+    }
+
+    .ticker-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ticker-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--term-bg);
+      background-color: var(--term-emerald);
+      padding: 1px 6px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .ticker-badge.amber {
+      background-color: var(--term-amber);
+    }
+
+    .ticker-title {
+      color: var(--term-ink);
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ticker-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .ticker-val {
+      color: var(--term-ink);
+      font-weight: 600;
+    }
+
+    .ticker-delta.pos {
+      color: var(--term-emerald);
+    }
+
+    .ticker-delta.neg {
+      color: var(--term-amber);
     }
 
     /* Credentials Two-Column Table */
@@ -531,17 +627,10 @@
     @media (max-width: 680px) {
       .container { padding: 42px 20px 64px; }
       h1 { font-size: 1.85rem; }
-      .rigor-band {
-        grid-template-columns: 1fr;
-      }
-      .rigor-summary {
-        border-right: none;
-        border-bottom: 1px solid var(--rule);
-        padding: 16px 18px;
-      }
-      .rigor-chart-wrap {
-        padding: 14px 16px 12px;
-      }
+      .quant-header { padding: 16px; }
+      .quant-kpis { gap: 18px; }
+      .quant-canvas-wrap { padding: 14px 12px 8px; }
+      .quant-ticker { padding: 0 14px; font-size: 0.68rem; }
       .entry {
         grid-template-columns: 1fr;
         gap: 8px;
@@ -560,6 +649,8 @@
 
     @media (prefers-reduced-motion: reduce) {
       .fade-in { opacity: 1; transform: none; animation: none; }
+      .chart-curve-anim, .chart-area-anim, .chart-node-group { transition: none !important; opacity: 1 !important; transform: none !important; }
+      .live-pulse-ring { animation: none; opacity: 0; }
     }
   </style>
 </head>
@@ -675,25 +766,53 @@
       </article>
     </section>
 
-    <!-- Iterative Rigor Chart Band (Placed after Current Research) -->
-    <div class="rigor-band fade-in stagger-3" aria-label="Deliverable revision history">
-      <div class="rigor-summary">
-        <div class="rigor-kicker">Execution Standard</div>
-        <div class="rigor-stat" id="meanRevisionStat">—</div>
-        <div class="rigor-desc">Mean draft versions per locked deliverable</div>
-        <span class="rigor-sample" id="sampleCountStat">n = — deliverables</span>
+    <section id="methodology" class="fade-in stagger-3" aria-label="Deliverable revision history">
+      <div class="section-header">
+        <h2>Execution Discipline & Version Control</h2>
+        <span class="section-note">Audit log across locked deliverables</span>
       </div>
-      <div class="rigor-chart-wrap">
-        <div class="rigor-chart-header">
-          <span class="chart-readout" id="chartReadout">Iterative depth across chronological deliverables (hover a point)</span>
-          <div class="rigor-legends">
-            <span class="rigor-legend"><span class="rigor-legend-curve"></span> Revisions</span>
-            <span class="rigor-legend"><span class="rigor-legend-mean"></span> Mean</span>
+      <p class="section-intro">
+        High-conviction financial models and executive decks rarely emerge in a first draft. Tracking revision cycles across deliverables reflects a strict pre-lock discipline—stress-testing assumptions, eliminating noise, and compressing complex analysis into decision-ready synthesis.
+      </p>
+
+      <div class="quant-card" id="quantCard">
+        <div class="quant-header">
+          <div class="quant-kpis">
+            <div class="q-kpi">
+              <span class="q-kpi-label">Mean Iterations</span>
+              <span class="q-kpi-val emerald" id="meanRevisionStat">11.9x</span>
+            </div>
+            <div class="q-kpi">
+              <span class="q-kpi-label">Cumulative Drafts</span>
+              <span class="q-kpi-val"><span id="totalRevisionStat">119</span><span class="q-kpi-sub" id="sampleCountStat">/ 10 deliverables</span></span>
+            </div>
+            <div class="q-kpi">
+              <span class="q-kpi-label">Peak Depth</span>
+              <span class="q-kpi-val"><span id="peakRevisionStat">22v</span><span class="q-kpi-sub" id="peakLabelStat">(SSP)</span></span>
+            </div>
+          </div>
+          <div class="quant-legend">
+            <span class="q-leg-item"><span class="q-leg-line"></span> Iterations</span>
+            <span class="q-leg-item"><span class="q-leg-mean"></span> Rolling Mean</span>
           </div>
         </div>
-        <svg id="revisionChart" viewBox="0 0 540 118" role="img" aria-label="Smooth chart of draft versions per deliverable"></svg>
+
+        <div class="quant-canvas-wrap">
+          <svg id="revisionChart" viewBox="0 0 800 205" role="img" aria-label="Chart of draft versions per deliverable"></svg>
+        </div>
+
+        <div class="quant-ticker" aria-live="polite">
+          <div class="ticker-left">
+            <span class="ticker-badge" id="inspIdx">#10</span>
+            <span class="ticker-title" id="inspTitle">FX Engine: FX Hedging & Monte Carlo Engine</span>
+          </div>
+          <div class="ticker-right">
+            <span class="ticker-val" id="inspCount">14v</span>
+            <span class="ticker-delta pos" id="inspDelta">+2.1v vs. mean</span>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <section id="credentials" class="fade-in stagger-4">
       <div class="section-header">
@@ -742,7 +861,7 @@
       { short: "FX", title: "FX Engine: FX Hedging & Monte Carlo Engine", revisions: 14 }
     ];
 
-    // Monotone cubic spline generator (smooth curves without artificial overshoot)
+    // Monotone cubic spline generator
     function buildSmoothPath(pts) {
       if (pts.length === 0) return "";
       if (pts.length === 1) return `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
@@ -775,42 +894,65 @@
       return path;
     }
 
-    function renderRevisionChart(data) {
-      const svg = document.getElementById('revisionChart');
-      const readout = document.getElementById('chartReadout');
-      const meanEl = document.getElementById('meanRevisionStat');
-      const sampleEl = document.getElementById('sampleCountStat');
+    // Smooth numeric counter for KPI reveal
+    function animateNumber(el, target, decimals, suffix) {
+      const duration = 950;
+      const start = performance.now();
+      function frame(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const current = target * eased;
+        el.textContent = current.toFixed(decimals) + suffix;
+        if (t < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
 
-      const defaultReadout = 'Iterative depth across chronological deliverables (hover a point)';
+    function renderQuantChart(data) {
+      const card = document.getElementById('quantCard');
+      const svg = document.getElementById('revisionChart');
+      const meanEl = document.getElementById('meanRevisionStat');
+      const totalEl = document.getElementById('totalRevisionStat');
+      const sampleEl = document.getElementById('sampleCountStat');
+      const peakEl = document.getElementById('peakRevisionStat');
+      const peakLabelEl = document.getElementById('peakLabelStat');
+
+      const inspIdx = document.getElementById('inspIdx');
+      const inspTitle = document.getElementById('inspTitle');
+      const inspCount = document.getElementById('inspCount');
+      const inspDelta = document.getElementById('inspDelta');
 
       const n = data.length;
       const sum = data.reduce((acc, item) => acc + item.revisions, 0);
       const mean = sum / n;
+      const peakItem = data.reduce((best, cur) => cur.revisions > best.revisions ? cur : best, data[0]);
 
       meanEl.textContent = mean.toFixed(1) + 'x';
-      sampleEl.textContent = `n = ${n} deliverables`;
+      totalEl.textContent = sum;
+      sampleEl.textContent = `/ ${n} deliverables`;
+      peakEl.textContent = peakItem.revisions + 'v';
+      peakLabelEl.textContent = `(${peakItem.short})`;
 
-      const width = 540;
-      const height = 118;
-      const padLeft = 32;
-      const padRight = 22;
-      const padTop = 20;
-      const padBottom = 24;
+      const width = 800;
+      const height = 205;
+      const padLeft = 36;
+      const padRight = 66;
+      const padTop = 28;
+      const padBottom = 32;
       const plotW = width - padLeft - padRight;
       const plotH = height - padTop - padBottom;
 
-      const maxVal = Math.max(...data.map(d => d.revisions)) * 1.18;
+      const maxVal = Math.ceil(peakItem.revisions * 1.18);
       const minVal = 0;
 
-      const xPos = (i) => n === 1
-        ? padLeft + plotW / 2
-        : padLeft + (i / (n - 1)) * plotW;
-
+      const colStep = plotW / n;
+      const xPos = (i) => padLeft + colStep * (i + 0.5);
       const yPos = (val) => padTop + plotH - ((val - minVal) / (maxVal - minVal)) * plotH;
 
       const pts = data.map((d, i) => ({
         x: xPos(i),
         y: yPos(d.revisions),
+        aboveMean: d.revisions >= mean,
         ...d
       }));
 
@@ -819,119 +961,180 @@
       const curveD = buildSmoothPath(pts);
       const areaD = `${curveD} L ${pts[pts.length - 1].x.toFixed(1)} ${baseLineY.toFixed(1)} L ${pts[0].x.toFixed(1)} ${baseLineY.toFixed(1)} Z`;
 
-      // Subtle reference gridlines at 10v and 20v
-      const gridTicks = [10, 20].filter(v => v < maxVal);
+      // Horizontal terminal gridlines
+      const gridTicks = [0, 10, 20].filter(v => v <= maxVal);
       const gridMarkup = gridTicks.map(v => {
         const gy = yPos(v).toFixed(1);
+        const isBase = v === 0;
         return `
-          <line x1="${padLeft}" y1="${gy}" x2="${width - padRight}" y2="${gy}" stroke="#eceae4" stroke-width="1" />
-          <text x="${padLeft - 6}" y="${parseFloat(gy) + 3}" text-anchor="end" font-size="8" fill="#a09f98">${v}</text>
+          <line x1="${padLeft}" y1="${gy}" x2="${width - padRight}" y2="${gy}" stroke="${isBase ? '#2e3a37' : '#1b2321'}" stroke-width="1" />
+          <text x="${padLeft - 9}" y="${parseFloat(gy) + 3.5}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#63706c">${v}</text>
         `;
       }).join('');
 
       let svgContent = `
         <defs>
-          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1c3d36" stop-opacity="0.18" />
-            <stop offset="100%" stop-color="#1c3d36" stop-opacity="0.0" />
+          <linearGradient id="emeraldAreaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#34d399" stop-opacity="0.24" />
+            <stop offset="75%" stop-color="#34d399" stop-opacity="0.04" />
+            <stop offset="100%" stop-color="#34d399" stop-opacity="0.0" />
           </linearGradient>
+          <filter id="emeraldGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
         ${gridMarkup}
 
-        <!-- Baseline -->
-        <line x1="${padLeft}" y1="${baseLineY.toFixed(1)}" x2="${width - padRight}" y2="${baseLineY.toFixed(1)}" stroke="#dcdad3" stroke-width="1" />
+        <!-- Area Fill -->
+        <path class="chart-area-anim" d="${areaD}" fill="url(#emeraldAreaGrad)" />
 
-        <!-- Area Fill under Smooth Curve -->
-        <path d="${areaD}" fill="url(#areaGrad)" />
+        <!-- Rolling Mean Benchmark Line + Terminal Tag -->
+        <line x1="${padLeft}" y1="${meanY.toFixed(1)}" x2="${width - padRight}" y2="${meanY.toFixed(1)}" stroke="#f59e0b" stroke-width="1.3" stroke-dasharray="4 3" opacity="0.85" />
+        <rect x="${width - padRight + 6}" y="${(meanY - 9.5).toFixed(1)}" width="58" height="19" rx="2" fill="#272013" stroke="#785315" stroke-width="0.9" />
+        <text x="${width - padRight + 35}" y="${(meanY + 3.5).toFixed(1)}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.2" font-weight="600" fill="#fbbf24">AVG ${mean.toFixed(1)}</text>
 
-        <!-- Rolling Mean Benchmark Line -->
-        <line x1="${padLeft}" y1="${meanY.toFixed(1)}" x2="${width - padRight}" y2="${meanY.toFixed(1)}" stroke="#b4651e" stroke-width="1.35" stroke-dasharray="4 3" />
-        <text x="${padLeft - 6}" y="${(meanY + 3).toFixed(1)}" text-anchor="end" font-size="8.5" font-weight="600" fill="#b4651e">${mean.toFixed(1)}</text>
+        <!-- Smooth Glowing Equity-Style Curve -->
+        <path id="mainCurvePath" class="chart-curve-anim" d="${curveD}" fill="none" stroke="#34d399" stroke-width="2.4" stroke-linecap="round" filter="url(#emeraldGlow)" />
 
-        <!-- Smooth Trajectory Curve -->
-        <path d="${curveD}" fill="none" stroke="#1c3d36" stroke-width="2.1" stroke-linecap="round" />
-
-        <!-- Point Guide & Halo (Visible only when hovering a point) -->
-        <line id="hoverCrosshair" x1="0" y1="${padTop}" x2="0" y2="${baseLineY.toFixed(1)}" stroke="#141413" stroke-width="1" stroke-dasharray="2 2" opacity="0" />
-        <circle id="hoverHalo" cx="0" cy="0" r="8.5" fill="#1c3d36" opacity="0" />
+        <!-- Active Laser Crosshair & Highlight Column -->
+        <rect id="activeColBand" x="0" y="${padTop - 8}" width="${colStep.toFixed(1)}" height="${(plotH + 8).toFixed(1)}" fill="#34d399" opacity="0" rx="2" />
+        <line id="activeCrosshair" x1="0" y1="${padTop - 8}" x2="0" y2="${baseLineY.toFixed(1)}" stroke="#34d399" stroke-width="1" stroke-dasharray="2 2" opacity="0" />
       `;
 
-      // Visible data points, labels & invisible generous point hit-targets
       pts.forEach((p, i) => {
         const cx = p.x.toFixed(1);
         const cy = p.y.toFixed(1);
-        const labelY = (p.y - 8).toFixed(1);
+        const labelY = (p.y - 11).toFixed(1);
+        const color = p.aboveMean ? '#34d399' : '#f59e0b';
+        const isLast = i === n - 1;
+        const delay = (0.18 + i * 0.065).toFixed(2);
 
         svgContent += `
-          <circle id="dot-${i}" cx="${cx}" cy="${cy}" r="3.6" fill="#ffffff" stroke="#1c3d36" stroke-width="2" />
-          <text x="${cx}" y="${labelY}" text-anchor="middle" font-size="9" font-weight="600" fill="#141413">${p.revisions}v</text>
-          <text x="${cx}" y="${height - 5}" text-anchor="middle" font-size="8.5" fill="#71716b">${p.short}</text>
-          <circle class="point-hit" data-idx="${i}" cx="${cx}" cy="${cy}" r="14" fill="transparent" tabindex="0" role="button" aria-label="${p.title}: ${p.revisions} draft versions" />
+          <g class="chart-node-group" style="transition-delay: ${delay}s">
+            <!-- Vertical Stem -->
+            <line id="stem-${i}" x1="${cx}" y1="${cy}" x2="${cx}" y2="${baseLineY.toFixed(1)}" stroke="${color}" stroke-width="1.1" opacity="0.22" />
+            <!-- Hover Halo -->
+            <circle id="halo-${i}" cx="${cx}" cy="${cy}" r="10" fill="${color}" opacity="0" />
+            ${isLast ? `<circle class="live-pulse-ring" cx="${cx}" cy="${cy}" r="4.5" fill="none" stroke="#34d399" stroke-width="1.5" />` : ''}
+            <!-- Data Point -->
+            <circle id="dot-${i}" cx="${cx}" cy="${cy}" r="4.2" fill="${color}" stroke="#111615" stroke-width="2" />
+            <!-- Value Tag -->
+            <text id="val-${i}" x="${cx}" y="${labelY}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#e5e9e7" style="paint-order: stroke; stroke: #111615; stroke-width: 3.5px; stroke-linejoin: round;">${p.revisions}v</text>
+            <!-- X-Axis Label -->
+            <text id="lbl-${i}" x="${cx}" y="${height - 8}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#7d8a86">${p.short}</text>
+          </g>
         `;
       });
 
       svg.innerHTML = svgContent;
 
-      const crosshair = document.getElementById('hoverCrosshair');
-      const halo = document.getElementById('hoverHalo');
-      let activeIdx = null;
+      // Setup SVG stroke draw animation
+      const curvePath = document.getElementById('mainCurvePath');
+      const pathLen = curvePath.getTotalLength();
+      curvePath.style.strokeDasharray = pathLen;
+      curvePath.style.strokeDashoffset = pathLen;
 
-      function activatePoint(idx) {
-        if (activeIdx !== null && activeIdx !== idx) {
-          const prevDot = document.getElementById(`dot-${activeIdx}`);
-          if (prevDot) prevDot.setAttribute('r', '3.6');
+      // Reveal animation when scrolled into view
+      let hasAnimated = false;
+      function triggerReveal() {
+        if (hasAnimated) return;
+        hasAnimated = true;
+        card.classList.add('is-visible');
+        curvePath.style.strokeDashoffset = '0';
+        animateNumber(meanEl, mean, 1, 'x');
+        animateNumber(totalEl, sum, 0, '');
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            triggerReveal();
+            observer.disconnect();
+          }
+        }, { threshold: 0.25 });
+        observer.observe(card);
+      } else {
+        triggerReveal();
+      }
+
+      // Continuous, zero-gap horizontal tracking across entire SVG
+      const activeColBand = document.getElementById('activeColBand');
+      const activeCrosshair = document.getElementById('activeCrosshair');
+      const defaultIdx = n - 1;
+      let currentIdx = null;
+
+      function selectItem(idx) {
+        if (currentIdx === idx) return;
+
+        if (currentIdx !== null) {
+          const prevDot = document.getElementById(`dot-${currentIdx}`);
+          const prevHalo = document.getElementById(`halo-${currentIdx}`);
+          const prevStem = document.getElementById(`stem-${currentIdx}`);
+          const prevLbl = document.getElementById(`lbl-${currentIdx}`);
+          if (prevDot) prevDot.setAttribute('r', '4.2');
+          if (prevHalo) prevHalo.setAttribute('opacity', '0');
+          if (prevStem) prevStem.setAttribute('opacity', '0.22');
+          if (prevLbl) {
+            prevLbl.setAttribute('fill', '#7d8a86');
+            prevLbl.setAttribute('font-weight', '400');
+          }
         }
-        activeIdx = idx;
 
+        currentIdx = idx;
         const p = pts[idx];
+
+        activeColBand.setAttribute('x', (padLeft + colStep * idx).toFixed(1));
+        activeColBand.setAttribute('opacity', '0.07');
+
+        activeCrosshair.setAttribute('x1', p.x.toFixed(1));
+        activeCrosshair.setAttribute('x2', p.x.toFixed(1));
+        activeCrosshair.setAttribute('opacity', '0.5');
+
         const dot = document.getElementById(`dot-${idx}`);
-        if (dot) dot.setAttribute('r', '4.8');
+        const halo = document.getElementById(`halo-${idx}`);
+        const stem = document.getElementById(`stem-${idx}`);
+        const lbl = document.getElementById(`lbl-${idx}`);
+
+        if (dot) dot.setAttribute('r', '5.8');
+        if (halo) halo.setAttribute('opacity', '0.22');
+        if (stem) stem.setAttribute('opacity', '0.65');
+        if (lbl) {
+          lbl.setAttribute('fill', '#ffffff');
+          lbl.setAttribute('font-weight', '600');
+        }
 
         const delta = p.revisions - mean;
-        const deltaStr = `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}v vs. mean`;
-        const deltaClass = delta >= 0 ? 'readout-pos' : 'readout-neg';
-
-        crosshair.setAttribute('x1', p.x.toFixed(1));
-        crosshair.setAttribute('x2', p.x.toFixed(1));
-        crosshair.setAttribute('opacity', '0.45');
-
-        halo.setAttribute('cx', p.x.toFixed(1));
-        halo.setAttribute('cy', p.y.toFixed(1));
-        halo.setAttribute('opacity', '0.18');
-
-        readout.innerHTML = `<strong>#${idx + 1} ${p.title}</strong> · <span class="readout-v">${p.revisions}v</span> <span class="${deltaClass}">(${deltaStr})</span>`;
+        inspIdx.textContent = `#${String(idx + 1).padStart(2, '0')}`;
+        inspIdx.className = `ticker-badge ${p.aboveMean ? '' : 'amber'}`;
+        inspTitle.textContent = p.title;
+        inspCount.textContent = `${p.revisions} versions`;
+        inspDelta.textContent = `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}v vs. mean`;
+        inspDelta.className = `ticker-delta ${delta >= 0 ? 'pos' : 'neg'}`;
       }
 
-      function clearPoint() {
-        if (activeIdx !== null) {
-          const prevDot = document.getElementById(`dot-${activeIdx}`);
-          if (prevDot) prevDot.setAttribute('r', '3.6');
-          activeIdx = null;
-        }
-        crosshair.setAttribute('opacity', '0');
-        halo.setAttribute('opacity', '0');
-        readout.textContent = defaultReadout;
+      selectItem(defaultIdx);
+
+      function handlePointer(clientX) {
+        const rect = svg.getBoundingClientRect();
+        const svgX = ((clientX - rect.left) / rect.width) * width;
+        const rawIdx = Math.floor((svgX - padLeft) / colStep);
+        const clampedIdx = Math.max(0, Math.min(n - 1, rawIdx));
+        selectItem(clampedIdx);
       }
 
-      svg.querySelectorAll('.point-hit').forEach(hit => {
-        const idx = Number(hit.dataset.idx);
-        hit.addEventListener('mouseenter', () => activatePoint(idx));
-        hit.addEventListener('mouseleave', clearPoint);
-        hit.addEventListener('focus', () => activatePoint(idx));
-        hit.addEventListener('blur', clearPoint);
-        hit.addEventListener('touchstart', (e) => {
-          e.preventDefault();
-          if (activeIdx === idx) {
-            clearPoint();
-          } else {
-            activatePoint(idx);
-          }
-        }, { passive: false });
-      });
+      svg.addEventListener('mousemove', (e) => handlePointer(e.clientX));
+      svg.addEventListener('mouseleave', () => selectItem(defaultIdx));
+      svg.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) handlePointer(e.touches[0].clientX);
+      }, { passive: true });
     }
 
-    renderRevisionChart(deliverables);
+    renderQuantChart(deliverables);
 
     // Filter tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
