@@ -315,7 +315,9 @@
 
     .entry-links {
       display: flex;
-      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
       font-size: 0.85rem;
     }
 
@@ -326,6 +328,18 @@
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .entry-links a.inquire-link {
+      color: var(--ink-muted);
+      font-weight: 500;
+      padding-left: 12px;
+      border-left: 1px solid var(--rule);
+    }
+
+    .entry-links a.inquire-link:hover {
+      color: var(--accent);
     }
 
     .entry-links a .arrow {
@@ -503,6 +517,7 @@
             </div>
             <div class="entry-links">
               <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) <span class="arrow">→</span></a>
+              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20Go-to-Market%20%26%20White-Label%20Business%20Case" class="inquire-link">Inquire <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -528,6 +543,7 @@
             <div class="entry-links">
               <a href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read Research Note (PDF) <span class="arrow">→</span></a>
               <a href="https://github.com/victorjeansen/fx-hedging-risk-engine" target="_blank" rel="noopener">View Code <span class="arrow">→</span></a>
+              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20Corporate%20FX%20Hedging%20%26%20Monte%20Carlo%20Engine" class="inquire-link">Inquire <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -555,6 +571,9 @@
               <span class="tag">Minto Pyramid</span>
               <span class="tag">DCF & Multiples</span>
               <span class="tag">Synergy Modeling</span>
+            </div>
+            <div class="entry-links">
+              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20M%26A%20Acquisition%20Pitch%20%26%20Valuation%20Teaser" class="inquire-link" style="border-left: none; padding-left: 0;">Inquire <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
