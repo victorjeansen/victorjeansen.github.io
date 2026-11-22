@@ -50,8 +50,9 @@
 
     /* Header */
     header {
-      padding-bottom: 30px;
-      margin-bottom: 0;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 46px;
     }
 
     .header-meta {
@@ -136,160 +137,13 @@
       background-color: var(--surface);
     }
 
-    /* Iterative Rigor Chart Band */
-    .rigor-band {
-      display: grid;
-      grid-template-columns: 225px 1fr;
-      border-top: 1.5px solid var(--rule-dark);
-      border-bottom: 1.5px solid var(--rule-dark);
-      background-color: var(--surface);
-      margin-bottom: 50px;
-    }
-
-    .rigor-summary {
-      padding: 20px 22px;
-      border-right: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .rigor-kicker {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink-muted);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .rigor-stat {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: var(--accent);
-      font-variant-numeric: tabular-nums;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-
-    .rigor-desc {
-      font-size: 0.82rem;
-      color: var(--ink-body);
-      line-height: 1.4;
-    }
-
-    .rigor-sample {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 0.74rem;
-      color: var(--ink-muted);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .rigor-chart-wrap {
-      position: relative;
-      padding: 14px 20px 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .rigor-chart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.73rem;
-      color: var(--ink-muted);
-      margin-bottom: 6px;
-    }
-
-    .rigor-legends {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .rigor-legend {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 500;
-      color: var(--ink-body);
-    }
-
-    .rigor-legend-curve {
-      display: inline-block;
-      width: 14px;
-      height: 2px;
-      background-color: var(--accent);
-    }
-
-    .rigor-legend-mean {
-      display: inline-block;
-      width: 16px;
-      border-top: 1.5px dashed var(--amber);
-    }
-
-    #revisionChart {
-      width: 100%;
-      height: 118px;
-      display: block;
-      overflow: visible;
-      cursor: crosshair;
-    }
-
-    /* Instant Finance Tooltip */
-    .chart-tooltip {
-      position: absolute;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      background-color: #141413;
-      color: #f8f8f6;
-      padding: 7px 10px;
-      border-radius: 3px;
-      font-size: 0.75rem;
-      line-height: 1.35;
-      white-space: nowrap;
-      box-shadow: 0 4px 14px rgba(20, 20, 19, 0.18);
-      opacity: 0;
-      transform: translate(-50%, -100%);
-      transition: opacity 0.12s ease;
-      z-index: 20;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .chart-tooltip.visible {
-      opacity: 1;
-    }
-
-    .chart-tooltip-title {
-      font-weight: 600;
-      color: #ffffff;
-      margin-bottom: 2px;
-    }
-
-    .chart-tooltip-meta {
-      display: flex;
-      gap: 10px;
-      color: #c8c6be;
-      font-size: 0.71rem;
-    }
-
-    .chart-tooltip-pos {
-      color: #7dd3a8;
-      font-weight: 600;
-    }
-
-    .chart-tooltip-neg {
-      color: #f3b378;
-      font-weight: 600;
-    }
-
     /* Sections */
     section {
       margin-bottom: 54px;
+    }
+
+    #wip {
+      margin-bottom: 42px;
     }
 
     .section-header {
@@ -467,6 +321,145 @@
       transform: translateX(3px);
     }
 
+    /* Iterative Rigor Chart Band (Placed after Current Research) */
+    .rigor-band {
+      display: grid;
+      grid-template-columns: 225px 1fr;
+      border-top: 1.5px solid var(--rule-dark);
+      border-bottom: 1.5px solid var(--rule-dark);
+      background-color: var(--surface);
+      margin-bottom: 54px;
+    }
+
+    .rigor-summary {
+      padding: 20px 22px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .rigor-kicker {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .rigor-stat {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .rigor-desc {
+      font-size: 0.82rem;
+      color: var(--ink-body);
+      line-height: 1.4;
+    }
+
+    .rigor-sample {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rigor-chart-wrap {
+      padding: 14px 20px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .rigor-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      min-height: 1.5em;
+      margin-bottom: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chart-readout {
+      color: var(--ink-muted);
+      transition: color 0.15s ease;
+    }
+
+    .chart-readout strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .readout-v {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .readout-pos {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .readout-neg {
+      color: var(--amber);
+      font-weight: 500;
+    }
+
+    .rigor-legends {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: auto;
+    }
+
+    .rigor-legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      color: var(--ink-body);
+    }
+
+    .rigor-legend-curve {
+      display: inline-block;
+      width: 14px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .rigor-legend-mean {
+      display: inline-block;
+      width: 16px;
+      border-top: 1.5px dashed var(--amber);
+    }
+
+    #revisionChart {
+      width: 100%;
+      height: 118px;
+      display: block;
+      overflow: visible;
+    }
+
+    .point-hit {
+      cursor: pointer;
+    }
+
+    .point-hit:focus {
+      outline: none;
+    }
+
     /* Credentials Two-Column Table */
     .credentials-grid {
       display: grid;
@@ -590,28 +583,7 @@
       </div>
     </header>
 
-    <!-- Iterative Rigor Chart Band (Auto-calculates mean & updates smooth curve) -->
-    <div class="rigor-band fade-in stagger-1" aria-label="Deliverable revision history">
-      <div class="rigor-summary">
-        <div class="rigor-kicker">Execution Standard</div>
-        <div class="rigor-stat" id="meanRevisionStat">—</div>
-        <div class="rigor-desc">Mean draft versions per locked deliverable</div>
-        <span class="rigor-sample" id="sampleCountStat">n = — deliverables</span>
-      </div>
-      <div class="rigor-chart-wrap" id="chartContainer">
-        <div class="rigor-chart-header">
-          <span>Iterative depth across chronological deliverables</span>
-          <div class="rigor-legends">
-            <span class="rigor-legend"><span class="rigor-legend-curve"></span> Revisions</span>
-            <span class="rigor-legend"><span class="rigor-legend-mean"></span> Mean</span>
-          </div>
-        </div>
-        <div class="chart-tooltip" id="chartTooltip" role="status" aria-hidden="true"></div>
-        <svg id="revisionChart" viewBox="0 0 540 118" role="img" aria-label="Smooth chart of draft versions per deliverable"></svg>
-      </div>
-    </div>
-
-    <section id="projects" class="fade-in stagger-2">
+    <section id="projects" class="fade-in stagger-1">
       <div class="section-header">
         <h2>Selected Work & Case Studies</h2>
         <div class="tabs" role="tablist">
@@ -673,7 +645,7 @@
       </article>
     </section>
 
-    <section id="wip" class="fade-in stagger-3">
+    <section id="wip" class="fade-in stagger-2">
       <div class="section-header">
         <h2>Current Research & Work in Progress</h2>
       </div>
@@ -702,6 +674,26 @@
         </div>
       </article>
     </section>
+
+    <!-- Iterative Rigor Chart Band (Placed after Current Research) -->
+    <div class="rigor-band fade-in stagger-3" aria-label="Deliverable revision history">
+      <div class="rigor-summary">
+        <div class="rigor-kicker">Execution Standard</div>
+        <div class="rigor-stat" id="meanRevisionStat">—</div>
+        <div class="rigor-desc">Mean draft versions per locked deliverable</div>
+        <span class="rigor-sample" id="sampleCountStat">n = — deliverables</span>
+      </div>
+      <div class="rigor-chart-wrap">
+        <div class="rigor-chart-header">
+          <span class="chart-readout" id="chartReadout">Iterative depth across chronological deliverables (hover a point)</span>
+          <div class="rigor-legends">
+            <span class="rigor-legend"><span class="rigor-legend-curve"></span> Revisions</span>
+            <span class="rigor-legend"><span class="rigor-legend-mean"></span> Mean</span>
+          </div>
+        </div>
+        <svg id="revisionChart" viewBox="0 0 540 118" role="img" aria-label="Smooth chart of draft versions per deliverable"></svg>
+      </div>
+    </div>
 
     <section id="credentials" class="fade-in stagger-4">
       <div class="section-header">
@@ -785,10 +777,11 @@
 
     function renderRevisionChart(data) {
       const svg = document.getElementById('revisionChart');
-      const container = document.getElementById('chartContainer');
-      const tooltip = document.getElementById('chartTooltip');
+      const readout = document.getElementById('chartReadout');
       const meanEl = document.getElementById('meanRevisionStat');
       const sampleEl = document.getElementById('sampleCountStat');
+
+      const defaultReadout = 'Iterative depth across chronological deliverables (hover a point)';
 
       const n = data.length;
       const sum = data.reduce((acc, item) => acc + item.revisions, 0);
@@ -852,28 +845,29 @@
         <!-- Area Fill under Smooth Curve -->
         <path d="${areaD}" fill="url(#areaGrad)" />
 
-        <!-- Rolling Mean Benchmark Line (Warm Amber for Institutional Contrast) -->
+        <!-- Rolling Mean Benchmark Line -->
         <line x1="${padLeft}" y1="${meanY.toFixed(1)}" x2="${width - padRight}" y2="${meanY.toFixed(1)}" stroke="#b4651e" stroke-width="1.35" stroke-dasharray="4 3" />
         <text x="${padLeft - 6}" y="${(meanY + 3).toFixed(1)}" text-anchor="end" font-size="8.5" font-weight="600" fill="#b4651e">${mean.toFixed(1)}</text>
 
         <!-- Smooth Trajectory Curve -->
         <path d="${curveD}" fill="none" stroke="#1c3d36" stroke-width="2.1" stroke-linecap="round" />
 
-        <!-- Interactive Crosshair (Hidden until hover) -->
+        <!-- Point Guide & Halo (Visible only when hovering a point) -->
         <line id="hoverCrosshair" x1="0" y1="${padTop}" x2="0" y2="${baseLineY.toFixed(1)}" stroke="#141413" stroke-width="1" stroke-dasharray="2 2" opacity="0" />
-        <circle id="hoverHalo" cx="0" cy="0" r="8" fill="#1c3d36" opacity="0" />
+        <circle id="hoverHalo" cx="0" cy="0" r="8.5" fill="#1c3d36" opacity="0" />
       `;
 
-      // Data points, value labels & x-axis labels
+      // Visible data points, labels & invisible generous point hit-targets
       pts.forEach((p, i) => {
         const cx = p.x.toFixed(1);
         const cy = p.y.toFixed(1);
         const labelY = (p.y - 8).toFixed(1);
 
         svgContent += `
-          <circle data-idx="${i}" cx="${cx}" cy="${cy}" r="3.6" fill="#ffffff" stroke="#1c3d36" stroke-width="2" />
+          <circle id="dot-${i}" cx="${cx}" cy="${cy}" r="3.6" fill="#ffffff" stroke="#1c3d36" stroke-width="2" />
           <text x="${cx}" y="${labelY}" text-anchor="middle" font-size="9" font-weight="600" fill="#141413">${p.revisions}v</text>
           <text x="${cx}" y="${height - 5}" text-anchor="middle" font-size="8.5" fill="#71716b">${p.short}</text>
+          <circle class="point-hit" data-idx="${i}" cx="${cx}" cy="${cy}" r="14" fill="transparent" tabindex="0" role="button" aria-label="${p.title}: ${p.revisions} draft versions" />
         `;
       });
 
@@ -881,27 +875,22 @@
 
       const crosshair = document.getElementById('hoverCrosshair');
       const halo = document.getElementById('hoverHalo');
+      let activeIdx = null;
 
-      function updateHover(clientX) {
-        const rect = svg.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const svgX = ((clientX - rect.left) / rect.width) * width;
+      function activatePoint(idx) {
+        if (activeIdx !== null && activeIdx !== idx) {
+          const prevDot = document.getElementById(`dot-${activeIdx}`);
+          if (prevDot) prevDot.setAttribute('r', '3.6');
+        }
+        activeIdx = idx;
 
-        // Snap to closest point horizontally
-        let closestIdx = 0;
-        let minDist = Infinity;
-        pts.forEach((p, idx) => {
-          const dist = Math.abs(p.x - svgX);
-          if (dist < minDist) {
-            minDist = dist;
-            closestIdx = idx;
-          }
-        });
+        const p = pts[idx];
+        const dot = document.getElementById(`dot-${idx}`);
+        if (dot) dot.setAttribute('r', '4.8');
 
-        const p = pts[closestIdx];
         const delta = p.revisions - mean;
-        const deltaStr = (delta >= 0 ? '+' : '') + delta.toFixed(1) + 'v vs. mean';
-        const deltaClass = delta >= 0 ? 'chart-tooltip-pos' : 'chart-tooltip-neg';
+        const deltaStr = `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}v vs. mean`;
+        const deltaClass = delta >= 0 ? 'readout-pos' : 'readout-neg';
 
         crosshair.setAttribute('x1', p.x.toFixed(1));
         crosshair.setAttribute('x2', p.x.toFixed(1));
@@ -911,36 +900,35 @@
         halo.setAttribute('cy', p.y.toFixed(1));
         halo.setAttribute('opacity', '0.18');
 
-        tooltip.innerHTML = `
-          <div class="chart-tooltip-title">#${closestIdx + 1} · ${p.title}</div>
-          <div class="chart-tooltip-meta">
-            <span>Iterations: <strong>${p.revisions}v</strong></span>
-            <span class="${deltaClass}">${deltaStr}</span>
-          </div>
-        `;
-
-        // Position tooltip cleanly inside container bounds
-        const pxX = (p.x / width) * rect.width + (rect.left - containerRect.left);
-        const pxY = (p.y / height) * rect.height + (rect.top - containerRect.top) - 12;
-
-        const clampedX = Math.max(95, Math.min(containerRect.width - 95, pxX));
-        tooltip.style.left = `${clampedX}px`;
-        tooltip.style.top = `${pxY}px`;
-        tooltip.classList.add('visible');
+        readout.innerHTML = `<strong>#${idx + 1} ${p.title}</strong> · <span class="readout-v">${p.revisions}v</span> <span class="${deltaClass}">(${deltaStr})</span>`;
       }
 
-      function clearHover() {
+      function clearPoint() {
+        if (activeIdx !== null) {
+          const prevDot = document.getElementById(`dot-${activeIdx}`);
+          if (prevDot) prevDot.setAttribute('r', '3.6');
+          activeIdx = null;
+        }
         crosshair.setAttribute('opacity', '0');
         halo.setAttribute('opacity', '0');
-        tooltip.classList.remove('visible');
+        readout.textContent = defaultReadout;
       }
 
-      svg.addEventListener('mousemove', (e) => updateHover(e.clientX));
-      svg.addEventListener('mouseleave', clearHover);
-      svg.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) updateHover(e.touches[0].clientX);
-      }, { passive: true });
-      svg.addEventListener('touchend', clearHover);
+      svg.querySelectorAll('.point-hit').forEach(hit => {
+        const idx = Number(hit.dataset.idx);
+        hit.addEventListener('mouseenter', () => activatePoint(idx));
+        hit.addEventListener('mouseleave', clearPoint);
+        hit.addEventListener('focus', () => activatePoint(idx));
+        hit.addEventListener('blur', clearPoint);
+        hit.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          if (activeIdx === idx) {
+            clearPoint();
+          } else {
+            activatePoint(idx);
+          }
+        }, { passive: false });
+      });
     }
 
     renderRevisionChart(deliverables);
