@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Victor Jeansen — Strategy Consulting &amp; Quantitative Finance Portfolio</title>
-  <meta name="description" content="Strategy Consulting, Corporate Finance &amp; Quantitative Market Analysis Portfolio — Victor Jeansen (Global BBA, emlyon business school)" />
+  <title>Victor Jeansen — Strategy Consulting & Quantitative Finance Portfolio</title>
+  <meta name="description" content="Strategy Consulting, Corporate Finance & Quantitative Market Analysis Portfolio — Victor Jeansen (Global BBA, emlyon business school)" />
   <style>
     :root {
       --bg: #ffffff;
@@ -14,9 +14,11 @@
       --subtle: #6b7280;
       --border: #e5e7eb;
       --accent: #1e3a5f;
-      --accent-hover: #142842;
       --tag-bg: #eef2f6;
       --tag-text: #1e3a5f;
+      --wip-bg: #fef9ec;
+      --wip-text: #92400e;
+      --wip-border: #fde68a;
     }
 
     * {
@@ -119,6 +121,12 @@
       background-color: var(--surface);
     }
 
+    .project.wip {
+      border-style: dashed;
+      border-color: #cbd5e1;
+      background-color: #fcfcfd;
+    }
+
     .project-header {
       display: flex;
       justify-content: space-between;
@@ -138,6 +146,17 @@
       font-size: 0.85rem;
       color: var(--subtle);
       font-variant-numeric: tabular-nums;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background-color: var(--wip-bg);
+      color: var(--wip-text);
+      border: 1px solid var(--wip-border);
     }
 
     .project-desc {
@@ -248,9 +267,9 @@
   <div class="container">
     <header>
       <h1>Victor Jeansen</h1>
-      <div class="subtitle">Global BBA (English Track) — emlyon business school | Strategy &amp; Quantitative Finance</div>
+      <div class="subtitle">Global BBA (English Track) — emlyon business school | Strategy & Quantitative Finance</div>
       <p class="bio">
-        First-year Global BBA student at emlyon business school (Lyon, France), focused on strategy consulting, corporate finance, and quantitative market analysis. This portfolio compiles selected business cases and analytical work.
+        First-year Global BBA student at emlyon business school (Lyon, France), focused on strategy consulting, corporate finance, and quantitative market analysis. This portfolio compiles selected business cases, research notes, and ongoing analytical work.
       </p>
       <div class="contact-bar">
         <a href="mailto:Victor.jeansen@edu.em-lyon.com">Victor.jeansen@edu.em-lyon.com</a>
@@ -259,44 +278,83 @@
     </header>
 
     <section id="projects">
-      <h2>Selected Work &amp; Case Studies</h2>
+      <h2>Selected Work & Case Studies</h2>
 
       <article class="project">
         <div class="project-header">
-          <span class="project-title">Go-to-Market &amp; White-Label Commercialization Business Case (Redacted under NDA)</span>
+          <span class="project-title">Go-to-Market & White-Label Commercialization Business Case (Redacted under NDA)</span>
           <span class="project-date">November 2026</span>
         </div>
         <p class="project-desc">
-          Full-scope strategic and financial feasibility study assessing the global white-label launch of a hardware/software system across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&amp;L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and multi-variable sensitivity stress-testing.
+          Full-scope strategic and financial feasibility study assessing the global white-label launch of a hardware/software system across the US, EU-27, China, and India. Includes TAM/SAM sizing (~1.28M annual units), 5-year P&L modeling (+€8.06M net result on €4.1M CapEx), B2B pricing strategy (Make-vs-Buy 4.5x cost advantage), and multi-variable sensitivity stress-testing.
         </p>
         <div class="project-footer">
           <div class="tags">
             <span class="tag">Strategy Consulting</span>
             <span class="tag">Market Sizing</span>
-            <span class="tag">5-Year P&amp;L</span>
+            <span class="tag">5-Year P&L</span>
             <span class="tag">B2B Pricing</span>
             <span class="tag">Sensitivity Analysis</span>
           </div>
           <div class="links">
-            <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) &rarr;</a>
+            <a href="assets/Business_case_EN_REDACTED_ENG.pdf" target="_blank" rel="noopener">Read Business Case (PDF) →</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="wip">
+      <h2>Current Research & Work in Progress</h2>
+
+      <article class="project wip">
+        <div class="project-header">
+          <span class="project-title">Statistical Arbitrage & Cointegration Study — Semiconductor Equities</span>
+          <span class="status-badge">In Progress</span>
+        </div>
+        <p class="project-desc">
+          Quantitative backtesting framework evaluating mean-reverting spread dynamics, Engle-Granger cointegration stability, risk-adjusted returns (Sharpe ratio), and maximum drawdown across European and U.S. semiconductor benchmarks.
+        </p>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Statistical Arbitrage</span>
+            <span class="tag">Time Series</span>
+            <span class="tag">Risk Metrics</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project wip">
+        <div class="project-header">
+          <span class="project-title">Intraday Liquidity & Auction Market Theory Study — Nasdaq-100 Futures (NQ)</span>
+          <span class="status-badge">In Progress</span>
+        </div>
+        <p class="project-desc">
+          Empirical analysis of session Value Area migration (VPOC, VAH/VAL), Initial Balance extremes, and cumulative order-flow delta regimes across U.S. equity index futures.
+        </p>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Market Microstructure</span>
+            <span class="tag">Order Flow</span>
+            <span class="tag">Pine Script</span>
           </div>
         </div>
       </article>
     </section>
 
     <section id="credentials">
-      <h2>Technical Stack &amp; Credentials</h2>
+      <h2>Technical Stack & Credentials</h2>
       <div class="grid-2">
         <div class="info-box">
-          <h3>Analytical &amp; Financial Tools</h3>
+          <h3>Analytical & Financial Tools</h3>
           <ul>
-            <li><strong>Modeling &amp; Strategy:</strong> Excel (Financial Modeling, Sensitivity Analysis), PowerPoint</li>
-            <li><strong>Programming &amp; Data:</strong> Python (pandas, NumPy, SciPy), Pine Script</li>
+            <li><strong>Modeling & Strategy:</strong> Excel (Financial Modeling, Sensitivity Analysis), PowerPoint</li>
+            <li><strong>Programming & Data:</strong> Python (pandas, NumPy, SciPy), Pine Script</li>
             <li><strong>Market Terminals:</strong> Bloomberg Terminal (BMC Candidate), Quantower, TradingView</li>
           </ul>
         </div>
         <div class="info-box">
-          <h3>Academic &amp; Languages</h3>
+          <h3>Academic & Languages</h3>
           <ul>
             <li><strong>Education:</strong> Global BBA (English Track), emlyon business school</li>
             <li><strong>Honors:</strong> 3rd Overall — René Merckhoffer Mathematics Olympiads</li>
@@ -307,7 +365,7 @@
     </section>
 
     <footer>
-      <span>&copy; 2026 Victor Jeansen</span>
+      <span>© 2026 Victor Jeansen</span>
       <span>Lyon, France</span>
     </footer>
   </div>
