@@ -49,9 +49,8 @@
 
     /* Header */
     header {
-      padding-bottom: 32px;
-      border-bottom: 1.5px solid var(--rule-dark);
-      margin-bottom: 48px;
+      padding-bottom: 30px;
+      margin-bottom: 0;
     }
 
     .header-meta {
@@ -134,6 +133,41 @@
       border-color: var(--ink);
       color: var(--ink);
       background-color: var(--surface);
+    }
+
+    /* Institutional Focus Strip */
+    .focus-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1.5px solid var(--rule-dark);
+      border-bottom: 1.5px solid var(--rule-dark);
+      background-color: var(--surface);
+      margin-bottom: 48px;
+    }
+
+    .focus-cell {
+      padding: 16px 20px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .focus-cell:last-child {
+      border-right: none;
+    }
+
+    .focus-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .focus-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
     }
 
     /* Sections */
@@ -361,6 +395,7 @@
     .stagger-1 { animation-delay: 0.06s; }
     .stagger-2 { animation-delay: 0.12s; }
     .stagger-3 { animation-delay: 0.18s; }
+    .stagger-4 { animation-delay: 0.24s; }
 
     @keyframes appear {
       to {
@@ -372,6 +407,17 @@
     @media (max-width: 680px) {
       .container { padding: 42px 20px 64px; }
       h1 { font-size: 1.85rem; }
+      .focus-strip {
+        grid-template-columns: 1fr;
+      }
+      .focus-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+        padding: 14px 16px;
+      }
+      .focus-cell:last-child {
+        border-bottom: none;
+      }
       .entry {
         grid-template-columns: 1fr;
         gap: 8px;
@@ -413,7 +459,22 @@
       </div>
     </header>
 
-    <section id="projects" class="fade-in stagger-1">
+    <div class="focus-strip fade-in stagger-1">
+      <div class="focus-cell">
+        <div class="focus-label">Core Domains</div>
+        <div class="focus-value">Corporate Finance, M&A & Strategy</div>
+      </div>
+      <div class="focus-cell">
+        <div class="focus-label">Methodology</div>
+        <div class="focus-value">Financial Modeling, Valuation & Stochastic Risk</div>
+      </div>
+      <div class="focus-cell">
+        <div class="focus-label">Analytical Stack</div>
+        <div class="focus-value">Python, Excel Modeling & Bloomberg Terminal</div>
+      </div>
+    </div>
+
+    <section id="projects" class="fade-in stagger-2">
       <div class="section-header">
         <h2>Selected Work & Case Studies</h2>
         <div class="tabs" role="tablist">
@@ -473,7 +534,7 @@
       </article>
     </section>
 
-    <section id="wip" class="fade-in stagger-2">
+    <section id="wip" class="fade-in stagger-3">
       <div class="section-header">
         <h2>Current Research & Work in Progress</h2>
       </div>
@@ -500,7 +561,7 @@
       </article>
     </section>
 
-    <section id="credentials" class="fade-in stagger-3">
+    <section id="credentials" class="fade-in stagger-4">
       <div class="section-header">
         <h2>Technical Stack & Credentials</h2>
       </div>
