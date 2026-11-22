@@ -135,39 +135,101 @@
       background-color: var(--surface);
     }
 
-    /* Institutional Focus Strip */
-    .focus-strip {
+    /* Iterative Rigor Chart Band */
+    .rigor-band {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 235px 1fr;
       border-top: 1.5px solid var(--rule-dark);
       border-bottom: 1.5px solid var(--rule-dark);
       background-color: var(--surface);
-      margin-bottom: 48px;
+      margin-bottom: 50px;
     }
 
-    .focus-cell {
-      padding: 16px 20px;
+    .rigor-summary {
+      padding: 20px 22px;
       border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .focus-cell:last-child {
-      border-right: none;
-    }
-
-    .focus-label {
-      font-size: 0.72rem;
+    .rigor-kicker {
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--ink-muted);
       font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .rigor-stat {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .rigor-desc {
+      font-size: 0.82rem;
+      color: var(--ink-body);
+      line-height: 1.4;
+    }
+
+    .rigor-sample {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rigor-chart-wrap {
+      padding: 14px 22px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .rigor-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.73rem;
+      color: var(--ink-muted);
       margin-bottom: 4px;
     }
 
-    .focus-value {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.4;
+    .rigor-legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .rigor-legend-line {
+      display: inline-block;
+      width: 16px;
+      border-top: 1.5px dashed var(--accent);
+    }
+
+    #revisionChart {
+      width: 100%;
+      height: 108px;
+      display: block;
+      overflow: visible;
+    }
+
+    .chart-dot {
+      cursor: pointer;
+      transition: r 0.18s var(--ease);
+    }
+
+    .chart-dot:hover {
+      r: 5.5;
     }
 
     /* Sections */
@@ -421,16 +483,16 @@
     @media (max-width: 680px) {
       .container { padding: 42px 20px 64px; }
       h1 { font-size: 1.85rem; }
-      .focus-strip {
+      .rigor-band {
         grid-template-columns: 1fr;
       }
-      .focus-cell {
+      .rigor-summary {
         border-right: none;
         border-bottom: 1px solid var(--rule);
-        padding: 14px 16px;
+        padding: 16px 18px;
       }
-      .focus-cell:last-child {
-        border-bottom: none;
+      .rigor-chart-wrap {
+        padding: 14px 18px 12px;
       }
       .entry {
         grid-template-columns: 1fr;
@@ -473,18 +535,20 @@
       </div>
     </header>
 
-    <div class="focus-strip fade-in stagger-1">
-      <div class="focus-cell">
-        <div class="focus-label">Core Domains</div>
-        <div class="focus-value">Corporate Finance, M&A & Strategy</div>
+    <!-- Iterative Rigor Strip (Auto-calculates mean & updates chart) -->
+    <div class="rigor-band fade-in stagger-1" aria-label="Deliverable revision history">
+      <div class="rigor-summary">
+        <div class="rigor-kicker">Execution Standard</div>
+        <div class="rigor-stat" id="meanRevisionStat">—</div>
+        <div class="rigor-desc">Mean draft versions per locked deliverable</div>
+        <span class="rigor-sample" id="sampleCountStat">n = — deliverables</span>
       </div>
-      <div class="focus-cell">
-        <div class="focus-label">Methodology</div>
-        <div class="focus-value">Financial Modeling, Valuation & Stochastic Risk</div>
-      </div>
-      <div class="focus-cell">
-        <div class="focus-label">Analytical Stack</div>
-        <div class="focus-value">Python, Excel Modeling & Bloomberg Terminal</div>
+      <div class="rigor-chart-wrap">
+        <div class="rigor-chart-header">
+          <span>Draft versions across chronological deliverables</span>
+          <span class="rigor-legend"><span class="rigor-legend-line"></span> Rolling mean</span>
+        </div>
+        <svg id="revisionChart" viewBox="0 0 540 108" role="img" aria-label="Chart of draft versions per deliverable"></svg>
       </div>
     </div>
 
@@ -611,6 +675,85 @@
   </div>
 
   <script>
+    // =========================================================================
+    // DATA SOURCE: Add a new object here after each deliverable to auto-update
+    // =========================================================================
+    const deliverables = [
+      { label: "GTM Business Case", revisions: 8 },
+      { label: "FX Monte Carlo Engine", revisions: 14 },
+      { label: "Market One-Pager", revisions: 9 },
+      { label: "Research Note IV", revisions: 11 }
+    ];
+
+    function renderRevisionChart(data) {
+      const svg = document.getElementById('revisionChart');
+      const meanEl = document.getElementById('meanRevisionStat');
+      const sampleEl = document.getElementById('sampleCountStat');
+
+      const n = data.length;
+      const sum = data.reduce((acc, item) => acc + item.revisions, 0);
+      const mean = sum / n;
+
+      meanEl.textContent = mean.toFixed(1) + 'x';
+      sampleEl.textContent = `n = ${n} deliverables`;
+
+      const width = 540;
+      const height = 108;
+      const padLeft = 28;
+      const padRight = 24;
+      const padTop = 18;
+      const padBottom = 24;
+      const plotW = width - padLeft - padRight;
+      const plotH = height - padTop - padBottom;
+
+      const maxVal = Math.max(...data.map(d => d.revisions), 16);
+      const minVal = 0;
+
+      const xPos = (i) => n === 1
+        ? padLeft + plotW / 2
+        : padLeft + (i / (n - 1)) * plotW;
+
+      const yPos = (val) => padTop + plotH - ((val - minVal) / (maxVal - minVal)) * plotH;
+
+      const meanY = yPos(mean).toFixed(1);
+      const baseLineY = (padTop + plotH).toFixed(1);
+
+      let svgContent = `
+        <!-- Baseline -->
+        <line x1="${padLeft}" y1="${baseLineY}" x2="${width - padRight}" y2="${baseLineY}" stroke="#dcdad3" stroke-width="1" />
+        <!-- Rolling Mean Benchmark Line -->
+        <line x1="${padLeft}" y1="${meanY}" x2="${width - padRight}" y2="${meanY}" stroke="#1c3d36" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.85" />
+        <text x="${padLeft - 6}" y="${parseFloat(meanY) + 3}" text-anchor="end" font-size="9.5" font-weight="600" fill="#1c3d36">${mean.toFixed(1)}</text>
+      `;
+
+      // Connecting trajectory path
+      if (n > 1) {
+        const points = data.map((d, i) => `${xPos(i).toFixed(1)},${yPos(d.revisions).toFixed(1)}`).join(' ');
+        svgContent += `<polyline fill="none" stroke="#141413" stroke-width="1.6" points="${points}" />`;
+      }
+
+      // Data points, stems, value labels & x-axis labels
+      data.forEach((d, i) => {
+        const cx = xPos(i).toFixed(1);
+        const cy = yPos(d.revisions).toFixed(1);
+        const labelY = (parseFloat(cy) - 8).toFixed(1);
+
+        svgContent += `
+          <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${baseLineY}" stroke="#dcdad3" stroke-width="1" />
+          <circle class="chart-dot" cx="${cx}" cy="${cy}" r="4" fill="#1c3d36" stroke="#ffffff" stroke-width="1.5">
+            <title>${d.label}: ${d.revisions} draft versions</title>
+          </circle>
+          <text x="${cx}" y="${labelY}" text-anchor="middle" font-size="10" font-weight="600" fill="#141413">${d.revisions}v</text>
+          <text x="${cx}" y="${height - 5}" text-anchor="middle" font-size="9.5" fill="#71716b">${d.label}</text>
+        `;
+      });
+
+      svg.innerHTML = svgContent;
+    }
+
+    renderRevisionChart(deliverables);
+
+    // Filter tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const entries = document.querySelectorAll('#projects .entry');
 
@@ -626,6 +769,7 @@
       });
     });
 
+    // Copy email
     const copyBtn = document.getElementById('copyBtn');
     copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText(copyBtn.dataset.email).then(() => {
