@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victor Jeansen — Quantitative Finance & Strategy Consulting Portfolio</title>
+  <meta name="description" content="Finance, Quantitative Research & Strategy Consulting Portfolio — Victor Jeansen (Global BBA, emlyon business school)" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --text: #111827;
+      --muted: #4b5563;
+      --subtle: #6b7280;
+      --border: #e5e7eb;
+      --accent: #1e3a5f;
+      --accent-hover: #142842;
+      --tag-bg: #eef2f6;
+      --tag-text: #1e3a5f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 32px;
+      margin-bottom: 44px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 1.02rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .bio {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .contact-bar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+    }
+
+    .contact-bar a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Project Cards */
+    .project {
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background-color: var(--bg);
+      margin-bottom: 18px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .project:hover {
+      border-color: #cbd5e1;
+      background-color: var(--surface);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .project-date {
+      font-size: 0.85rem;
+      color: var(--subtle);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 14px;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background-color: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      font-size: 0.88rem;
+    }
+
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Skills & Credentials Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding-top: 40px;
+      }
+    }
+
+    .info-box {
+      padding: 16px 18px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .info-box h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .info-box p, .info-box li {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .info-box ul {
+      list-style: none;
+    }
+
+    .info-box li {
+      margin-bottom: 4px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--subtle);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Victor Jeansen</h1>
+      <div class="subtitle">Global BBA (English Track) — emlyon business school | Quantitative Finance &amp; Strategy</div>
+      <p class="bio">
+        First-year Global BBA student at emlyon business school (Lyon, France), focused on quantitative market analysis, corporate finance, and management consulting. This portfolio compiles selected research notes, statistical studies, and strategic case work.
+      </p>
+      <div class="contact-bar">
+        <a href="mailto:Victor.jeansen@edu.em-lyon.com">Victor.jeansen@edu.em-lyon.com</a>
+        <a href="https://github.com/victorjeansen" target="_blank" rel="noopener">GitHub</a>
+        <a href="assets/CV_Victor_Jeansen.pdf" target="_blank" rel="noopener">Curriculum Vitae (PDF)</a>
+      </div>
+    </header>
+
+    <section id="quant">
+      <h2>I. Quantitative Finance &amp; Market Structure</h2>
+
+      <article class="project">
+        <div class="project-header">
+          <span class="project-title">Structural Market Analysis &amp; Order Flow Dynamics — Nasdaq-100 Futures (NQ)</span>
+          <span class="project-date">October 2026</span>
+        </div>
+        <p class="project-desc">
+          Institutional one-pager examining intraday liquidity distribution, Value Area migration (VPOC, VAH/VAL), Initial Balance extremes, and cumulative delta footprint behavior across key U.S. session auction regimes.
+        </p>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Auction Market Theory</span>
+            <span class="tag">Volume Profile</span>
+            <span class="tag">Order Flow</span>
+            <span class="tag">Pine Script</span>
+          </div>
+          <div class="links">
+            <a href="assets/Nasdaq_Market_Structure_OnePager.pdf" target="_blank">Research Note (PDF) &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-header">
+          <span class="project-title">Statistical Arbitrage &amp; Cointegration Study — Semiconductor Equities</span>
+          <span class="project-date">In Progress</span>
+        </div>
+        <p class="project-desc">
+          Quantitative backtest evaluating mean-reverting spread dynamics, Engle-Granger cointegration stability, risk-adjusted returns (Sharpe ratio), and maximum drawdown across European and U.S. semiconductor benchmarks.
+        </p>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Statistical Arbitrage</span>
+            <span class="tag">Time Series</span>
+            <span class="tag">Risk Metrics</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/victorjeansen" target="_blank">Repository &rarr;</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="consulting">
+      <h2>II. Strategy, M&amp;A &amp; Corporate Advisory</h2>
+
+      <article class="project">
+        <div class="project-header">
+          <span class="project-title">Strategic Case Study &amp; Sector Diagnostic</span>
+          <span class="project-date">Forthcoming</span>
+        </div>
+        <p class="project-desc">
+          Structured executive slide deck covering market sizing, competitive benchmarking, unit economics sensitivity modeling, and actionable strategic recommendations.
+        </p>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Strategy Consulting</span>
+            <span class="tag">Market Sizing</span>
+            <span class="tag">Financial Modeling</span>
+          </div>
+          <div class="links">
+            <a href="#">Deck (PDF) &rarr;</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="credentials">
+      <h2>Technical Stack &amp; Credentials</h2>
+      <div class="grid-2">
+        <div class="info-box">
+          <h3>Quantitative &amp; Analytical Tools</h3>
+          <ul>
+            <li><strong>Programming &amp; Data:</strong> Python (pandas, NumPy, SciPy), Pine Script</li>
+            <li><strong>Market Terminals:</strong> Bloomberg Terminal (BMC Candidate), Quantower, TradingView</li>
+            <li><strong>Modeling &amp; Office:</strong> Excel (Financial Modeling, Sensitivity Analysis), PowerPoint</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h3>Academic &amp; Languages</h3>
+          <ul>
+            <li><strong>Education:</strong> Global BBA (English Track), emlyon business school</li>
+            <li><strong>Honors:</strong> 3rd Overall — René Merckhoffer Mathematics Olympiads</li>
+            <li><strong>Languages:</strong> French (Native), English (Bilingual), German (Intermediate)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>&copy; 2026 Victor Jeansen</span>
+      <span>Lyon, France</span>
+    </footer>
+  </div>
+</body>
+</html>
