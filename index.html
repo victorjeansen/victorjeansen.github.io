@@ -167,6 +167,7 @@
       font-size: 0.78rem;
       color: var(--ink-muted);
       font-weight: 500;
+      font-variant-numeric: tabular-nums;
     }
 
     .section-intro {
@@ -768,11 +769,11 @@
 
     <section id="methodology" class="fade-in stagger-3" aria-label="Deliverable revision history">
       <div class="section-header">
-        <h2>Execution Discipline & Version Control</h2>
-        <span class="section-note">Audit log across locked deliverables</span>
+        <h2>Iteration & Version Log</h2>
+        <span class="section-note" id="headerSampleNote">n = 10 projects</span>
       </div>
       <p class="section-intro">
-        High-conviction financial models and executive decks rarely emerge in a first draft. Tracking revision cycles across deliverables reflects a strict pre-lock discipline—stress-testing assumptions, eliminating noise, and compressing complex analysis into decision-ready synthesis.
+        This chart shows the actual work it took to take each project from a blank page to final submission. I track file versions across my projects to keep a record of the iteration depth behind each project.
       </p>
 
       <div class="quant-card" id="quantCard">
@@ -784,7 +785,7 @@
             </div>
             <div class="q-kpi">
               <span class="q-kpi-label">Cumulative Drafts</span>
-              <span class="q-kpi-val"><span id="totalRevisionStat">119</span><span class="q-kpi-sub" id="sampleCountStat">/ 10 deliverables</span></span>
+              <span class="q-kpi-val"><span id="totalRevisionStat">119</span><span class="q-kpi-sub" id="sampleCountStat">/ 10 projects</span></span>
             </div>
             <div class="q-kpi">
               <span class="q-kpi-label">Peak Depth</span>
@@ -911,6 +912,7 @@
     function renderQuantChart(data) {
       const card = document.getElementById('quantCard');
       const svg = document.getElementById('revisionChart');
+      const headerNoteEl = document.getElementById('headerSampleNote');
       const meanEl = document.getElementById('meanRevisionStat');
       const totalEl = document.getElementById('totalRevisionStat');
       const sampleEl = document.getElementById('sampleCountStat');
@@ -927,9 +929,10 @@
       const mean = sum / n;
       const peakItem = data.reduce((best, cur) => cur.revisions > best.revisions ? cur : best, data[0]);
 
+      headerNoteEl.textContent = `n = ${n} projects`;
       meanEl.textContent = mean.toFixed(1) + 'x';
       totalEl.textContent = sum;
-      sampleEl.textContent = `/ ${n} deliverables`;
+      sampleEl.textContent = `/ ${n} projects`;
       peakEl.textContent = peakItem.revisions + 'v';
       peakLabelEl.textContent = `(${peakItem.short})`;
 
