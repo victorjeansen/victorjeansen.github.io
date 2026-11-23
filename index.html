@@ -25,7 +25,7 @@
       --hover: rgba(255, 255, 255, 0.72);
       --card-border: #e4e2dc;
 
-      /* Terminal palette (FX card) */
+      /* Terminal palette (3D interactive cards) */
       --term-bg: #111615;
       --term-surface: #171e1c;
       --term-border: #26302d;
@@ -197,6 +197,7 @@
     /* Tabs */
     .tabs {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
     }
 
@@ -591,7 +592,7 @@
       border-top: 1px solid var(--rule);
     }
 
-    /* FX interactive card */
+    /* 3D Terminal Interactive Cards (M&A & FX) */
     .fx-card {
       background: radial-gradient(120% 100% at 85% 0%, #192623 0%, var(--term-bg) 62%);
       border: 1px solid var(--term-border);
@@ -602,7 +603,8 @@
       margin: 0 0 16px;
     }
 
-    #fx3d {
+    #fx3d,
+    #ma3d {
       display: block;
       width: 100%;
       height: 360px;
@@ -610,7 +612,8 @@
       touch-action: pan-y;
     }
 
-    #fx3d:active { cursor: grabbing; }
+    #fx3d:active,
+    #ma3d:active { cursor: grabbing; }
 
     .fx-drag {
       font-style: normal;
@@ -647,7 +650,8 @@
 
     @media (max-width: 680px) {
       .fx-note-row { flex-direction: column; align-items: flex-start; }
-      #fx3d { height: 280px; }
+      #fx3d,
+      #ma3d { height: 280px; }
     }
 
     .fx-head {
@@ -700,7 +704,7 @@
       margin-bottom: 4px;
     }
 
-    #fxSlider, #hrSlider {
+    #fxSlider, #hrSlider, #maWaccSlider, #maSynSlider {
       width: 100%;
       accent-color: var(--term-emerald);
       cursor: ew-resize;
@@ -872,11 +876,76 @@
       <div class="section-header">
         <h2>Selected Projects</h2>
         <div class="tabs" role="tablist">
-          <button type="button" class="tab-btn active" data-filter="all">All (2)</button>
+          <button type="button" class="tab-btn active" data-filter="all">All (3)</button>
+          <button type="button" class="tab-btn" data-filter="ma">M&amp;A</button>
           <button type="button" class="tab-btn" data-filter="quant">Quantitative Risk</button>
           <button type="button" class="tab-btn" data-filter="strategy">Strategy</button>
         </div>
       </div>
+
+      <article class="entry" data-category="ma">
+        <div class="entry-aside">
+          <span class="entry-date">November 2026</span>
+          <span class="entry-domain">M&amp;A</span>
+        </div>
+        <div class="entry-main">
+          <h3 class="entry-title">Project Apex — Buy-Side M&amp;A Teaser &amp; Valuation of Kendrion N.V.</h3>
+          <p class="entry-desc">
+            Illustrative 4-slide buy-side M&amp;A teaser (Minto pyramid) and sourced technical appendix evaluating a bolt-on acquisition of Euronext Amsterdam-listed Kendrion N.V. by Aalberts N.V. Covers pro forma EBITDA normalization (€34.2M IFRS to €43.5M normalized post-Automotive/China divestitures), €8.5M run-rate cost synergies (€59.0M after-tax NPV), DCF and multiple triangulation, and Dutch public offer structuring.
+          </p>
+
+          <div class="kpi-strip">
+            <div class="kpi"><span class="kpi-val">€368.0M</span><span class="kpi-label">Offer EV (€21.00/sh)</span></div>
+            <div class="kpi"><span class="kpi-val">7.1x</span><span class="kpi-label">Post-synergy EBITDA</span></div>
+            <div class="kpi"><span class="kpi-val">€59.0M</span><span class="kpi-label">Cost synergy NPV</span></div>
+          </div>
+
+          <div class="fx-card" id="maCard">
+            <div class="fx-head">
+              <span>Implied EV surface · WACC × cost synergies</span>
+              <a class="pdf-btn term" href="assets/project_apex_kendrion_teaser.pdf" target="_blank" rel="noopener">Read Teaser Deck (PDF) <span class="arrow">→</span></a>
+            </div>
+            <div class="fx-legend-row">
+              <div class="fx-legend">
+                <span><i class="lg hedged"></i>Above offer (€368M)</span>
+                <span><i class="lg unhedged"></i>Near offer</span>
+                <span><i class="lg cov"></i>Offer EV plane €368.0M</span>
+                <em class="fx-drag">· drag to rotate</em>
+              </div>
+            </div>
+            <canvas id="ma3d" aria-label="3D surface of implied Enterprise Value as a function of WACC and run-rate cost synergies compared to the €368.0M offer EV plane"></canvas>
+            <div class="fx-controls">
+              <label for="maWaccSlider">WACC → <span id="maWaccLabel">9.00%</span></label>
+              <input type="range" id="maWaccSlider" min="0.080" max="0.105" step="0.0005" value="0.090" />
+              <label for="maSynSlider">Run-rate cost synergies → <span id="maSynLabel">€8.5M</span></label>
+              <input type="range" id="maSynSlider" min="0" max="12" step="0.1" value="8.5" />
+            </div>
+            <div class="fx-readout" aria-live="polite">
+              <div><span class="ro-label">Implied EV</span><span class="ro-val ok" id="maRoEv">—</span></div>
+              <div><span class="ro-label">Value vs. Offer</span><span class="ro-val ok" id="maRoVal">—</span></div>
+              <div><span class="ro-label">Implied Share</span><span class="ro-val" id="maRoPx">—</span></div>
+              <div><span class="ro-label">Entry Multiple</span><span class="ro-val" id="maRoMult">—</span></div>
+            </div>
+            <div class="fx-note fx-note-row">
+              <span>Illustrative DCF (g = 2.0%, tax = 25.8%) + after-tax cost synergy NPV net of phased implementation costs. Offer EV = €368.0M (€21.00/sh; €43.5M net debt).</span>
+            </div>
+          </div>
+
+          <div class="entry-bottom">
+            <div class="tags">
+              <span class="tag">M&amp;A</span>
+              <span class="tag">Minto Pyramid</span>
+              <span class="tag">DCF &amp; Multiples</span>
+              <span class="tag">EBITDA Bridge</span>
+            </div>
+            <div class="entry-links">
+              <a class="pdf-btn" href="assets/project_apex_kendrion_teaser.pdf" target="_blank" rel="noopener">Read Teaser Deck (PDF) <span class="arrow">→</span></a>
+              <a href="https://github.com/victorjeansen/project_apex_kendrion_appendix" target="_blank" rel="noopener">View Annexes <span class="arrow">→</span></a>
+              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20Project%20Apex%20M%26A%20Teaser%20(Kendrion%20N.V.)" class="inquire-link">Inquire <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </article>
 
       <article class="entry" data-category="quant">
         <div class="entry-aside">
@@ -899,7 +968,6 @@
             <div class="fx-head">
               <span>EBIT surface · EUR/USD × hedge ratio</span>
               <a class="pdf-btn term" href="assets/FX_Hedging_Monte_Carlo_Note_FINAL.pdf" target="_blank" rel="noopener">Read the note (PDF) <span class="arrow">→</span></a>
-
             </div>
             <div class="fx-legend-row">
               <div class="fx-legend">
@@ -1003,37 +1071,7 @@
       </article>
     </section>
 
-    <section id="wip" class="fade-in stagger-2">
-      <div class="section-header">
-        <h2>Work in Progress</h2>
-      </div>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <span class="status-tag">In Progress</span>
-          <span class="entry-domain">M&amp;A</span>
-        </div>
-        <div class="entry-main">
-          <h3 class="entry-title">M&amp;A Acquisition Pitch &amp; Valuation Teaser — European Mid-Cap Target</h3>
-          <p class="entry-desc">
-            4-slide teaser, structured top-down (Minto pyramid), evaluating a bolt-on acquisition: strategic rationale, revenue and cost synergies, trading multiples, and DCF valuation sensitivity.
-          </p>
-          <div class="entry-bottom">
-            <div class="tags">
-              <span class="tag">M&amp;A</span>
-              <span class="tag">Minto Pyramid</span>
-              <span class="tag">DCF &amp; Multiples</span>
-              <span class="tag">Synergy Modeling</span>
-            </div>
-            <div class="entry-links">
-              <a href="mailto:Victor.jeansen@edu.em-lyon.com?subject=Inquiry%20%E2%80%94%20M%26A%20Acquisition%20Pitch%20%26%20Valuation%20Teaser" class="inquire-link solo">Inquire <span class="arrow">→</span></a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <section id="skills" class="fade-in stagger-3">
+    <section id="skills" class="fade-in stagger-2">
       <div class="section-header">
         <h2>Skills &amp; Education</h2>
       </div>
@@ -1043,7 +1081,7 @@
           <ul>
             <li><strong>Modeling &amp; Presentation:</strong> Excel (financial modeling, sensitivity analysis), PowerPoint</li>
             <li><strong>Programming &amp; Data:</strong> Python (pandas, NumPy, SciPy), Pine Script</li>
-            <li><strong>Market Platforms:</strong> Quantower, TradingView</li>
+            <li><strong>Market Platforms:</strong> Bloomberg Terminal, Quantower</li>
           </ul>
         </div>
         <div class="cred-col">
@@ -1065,6 +1103,345 @@
   <script>
     const NS = 'http://www.w3.org/2000/svg';
     const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+    // =====================================================================
+    // PROJECT APEX (M&A) — interactive 3D Implied EV surface (canvas)
+    // x = WACC (8.0%..10.5%), y = Run-rate Cost Synergies (€0..€12M),
+    // z = Standalone DCF EV(w) + After-Tax Cost Synergy NPV(S, w) vs. €368M Offer.
+    // =====================================================================
+    const MA = {
+      ufcf: [24.0, 25.1, 26.5, 28.2, 30.2],
+      g: 0.02,
+      tax: 0.258,
+      netDebt: 43.5,
+      shares: 15.4524,
+      offerEv: 368.0,
+      normEbitda: 43.5,
+      wMin: 0.080,
+      wMax: 0.105,
+      sMin: 0,
+      sMax: 12,
+      zMin: 300,
+      zMax: 560
+    };
+
+    const maStandaloneEv = (w) => {
+      let pv = 0;
+      for (let t = 0; t < MA.ufcf.length; t++) {
+        pv += MA.ufcf[t] / Math.pow(1 + w, t + 1);
+      }
+      const tv = (30.2 * 1.02) / (w - MA.g);
+      return pv + tv / Math.pow(1 + w, 5);
+    };
+
+    const maSynergyNpv = (S, w) => (
+      S > 0
+        ? (S * (1 - MA.tax) / w) / Math.pow(1 + w, 0.62) - 10.0 * (S / 8.5) * (1 - MA.tax)
+        : 0
+    );
+
+    const maImpliedEv = (w, S) => maStandaloneEv(w) + maSynergyNpv(S, w);
+
+    function initMa3d() {
+      const canvas = document.getElementById('ma3d');
+      const sW = document.getElementById('maWaccSlider');
+      const sS = document.getElementById('maSynSlider');
+      if (!canvas || !canvas.getContext || !sW || !sS) return;
+      const ctx = canvas.getContext('2d');
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // World mapping into [-1, 1] x [-0.75, 0.75] x [-0.55, 0.55]
+      const wx = (w) => ((w - MA.wMin) / (MA.wMax - MA.wMin)) * 2 - 1;
+      const wy = (s) => ((s - MA.sMin) / (MA.sMax - MA.sMin) - 0.5) * 1.5;
+      const wz = (z) => ((z - MA.zMin) / (MA.zMax - MA.zMin) - 0.5) * 1.1;
+
+      let yaw = -0.58, pitch = 0.48, yawTarget = -0.58, pitchTarget = 0.48;
+      let userYaw = 0, userPitch = 0, t0 = performance.now();
+      let W = 0, H = 0, dpr = 1;
+
+      function resize() {
+        const r = canvas.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = r.width;
+        H = r.height;
+        canvas.width = Math.round(W * dpr);
+        canvas.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function project(x, y, z) {
+        const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+        const x1 = x * cy - y * sy, y1 = x * sy + y * cy;
+        const y2 = y1 * cp - z * sp, z2 = y1 * sp + z * cp;
+        const D = 4.2, f = D / (D + y2);
+        const scale = Math.min(W * (W < 520 ? 0.31 : 0.27), H * 0.45);
+        return { x: W * 0.5 + x1 * f * scale, y: H * 0.45 - z2 * f * scale, d: y2 };
+      }
+
+      // Colour scale: red below €368M offer -> amber near offer -> emerald above
+      function colour(z, shade) {
+        const stops = [
+          [320, [248, 113, 113]],
+          [368, [245, 158, 11]],
+          [400, [52, 211, 153]],
+          [495, [16, 185, 129]]
+        ];
+        let c = stops[0][1];
+        if (z >= stops[stops.length - 1][0]) c = stops[stops.length - 1][1];
+        else {
+          for (let i = 0; i < stops.length - 1; i++) {
+            const [za, ca] = stops[i], [zb, cb] = stops[i + 1];
+            if (z >= za && z <= zb) {
+              const t = (z - za) / (zb - za);
+              c = ca.map((v, k) => v + (cb[k] - v) * t);
+              break;
+            }
+          }
+        }
+        return `rgb(${c.map(v => Math.round(v * shade)).join(',')})`;
+      }
+
+      const NW = 38, NSyn = 16;
+      const grid = [];
+      for (let i = 0; i <= NW; i++) {
+        grid.push([]);
+        const w = MA.wMin + (MA.wMax - MA.wMin) * i / NW;
+        for (let j = 0; j <= NSyn; j++) {
+          const s = MA.sMin + (MA.sMax - MA.sMin) * j / NSyn;
+          grid[i].push({ w, s, z: maImpliedEv(w, s) });
+        }
+      }
+
+      const light = (() => {
+        const v = [-0.35, -0.55, 0.75];
+        const n = Math.hypot(...v);
+        return v.map(a => a / n);
+      })();
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const wSel = parseFloat(sW.value);
+        const sSel = parseFloat(sS.value);
+        const P = grid.map(col => col.map(p => ({ ...project(wx(p.w), wy(p.s), wz(p.z)), z: p.z })));
+
+        // Base box outline
+        const corners = [[-1, -0.75], [1, -0.75], [1, 0.75], [-1, 0.75]].map(([x, y]) => project(x, y, wz(MA.zMin)));
+        ctx.strokeStyle = '#26302d';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        corners.forEach((c, k) => (k ? ctx.lineTo(c.x, c.y) : ctx.moveTo(c.x, c.y)));
+        ctx.closePath();
+        ctx.stroke();
+
+        // Vertical axis & back gridlines
+        ctx.font = '10px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#63706c';
+        [300, 380, 460, 540].forEach(v => {
+          const a = project(-1, 0.75, wz(v));
+          const b = project(1, 0.75, wz(v));
+          const c = project(-1, -0.75, wz(v));
+          ctx.strokeStyle = v === 300 ? '#2e3a37' : '#1c2523';
+          ctx.beginPath();
+          ctx.moveTo(c.x, c.y);
+          ctx.lineTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+          ctx.textAlign = 'right';
+          ctx.fillText(`€${v}M`, c.x - 6, c.y + 3);
+        });
+
+        // X ticks (WACC)
+        ctx.textAlign = 'center';
+        [0.080, 0.085, 0.090, 0.095, 0.100, 0.105].forEach(wv => {
+          const p = project(wx(wv), -0.75, wz(MA.zMin));
+          ctx.fillText((wv * 100).toFixed(1) + '%', p.x, p.y + 15);
+        });
+        const xl = project(0, -0.75, wz(MA.zMin));
+        ctx.fillStyle = '#8a9692';
+        ctx.fillText('WACC', xl.x, xl.y + 29);
+
+        // Y ticks (Cost synergies)
+        ctx.fillStyle = '#63706c';
+        ctx.textAlign = 'left';
+        [0, 6, 12].forEach(sv => {
+          const p = project(1, wy(sv), wz(MA.zMin));
+          ctx.fillText(`€${sv}M`, p.x + 8, p.y + 4);
+        });
+        const yl = project(1, 0.95, wz(MA.zMin));
+        ctx.fillStyle = '#8a9692';
+        ctx.fillText('synergies', yl.x + 8, yl.y + 4);
+
+        // Collect quads: Lambert-shaded valuation surface + €368M offer EV plane
+        const quads = [];
+        for (let i = 0; i < NW; i++) {
+          for (let j = 0; j < NSyn; j++) {
+            const a = P[i][j], b = P[i + 1][j], c = P[i + 1][j + 1], d = P[i][j + 1];
+            const zAvg = (a.z + b.z + c.z + d.z) / 4;
+            const ga = grid[i][j], gb = grid[i + 1][j], gd = grid[i][j + 1];
+            const u = [wx(gb.w) - wx(ga.w), 0, wz(gb.z) - wz(ga.z)];
+            const v = [0, wy(gd.s) - wy(ga.s), wz(gd.z) - wz(ga.z)];
+            let n = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]];
+            const nl = Math.hypot(...n);
+            n = n.map(k => k / nl);
+            const shade = 0.55 + 0.45 * Math.max(0, n[0] * light[0] + n[1] * light[1] + n[2] * light[2]);
+            quads.push({
+              pts: [a, b, c, d],
+              d: (a.d + b.d + c.d + d.d) / 4,
+              fill: colour(zAvg, shade),
+              stroke: 'rgba(10,14,13,0.35)'
+            });
+          }
+        }
+
+        const NP = 8;
+        for (let i = 0; i < NP; i++) {
+          for (let j = 0; j < NP; j++) {
+            const x0 = -1 + 2 * i / NP, x1 = -1 + 2 * (i + 1) / NP;
+            const y0 = -0.75 + 1.5 * j / NP, y1 = -0.75 + 1.5 * (j + 1) / NP;
+            const z = wz(MA.offerEv);
+            const pts = [project(x0, y0, z), project(x1, y0, z), project(x1, y1, z), project(x0, y1, z)];
+            quads.push({
+              pts,
+              d: pts.reduce((acc, p) => acc + p.d, 0) / 4 + 0.001,
+              fill: 'rgba(248,113,113,0.10)',
+              stroke: 'rgba(248,113,113,0.18)'
+            });
+          }
+        }
+
+        quads.sort((p, q) => q.d - p.d);
+        quads.forEach(q => {
+          ctx.beginPath();
+          q.pts.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+          ctx.closePath();
+          ctx.fillStyle = q.fill;
+          ctx.fill();
+          ctx.strokeStyle = q.stroke;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        });
+
+        // White highlight curve along selected synergy level
+        ctx.beginPath();
+        for (let i = 0; i <= 70; i++) {
+          const w = MA.wMin + (MA.wMax - MA.wMin) * i / 70;
+          const p = project(wx(w), wy(sSel), wz(maImpliedEv(w, sSel)));
+          i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y);
+        }
+        ctx.strokeStyle = 'rgba(242,244,243,0.85)';
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+
+        // Pulsing marker with drop line and EV label
+        const z = maImpliedEv(wSel, sSel);
+        const top = project(wx(wSel), wy(sSel), wz(z));
+        const base = project(wx(wSel), wy(sSel), wz(MA.zMin));
+        ctx.setLineDash([3, 3]);
+        ctx.strokeStyle = 'rgba(215,222,219,0.6)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(top.x, top.y);
+        ctx.lineTo(base.x, base.y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const pulse = reduceMotion ? 0 : (Math.sin((performance.now() - t0) / 380) + 1) / 2;
+        ctx.beginPath();
+        ctx.arc(top.x, top.y, 6 + pulse * 6, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(242,244,243,${0.5 - pulse * 0.45})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(top.x, top.y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#f2f4f3';
+        ctx.fill();
+        ctx.strokeStyle = '#111615';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.font = '600 11px "JetBrains Mono", monospace';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#f2f4f3';
+        ctx.fillText(`€${z.toFixed(1)}M`, top.x + 10, top.y - 8);
+      }
+
+      function updateReadout() {
+        const w = parseFloat(sW.value);
+        const S = parseFloat(sS.value);
+        const ev = maImpliedEv(w, S);
+        const val = ev - MA.offerEv;
+        const px = (ev - MA.netDebt) / MA.shares;
+        const mult = MA.offerEv / (MA.normEbitda + S);
+
+        document.getElementById('maWaccLabel').textContent = (w * 100).toFixed(2) + '%';
+        document.getElementById('maSynLabel').textContent = '€' + S.toFixed(1) + 'M';
+
+        const evEl = document.getElementById('maRoEv');
+        evEl.textContent = `€${ev.toFixed(1)}M`;
+        evEl.className = 'ro-val ' + (ev < MA.offerEv ? 'bad' : ev < MA.offerEv + 15 ? 'warn' : 'ok');
+
+        const valEl = document.getElementById('maRoVal');
+        valEl.textContent = (val >= 0 ? '+€' : '−€') + Math.abs(val).toFixed(1) + 'M';
+        valEl.className = 'ro-val ' + (val >= 0 ? 'ok' : 'bad');
+
+        document.getElementById('maRoPx').textContent = `€${px.toFixed(2)}`;
+        document.getElementById('maRoMult').textContent = `${mult.toFixed(1)}x`;
+
+        // Camera subtly tracks slider inputs
+        yawTarget = -0.92 + 0.72 * (w - MA.wMin) / (MA.wMax - MA.wMin);
+        pitchTarget = 0.42 + 0.14 * (1 - (S - MA.sMin) / (MA.sMax - MA.sMin));
+      }
+
+      let dragging = false, lx = 0, ly = 0;
+      canvas.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        lx = e.clientX;
+        ly = e.clientY;
+        canvas.setPointerCapture(e.pointerId);
+      });
+      canvas.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        userYaw += (e.clientX - lx) * 0.008;
+        userPitch += (e.clientY - ly) * 0.006;
+        userYaw = Math.max(-0.6, Math.min(0.6, userYaw));
+        userPitch = Math.max(-0.2, Math.min(0.45, userPitch));
+        lx = e.clientX;
+        ly = e.clientY;
+      });
+      const endDrag = () => { dragging = false; };
+      canvas.addEventListener('pointerup', endDrag);
+      canvas.addEventListener('pointercancel', endDrag);
+
+      sW.addEventListener('input', updateReadout);
+      sS.addEventListener('input', updateReadout);
+
+      let visible = true;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((en) => { visible = en[0].isIntersecting; }, { threshold: 0 }).observe(canvas);
+      }
+
+      function loop(now) {
+        if (visible) {
+          const sway = reduceMotion || dragging ? 0 : Math.sin((now - t0) / 4200) * 0.12;
+          const k = reduceMotion ? 1 : 0.08;
+          yaw += (yawTarget + userYaw + sway - yaw) * k;
+          pitch += (pitchTarget + userPitch - pitch) * k;
+          draw();
+        }
+        requestAnimationFrame(loop);
+      }
+
+      resize();
+      updateReadout();
+      yaw = yawTarget;
+      pitch = pitchTarget;
+      if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+      else window.addEventListener('resize', resize);
+      requestAnimationFrame(loop);
+    }
+
+    initMa3d();
 
     // =====================================================================
     // FX COLLAR — interactive 3D EBIT surface (canvas, no library)
@@ -1266,9 +1643,6 @@
     initFx3d();
 
     // =====================================================================
-    // MEDTECH — static preview (figures from the business case)
-    // =====================================================================
-    // =====================================================================
     // MEDTECH — animated 5-year result bridge + volume slider
     // Figures from the business case (realistic scenario, 82,750 units/yr):
     // margins: devices +7.67, consumables +4.11, software +1.37, customisation +0.76
@@ -1310,7 +1684,6 @@
       let started = false;
 
       function draw() {
-        const css = (k) => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
         const accent = css('--accent'), ink = css('--ink'), muted = css('--ink-muted'), rule = css('--rule'), neg = '#d9534f';
         const narrow = svg.clientWidth > 0 && svg.clientWidth < 520;
         W = narrow ? 400 : 640;
@@ -1415,14 +1788,30 @@
       });
     });
 
-    // Copy email
+    // Copy email (with iframe-safe fallback)
     const copyBtn = document.getElementById('copyBtn');
     copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(copyBtn.dataset.email).then(() => {
+      const email = copyBtn.dataset.email;
+      const showCopied = () => {
         const original = copyBtn.textContent;
         copyBtn.textContent = 'Copied';
         setTimeout(() => { copyBtn.textContent = original; }, 1800);
-      });
+      };
+      const fallbackCopy = () => {
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showCopied(); } catch (e) {}
+        document.body.removeChild(ta);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showCopied).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
     });
   </script>
 </body>
