@@ -36,6 +36,14 @@
       --term-amber: #f59e0b;
       --term-red: #f87171;
 
+      /* Architectural IB palette (M&A 3D card) */
+      --ma-navy: #1b365d;
+      --ma-slate: #64748b;
+      --ma-brass: #b5892b;
+      --ma-crimson: #c53030;
+      --ma-seg-bg: #f1f0ec;
+      --ma-grid-dot: rgba(27, 54, 93, 0.08);
+
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
       color-scheme: light dark;
     }
@@ -56,6 +64,13 @@
         --wip-bg: #2e2418;
         --hover: rgba(255, 255, 255, 0.03);
         --card-border: #2c302e;
+
+        --ma-navy: #3b6ea5;
+        --ma-slate: #94a3b8;
+        --ma-brass: #d4a84b;
+        --ma-crimson: #e05a5a;
+        --ma-seg-bg: #121514;
+        --ma-grid-dot: rgba(148, 163, 184, 0.09);
       }
     }
 
@@ -592,7 +607,204 @@
       border-top: 1px solid var(--rule);
     }
 
-    /* 3D Terminal Interactive Cards (M&A & FX) */
+    /* Editorial IB Architectural 3D Card (M&A) */
+    .ma-card {
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      background-color: var(--surface);
+      background-image: radial-gradient(var(--ma-grid-dot) 1px, transparent 1px);
+      background-size: 16px 16px;
+      margin: 0 0 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px -18px rgba(15, 23, 42, 0.22);
+    }
+
+    .ma-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      padding: 12px 18px 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      font-weight: 600;
+      background: linear-gradient(180deg, var(--surface) 60%, transparent 100%);
+    }
+
+    .ma-head-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ma-seg {
+      display: inline-flex;
+      padding: 2px;
+      border-radius: 3px;
+      background-color: var(--ma-seg-bg);
+      border: 1px solid var(--rule);
+      gap: 2px;
+    }
+
+    .ma-seg-btn {
+      background: transparent;
+      border: none;
+      border-radius: 2px;
+      padding: 4px 9px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .ma-seg-btn:hover {
+      color: var(--ink);
+    }
+
+    .ma-seg-btn.active {
+      background-color: var(--ma-navy);
+      color: #ffffff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
+    }
+
+    .ma-legend-row {
+      padding: 4px 18px 2px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 16px;
+    }
+
+    .ma-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ma-swatch {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 1.5px;
+    }
+
+    .ma-swatch.navy { background-color: var(--ma-navy); }
+    .ma-swatch.brass { background-color: var(--ma-brass); }
+    .ma-swatch.crimson {
+      width: 14px;
+      height: 0;
+      border-top: 2px dashed var(--ma-crimson);
+      border-radius: 0;
+    }
+
+    .ma-drag {
+      font-style: normal;
+      opacity: 0.78;
+    }
+
+    #ma3d {
+      display: block;
+      width: 100%;
+      height: 340px;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+
+    #ma3d:active {
+      cursor: grabbing;
+    }
+
+    .ma-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      padding: 8px 18px 12px;
+      background-color: var(--surface);
+      border-top: 1px solid var(--rule);
+    }
+
+    .ma-controls label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .ma-controls label span {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    #maWaccSlider {
+      width: 100%;
+      accent-color: var(--ma-navy);
+      cursor: ew-resize;
+    }
+
+    #maSynSlider {
+      width: 100%;
+      accent-color: var(--ma-brass);
+      cursor: ew-resize;
+    }
+
+    .ma-readout {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background-color: var(--surface);
+      border-top: 1px solid var(--rule);
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ma-readout div {
+      padding: 9px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .ma-readout div + div {
+      border-left: 1px solid var(--rule);
+    }
+
+    .ma-ro-label {
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+    }
+
+    .ma-ro-val {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .ma-ro-val.pos { color: var(--accent); }
+    .ma-ro-val.brass { color: var(--ma-brass); }
+    .ma-ro-val.neg { color: var(--ma-crimson); }
+
+    .ma-note {
+      padding: 7px 18px 9px;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      background-color: var(--surface);
+      border-top: 1px solid var(--rule);
+    }
+
+    /* FX interactive card */
     .fx-card {
       background: radial-gradient(120% 100% at 85% 0%, #192623 0%, var(--term-bg) 62%);
       border: 1px solid var(--term-border);
@@ -603,8 +815,7 @@
       margin: 0 0 16px;
     }
 
-    #fx3d,
-    #ma3d {
+    #fx3d {
       display: block;
       width: 100%;
       height: 360px;
@@ -612,203 +823,7 @@
       touch-action: pan-y;
     }
 
-    #fx3d:active,
-    #ma3d:active { cursor: grabbing; }
-
-    .fx-drag {
-      font-style: normal;
-      text-transform: none;
-      letter-spacing: 0;
-      opacity: 0.7;
-    }
-
-    .fx-controls input + label { margin-top: 8px; }
-
-    .fx-note-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .fx-surface-cta {
-      flex-shrink: 0;
-      white-space: nowrap;
-      text-decoration: none;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--term-bg);
-      background: var(--term-emerald);
-      padding: 5px 10px;
-      border-radius: 2px;
-      opacity: 0.92;
-      transition: opacity 0.2s ease;
-    }
-
-    .fx-surface-cta:hover { opacity: 1; }
-
-    @media (max-width: 680px) {
-      .fx-note-row { flex-direction: column; align-items: flex-start; }
-      #fx3d,
-      #ma3d { height: 280px; }
-    }
-
-    .fx-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px 18px;
-      padding: 12px 18px 4px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--term-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .fx-legend {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    .fx-legend span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .lg {
-      width: 14px;
-      height: 0;
-      border-top: 2px solid;
-    }
-
-    .lg.hedged { border-color: var(--term-emerald); }
-    .lg.unhedged { border-color: var(--term-amber); }
-    .lg.cov { border-top: 1.5px dashed var(--term-red); }
-
-    .fx-controls {
-      padding: 4px 18px 12px;
-    }
-
-    .fx-controls label {
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--term-muted);
-      margin-bottom: 4px;
-    }
-
-    #fxSlider, #hrSlider, #maWaccSlider, #maSynSlider {
-      width: 100%;
-      accent-color: var(--term-emerald);
-      cursor: ew-resize;
-    }
-
-    .fx-readout {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background-color: var(--term-surface);
-      border-top: 1px solid var(--term-border);
-      font-family: 'JetBrains Mono', monospace;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .fx-readout div {
-      padding: 9px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .fx-readout div + div {
-      border-left: 1px solid var(--term-border);
-    }
-
-    .ro-label {
-      font-size: 0.64rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--term-muted);
-    }
-
-    .ro-val {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--term-ink);
-    }
-
-    .ro-val.ok { color: var(--term-emerald); }
-    .ro-val.warn { color: var(--term-amber); }
-    .ro-val.bad { color: var(--term-red); }
-
-    .fx-note {
-      padding: 7px 18px 9px;
-      font-size: 0.7rem;
-      color: var(--term-muted);
-      border-top: 1px solid var(--term-border);
-    }
-
-    /* Skills Two-Column Table */
-    .credentials-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      padding-top: 20px;
-    }
-
-    .cred-col h3 {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .cred-col ul {
-      list-style: none;
-    }
-
-    .cred-col li {
-      font-size: 0.9rem;
-      color: var(--ink-body);
-      padding: 6px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .cred-col li:last-child {
-      border-bottom: none;
-    }
-
-    .cred-col strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 64px;
-      padding-top: 18px;
-      border-top: 1px solid var(--rule-dark);
-      font-size: 0.82rem;
-      color: var(--ink-muted);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    /* Subtle Entrance Motion */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(8px);
-      animation: appear 0.5s var(--ease) forwards;
+    #fx3d:active { cursor: grabbing; }
     }
     .stagger-1 { animation-delay: 0.06s; }
     .stagger-2 { animation-delay: 0.12s; }
@@ -822,18 +837,17 @@
     }
 
     @media (max-width: 680px) {
-      .container { padding: 42px 20px 64px; }
-      h1 { font-size: 1.85rem; }
-      .entry {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 20px 6px;
-      }
+      .fx-note-row { flex-direction: column; align-items: flex-start; }
+      #fx3d { height: 280px; }
+      #ma3d { height: 290px; }
+      .ma-controls { grid-template-columns: 1fr; gap: 8px; }
+    }
       .entry-aside {
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
-      }
+    #fxSlider, #hrSlider {
+      width: 100%;
+      accent-color: var(--term-emerald);
+      cursor: ew-resize;
+    }
       .credentials-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -841,6 +855,9 @@
       .fx-readout { grid-template-columns: repeat(2, 1fr); }
       .fx-readout div:nth-child(3) { border-left: none; }
       .fx-readout div:nth-child(n+3) { border-top: 1px solid var(--term-border); }
+      .ma-readout { grid-template-columns: repeat(2, 1fr); }
+      .ma-readout div:nth-child(3) { border-left: none; }
+      .ma-readout div:nth-child(n+3) { border-top: 1px solid var(--rule); }
       .kpi { min-width: 0; }
       .mt-readout { grid-template-columns: 1fr 1fr 1fr; }
       .mt-readout div { padding: 8px 10px; }
@@ -889,45 +906,53 @@
           <span class="entry-domain">M&amp;A</span>
         </div>
         <div class="entry-main">
-          <h3 class="entry-title">Project Apex — Buy-Side M&amp;A Teaser &amp; Valuation of Kendrion N.V.</h3>
+          <h3 class="entry-title">Project Apex — Buy-Side M&amp;A Acquisition Teaser (Kendrion N.V.)</h3>
           <p class="entry-desc">
-            Illustrative 4-slide buy-side M&amp;A teaser (Minto pyramid) and sourced technical appendix evaluating a bolt-on acquisition of Euronext Amsterdam-listed Kendrion N.V. by Aalberts N.V. Covers pro forma EBITDA normalization (€34.2M IFRS to €43.5M normalized post-Automotive/China divestitures), €8.5M run-rate cost synergies (€59.0M after-tax NPV), DCF and multiple triangulation, and Dutch public offer structuring.
+            4-slide buy-side M&amp;A teaser structured top-down (Minto pyramid), evaluating an illustrative €368.0M (€21.00/sh) all-cash bolt-on acquisition of Euronext Amsterdam-listed Kendrion N.V. by Aalberts N.V. Covers pro forma normalized EBITDA bridging (€34.2M IFRS to €43.5M post-divestitures), €8.5M run-rate cost synergies (€59.0M after-tax NPV), DCF and multiples triangulation, and Dutch public offer execution risks.
           </p>
 
           <div class="kpi-strip">
             <div class="kpi"><span class="kpi-val">€368.0M</span><span class="kpi-label">Offer EV (€21.00/sh)</span></div>
-            <div class="kpi"><span class="kpi-val">7.1x</span><span class="kpi-label">Post-synergy EBITDA</span></div>
+            <div class="kpi"><span class="kpi-val">7.1x</span><span class="kpi-label">Post-syn. EV/EBITDA</span></div>
             <div class="kpi"><span class="kpi-val">€59.0M</span><span class="kpi-label">Cost synergy NPV</span></div>
           </div>
 
-          <div class="fx-card" id="maCard">
-            <div class="fx-head">
-              <span>Implied EV surface · WACC × cost synergies</span>
-              <a class="pdf-btn term" href="assets/project_apex_kendrion_teaser.pdf" target="_blank" rel="noopener">Read Teaser Deck (PDF) <span class="arrow">→</span></a>
-            </div>
-            <div class="fx-legend-row">
-              <div class="fx-legend">
-                <span><i class="lg hedged"></i>Above offer (€368M)</span>
-                <span><i class="lg unhedged"></i>Near offer</span>
-                <span><i class="lg cov"></i>Offer EV plane €368.0M</span>
-                <em class="fx-drag">· drag to rotate</em>
+          <div class="ma-card" id="maCard">
+            <div class="ma-head">
+              <span>3D valuation architecture · WACC × synergies</span>
+              <div class="ma-head-actions">
+                <div class="ma-seg" role="group" aria-label="3D valuation view switcher">
+                  <button type="button" class="ma-seg-btn active" data-ma-view="pillars" aria-pressed="true">3D Pillars</button>
+                  <button type="button" class="ma-seg-btn" data-ma-view="football" aria-pressed="false">3D Football Field</button>
+                </div>
+                <a class="pdf-btn" href="assets/project_apex_kendrion_teaser.pdf" target="_blank" rel="noopener">Read Teaser Deck (PDF) <span class="arrow">→</span></a>
               </div>
             </div>
-            <canvas id="ma3d" aria-label="3D surface of implied Enterprise Value as a function of WACC and run-rate cost synergies compared to the €368.0M offer EV plane"></canvas>
-            <div class="fx-controls">
-              <label for="maWaccSlider">WACC → <span id="maWaccLabel">9.00%</span></label>
-              <input type="range" id="maWaccSlider" min="0.080" max="0.105" step="0.0005" value="0.090" />
-              <label for="maSynSlider">Run-rate cost synergies → <span id="maSynLabel">€8.5M</span></label>
-              <input type="range" id="maSynSlider" min="0" max="12" step="0.1" value="8.5" />
+            <div class="ma-legend-row">
+              <span class="ma-legend-item"><i class="ma-swatch navy"></i>Standalone DCF (Navy)</span>
+              <span class="ma-legend-item"><i class="ma-swatch brass"></i>Synergy NPV Uplift (Brass)</span>
+              <span class="ma-legend-item"><i class="ma-swatch crimson"></i>Offer EV €368M (Crimson)</span>
+              <em class="ma-drag">· drag to rotate</em>
             </div>
-            <div class="fx-readout" aria-live="polite">
-              <div><span class="ro-label">Implied EV</span><span class="ro-val ok" id="maRoEv">—</span></div>
-              <div><span class="ro-label">Value vs. Offer</span><span class="ro-val ok" id="maRoVal">—</span></div>
-              <div><span class="ro-label">Implied Share</span><span class="ro-val" id="maRoPx">—</span></div>
-              <div><span class="ro-label">Entry Multiple</span><span class="ro-val" id="maRoMult">—</span></div>
+            <canvas id="ma3d" aria-label="Interactive 3D architectural valuation chart toggling between 5x5 stacked WACC and synergy pillars and a 3D valuation football field sliced by the €368M offer plane"></canvas>
+            <div class="ma-controls">
+              <div>
+                <label for="maWaccSlider">WACC → <span id="maWaccLabel">9.0%</span></label>
+                <input type="range" id="maWaccSlider" min="8.0" max="10.5" step="0.1" value="9.0" />
+              </div>
+              <div>
+                <label for="maSynSlider">Run-rate cost synergies → <span id="maSynLabel">€8.5M</span></label>
+                <input type="range" id="maSynSlider" min="0.0" max="12.0" step="0.5" value="8.5" />
+              </div>
             </div>
-            <div class="fx-note fx-note-row">
-              <span>Illustrative DCF (g = 2.0%, tax = 25.8%) + after-tax cost synergy NPV net of phased implementation costs. Offer EV = €368.0M (€21.00/sh; €43.5M net debt).</span>
+            <div class="ma-readout" aria-live="polite">
+              <div><span class="ma-ro-label">Implied EV</span><span class="ma-ro-val" id="maRoEv">—</span></div>
+              <div><span class="ma-ro-label">Net Value vs. Offer</span><span class="ma-ro-val pos" id="maRoVal">—</span></div>
+              <div><span class="ma-ro-label">Implied Share Price</span><span class="ma-ro-val" id="maRoPx">—</span></div>
+              <div><span class="ma-ro-label">Post-Syn. Multiple</span><span class="ma-ro-val brass" id="maRoMult">—</span></div>
+            </div>
+            <div class="ma-note">
+              Standalone 5-yr DCF (g = 2.0%, Net Debt €43.5M, 15.45M shares) plus phased after-tax cost synergies net of €10.0M one-off implementation costs. Base offer: €368.0M EV (€21.00/sh, 8.5x pre-synergy / 7.1x post-synergy).
             </div>
           </div>
 
@@ -935,8 +960,8 @@
             <div class="tags">
               <span class="tag">M&amp;A</span>
               <span class="tag">Minto Pyramid</span>
+              <span class="tag">Normalized EBITDA</span>
               <span class="tag">DCF &amp; Multiples</span>
-              <span class="tag">EBITDA Bridge</span>
             </div>
             <div class="entry-links">
               <a class="pdf-btn" href="assets/project_apex_kendrion_teaser.pdf" target="_blank" rel="noopener">Read Teaser Deck (PDF) <span class="arrow">→</span></a>
@@ -1105,59 +1130,106 @@
     const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
     // =====================================================================
-    // PROJECT APEX (M&A) — interactive 3D Implied EV surface (canvas)
-    // x = WACC (8.0%..10.5%), y = Run-rate Cost Synergies (€0..€12M),
-    // z = Standalone DCF EV(w) + After-Tax Cost Synergy NPV(S, w) vs. €368M Offer.
+    // PROJECT APEX (M&A) — Editorial IB Architectural 3D Canvas
+    // Supports two rotatable 3D views on the same canvas:
+    //   1) "pillars": 5x5 extruded stacked columns (Standalone DCF + Synergy NPV)
+    //                 with a 3D dashed crimson Offer EV perimeter at €368.0M
+    //   2) "football": 5 floating 3D valuation prisms sliced perpendicularly by
+    //                  a translucent crimson Offer Glass Wall at €368.0M
     // =====================================================================
     const MA = {
       ufcf: [24.0, 25.1, 26.5, 28.2, 30.2],
       g: 0.02,
-      tax: 0.258,
       netDebt: 43.5,
-      shares: 15.4524,
-      offerEv: 368.0,
+      shares: 324.5 / 21.0,
       normEbitda: 43.5,
-      wMin: 0.080,
-      wMax: 0.105,
-      sMin: 0,
-      sMax: 12,
-      zMin: 300,
-      zMax: 560
+      offerEv: 368.0,
+      waccGrid: [0.080, 0.085, 0.090, 0.095, 0.100],
+      synGrid: [0.0, 3.0, 6.0, 8.5, 12.0]
     };
 
-    const maStandaloneEv = (w) => {
+    function dcfEv(w) {
       let pv = 0;
       for (let t = 0; t < MA.ufcf.length; t++) {
         pv += MA.ufcf[t] / Math.pow(1 + w, t + 1);
       }
       const tv = (30.2 * 1.02) / (w - MA.g);
       return pv + tv / Math.pow(1 + w, 5);
-    };
+    }
 
-    const maSynergyNpv = (S, w) => (
-      S > 0
-        ? (S * (1 - MA.tax) / w) / Math.pow(1 + w, 0.62) - 10.0 * (S / 8.5) * (1 - MA.tax)
-        : 0
-    );
-
-    const maImpliedEv = (w, S) => maStandaloneEv(w) + maSynergyNpv(S, w);
+    function synNpv(syn, w) {
+      if (syn <= 0) return 0;
+      const at = syn * (1 - 0.258);
+      const factor = 0.43 / (1 + w) + 0.82 / Math.pow(1 + w, 2) + (1 / w) / Math.pow(1 + w, 2);
+      const pvImpl = (syn / 8.5) * 10.0 * (1 - 0.258) / (1 + w);
+      return Math.max(0, at * factor - pvImpl);
+    }
 
     function initMa3d() {
       const canvas = document.getElementById('ma3d');
       const sW = document.getElementById('maWaccSlider');
       const sS = document.getElementById('maSynSlider');
+      const viewBtns = document.querySelectorAll('[data-ma-view]');
       if (!canvas || !canvas.getContext || !sW || !sS) return;
       const ctx = canvas.getContext('2d');
+      const darkMQ = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
       const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // World mapping into [-1, 1] x [-0.75, 0.75] x [-0.55, 0.55]
-      const wx = (w) => ((w - MA.wMin) / (MA.wMax - MA.wMin)) * 2 - 1;
-      const wy = (s) => ((s - MA.sMin) / (MA.sMax - MA.sMin) - 0.5) * 1.5;
-      const wz = (z) => ((z - MA.zMin) / (MA.zMax - MA.zMin) - 0.5) * 1.1;
-
-      let yaw = -0.58, pitch = 0.48, yawTarget = -0.58, pitchTarget = 0.48;
-      let userYaw = 0, userPitch = 0, t0 = performance.now();
+      let activeView = 'pillars';
+      let yaw = -0.62, pitch = 0.50;
+      let yawTarget = -0.62, pitchTarget = 0.50;
+      let userYaw = 0, userPitch = 0;
+      let t0 = performance.now();
       let W = 0, H = 0, dpr = 1;
+
+      function getPalette() {
+        const dark = !!(darkMQ && darkMQ.matches);
+        return dark ? {
+          dark: true,
+          plinthFill: 'rgba(59, 110, 165, 0.06)',
+          plinthEdge: 'rgba(148, 163, 184, 0.26)',
+          gridLine: 'rgba(148, 163, 184, 0.14)',
+          axisText: '#94a3b8',
+          axisTitle: '#cbd5e1',
+          navy: { top: '#588ec9', left: '#3b6ea5', right: '#24476e', stroke: 'rgba(226, 232, 240, 0.22)' },
+          navyHi: { top: '#6da5e0', left: '#4a83c2', right: '#2d588a', stroke: 'rgba(255, 255, 255, 0.45)' },
+          brass: { top: '#e7c26e', left: '#d4a84b', right: '#9b7626', stroke: 'rgba(255, 251, 235, 0.28)' },
+          brassHi: { top: '#f3d488', left: '#e2b658', right: '#b0862c', stroke: 'rgba(255, 255, 255, 0.65)' },
+          slate: { top: '#94a3b8', left: '#64748b', right: '#475569', stroke: 'rgba(226, 232, 240, 0.22)' },
+          indigo: { top: '#7c8db5', left: '#56678f', right: '#3a4869', stroke: 'rgba(226, 232, 240, 0.22)' },
+          crimson: '#e05a5a',
+          crimsonGlass: 'rgba(224, 90, 90, 0.14)',
+          crimsonSheen: 'rgba(255, 190, 190, 0.14)',
+          crimsonWire: 'rgba(224, 90, 90, 0.85)',
+          calloutBg: 'rgba(20, 24, 23, 0.94)',
+          calloutBorder: '#d4a84b',
+          calloutInk: '#f8fafc',
+          labelBg: 'rgba(20, 24, 23, 0.82)',
+          labelInk: '#e2e8f0'
+        } : {
+          dark: false,
+          plinthFill: 'rgba(27, 54, 93, 0.03)',
+          plinthEdge: 'rgba(27, 54, 93, 0.22)',
+          gridLine: 'rgba(27, 54, 93, 0.11)',
+          axisText: '#64748b',
+          axisTitle: '#1b365d',
+          navy: { top: '#315c93', left: '#1b365d', right: '#122644', stroke: 'rgba(255, 255, 255, 0.26)' },
+          navyHi: { top: '#3f70ad', left: '#244778', right: '#163157', stroke: 'rgba(255, 255, 255, 0.55)' },
+          brass: { top: '#dbb258', left: '#b5892b', right: '#8c671a', stroke: 'rgba(255, 255, 255, 0.34)' },
+          brassHi: { top: '#e7c26c', left: '#c79733', right: '#9b7220', stroke: 'rgba(255, 255, 255, 0.72)' },
+          slate: { top: '#94a3b8', left: '#64748b', right: '#475569', stroke: 'rgba(255, 255, 255, 0.30)' },
+          indigo: { top: '#6d7fa3', left: '#4b5c80', right: '#34425e', stroke: 'rgba(255, 255, 255, 0.28)' },
+          crimson: '#c53030',
+          crimsonGlass: 'rgba(197, 48, 48, 0.11)',
+          crimsonSheen: 'rgba(255, 255, 255, 0.26)',
+          crimsonWire: 'rgba(197, 48, 48, 0.86)',
+          calloutBg: 'rgba(27, 54, 93, 0.96)',
+          calloutBorder: '#d4a84b',
+          calloutInk: '#ffffff',
+          labelBg: 'rgba(255, 255, 255, 0.88)',
+          labelInk: '#1b365d'
+        };
+      }
 
       function resize() {
         const r = canvas.getBoundingClientRect();
@@ -1170,242 +1242,522 @@
       }
 
       function project(x, y, z) {
-        const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
-        const x1 = x * cy - y * sy, y1 = x * sy + y * cy;
-        const y2 = y1 * cp - z * sp, z2 = y1 * sp + z * cp;
-        const D = 4.2, f = D / (D + y2);
-        const scale = Math.min(W * (W < 520 ? 0.31 : 0.27), H * 0.45);
-        return { x: W * 0.5 + x1 * f * scale, y: H * 0.45 - z2 * f * scale, d: y2 };
+        const cy = Math.cos(yaw), sy = Math.sin(yaw);
+        const cp = Math.cos(pitch), sp = Math.sin(pitch);
+        const x1 = x * cy - y * sy;
+        const y1 = x * sy + y * cy;
+        const y2 = y1 * cp - z * sp;
+        const z2 = y1 * sp + z * cp;
+        const D = 4.8;
+        const f = D / (D + y2);
+        const scale = Math.min(W * (W < 520 ? 0.30 : 0.275), H * 0.47);
+        return { x: W * 0.50 + x1 * f * scale, y: H * 0.50 - z2 * f * scale, d: y2 };
       }
 
-      // Colour scale: red below €368M offer -> amber near offer -> emerald above
-      function colour(z, shade) {
-        const stops = [
-          [320, [248, 113, 113]],
-          [368, [245, 158, 11]],
-          [400, [52, 211, 153]],
-          [495, [16, 185, 129]]
+      // Draw an extruded 3D rectangular prism using outward face winding (backface culling)
+      function drawPrism(x0, x1, y0, y1, z0, z1, colors, options) {
+        if (x1 <= x0 + 1e-5 || y1 <= y0 + 1e-5 || z1 <= z0 + 1e-5) return;
+        const opts = options || {};
+        const p000 = project(x0, y0, z0), p100 = project(x1, y0, z0);
+        const p110 = project(x1, y1, z0), p010 = project(x0, y1, z0);
+        const p001 = project(x0, y0, z1), p101 = project(x1, y0, z1);
+        const p111 = project(x1, y1, z1), p011 = project(x0, y1, z1);
+
+        // Outward-facing quads (cross2D < 0 means visible toward camera)
+        const faces = [
+          { pts: [p000, p100, p101, p001], fill: colors.left },   // Front (-y)
+          { pts: [p110, p010, p011, p111], fill: colors.right },  // Back (+y)
+          { pts: [p100, p110, p111, p101], fill: colors.right },  // Right (+x)
+          { pts: [p010, p000, p001, p011], fill: colors.left },   // Left (-x)
+          { pts: [p001, p101, p111, p011], fill: colors.top },    // Top (+z)
+          { pts: [p010, p110, p100, p000], fill: colors.right }   // Bottom (-z)
         ];
-        let c = stops[0][1];
-        if (z >= stops[stops.length - 1][0]) c = stops[stops.length - 1][1];
-        else {
-          for (let i = 0; i < stops.length - 1; i++) {
-            const [za, ca] = stops[i], [zb, cb] = stops[i + 1];
-            if (z >= za && z <= zb) {
-              const t = (z - za) / (zb - za);
-              c = ca.map((v, k) => v + (cb[k] - v) * t);
-              break;
-            }
+
+        const visibleFaces = [];
+        for (let i = 0; i < faces.length; i++) {
+          const pts = faces[i].pts;
+          const cross = (pts[1].x - pts[0].x) * (pts[2].y - pts[0].y) - (pts[1].y - pts[0].y) * (pts[2].x - pts[0].x);
+          if (cross < -0.5) {
+            const d = (pts[0].d + pts[1].d + pts[2].d + pts[3].d) / 4;
+            visibleFaces.push({ pts, fill: faces[i].fill, d });
           }
         }
-        return `rgb(${c.map(v => Math.round(v * shade)).join(',')})`;
-      }
+        visibleFaces.sort((a, b) => b.d - a.d);
 
-      const NW = 38, NSyn = 16;
-      const grid = [];
-      for (let i = 0; i <= NW; i++) {
-        grid.push([]);
-        const w = MA.wMin + (MA.wMax - MA.wMin) * i / NW;
-        for (let j = 0; j <= NSyn; j++) {
-          const s = MA.sMin + (MA.sMax - MA.sMin) * j / NSyn;
-          grid[i].push({ w, s, z: maImpliedEv(w, s) });
-        }
-      }
-
-      const light = (() => {
-        const v = [-0.35, -0.55, 0.75];
-        const n = Math.hypot(...v);
-        return v.map(a => a / n);
-      })();
-
-      function draw() {
-        ctx.clearRect(0, 0, W, H);
-        const wSel = parseFloat(sW.value);
-        const sSel = parseFloat(sS.value);
-        const P = grid.map(col => col.map(p => ({ ...project(wx(p.w), wy(p.s), wz(p.z)), z: p.z })));
-
-        // Base box outline
-        const corners = [[-1, -0.75], [1, -0.75], [1, 0.75], [-1, 0.75]].map(([x, y]) => project(x, y, wz(MA.zMin)));
-        ctx.strokeStyle = '#26302d';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        corners.forEach((c, k) => (k ? ctx.lineTo(c.x, c.y) : ctx.moveTo(c.x, c.y)));
-        ctx.closePath();
-        ctx.stroke();
-
-        // Vertical axis & back gridlines
-        ctx.font = '10px "JetBrains Mono", monospace';
-        ctx.fillStyle = '#63706c';
-        [300, 380, 460, 540].forEach(v => {
-          const a = project(-1, 0.75, wz(v));
-          const b = project(1, 0.75, wz(v));
-          const c = project(-1, -0.75, wz(v));
-          ctx.strokeStyle = v === 300 ? '#2e3a37' : '#1c2523';
+        ctx.save();
+        if (opts.alpha !== undefined) ctx.globalAlpha = opts.alpha;
+        for (let i = 0; i < visibleFaces.length; i++) {
+          const f = visibleFaces[i];
           ctx.beginPath();
-          ctx.moveTo(c.x, c.y);
-          ctx.lineTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-          ctx.textAlign = 'right';
-          ctx.fillText(`€${v}M`, c.x - 6, c.y + 3);
-        });
-
-        // X ticks (WACC)
-        ctx.textAlign = 'center';
-        [0.080, 0.085, 0.090, 0.095, 0.100, 0.105].forEach(wv => {
-          const p = project(wx(wv), -0.75, wz(MA.zMin));
-          ctx.fillText((wv * 100).toFixed(1) + '%', p.x, p.y + 15);
-        });
-        const xl = project(0, -0.75, wz(MA.zMin));
-        ctx.fillStyle = '#8a9692';
-        ctx.fillText('WACC', xl.x, xl.y + 29);
-
-        // Y ticks (Cost synergies)
-        ctx.fillStyle = '#63706c';
-        ctx.textAlign = 'left';
-        [0, 6, 12].forEach(sv => {
-          const p = project(1, wy(sv), wz(MA.zMin));
-          ctx.fillText(`€${sv}M`, p.x + 8, p.y + 4);
-        });
-        const yl = project(1, 0.95, wz(MA.zMin));
-        ctx.fillStyle = '#8a9692';
-        ctx.fillText('synergies', yl.x + 8, yl.y + 4);
-
-        // Collect quads: Lambert-shaded valuation surface + €368M offer EV plane
-        const quads = [];
-        for (let i = 0; i < NW; i++) {
-          for (let j = 0; j < NSyn; j++) {
-            const a = P[i][j], b = P[i + 1][j], c = P[i + 1][j + 1], d = P[i][j + 1];
-            const zAvg = (a.z + b.z + c.z + d.z) / 4;
-            const ga = grid[i][j], gb = grid[i + 1][j], gd = grid[i][j + 1];
-            const u = [wx(gb.w) - wx(ga.w), 0, wz(gb.z) - wz(ga.z)];
-            const v = [0, wy(gd.s) - wy(ga.s), wz(gd.z) - wz(ga.z)];
-            let n = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]];
-            const nl = Math.hypot(...n);
-            n = n.map(k => k / nl);
-            const shade = 0.55 + 0.45 * Math.max(0, n[0] * light[0] + n[1] * light[1] + n[2] * light[2]);
-            quads.push({
-              pts: [a, b, c, d],
-              d: (a.d + b.d + c.d + d.d) / 4,
-              fill: colour(zAvg, shade),
-              stroke: 'rgba(10,14,13,0.35)'
-            });
-          }
-        }
-
-        const NP = 8;
-        for (let i = 0; i < NP; i++) {
-          for (let j = 0; j < NP; j++) {
-            const x0 = -1 + 2 * i / NP, x1 = -1 + 2 * (i + 1) / NP;
-            const y0 = -0.75 + 1.5 * j / NP, y1 = -0.75 + 1.5 * (j + 1) / NP;
-            const z = wz(MA.offerEv);
-            const pts = [project(x0, y0, z), project(x1, y0, z), project(x1, y1, z), project(x0, y1, z)];
-            quads.push({
-              pts,
-              d: pts.reduce((acc, p) => acc + p.d, 0) / 4 + 0.001,
-              fill: 'rgba(248,113,113,0.10)',
-              stroke: 'rgba(248,113,113,0.18)'
-            });
-          }
-        }
-
-        quads.sort((p, q) => q.d - p.d);
-        quads.forEach(q => {
-          ctx.beginPath();
-          q.pts.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+          ctx.moveTo(f.pts[0].x, f.pts[0].y);
+          ctx.lineTo(f.pts[1].x, f.pts[1].y);
+          ctx.lineTo(f.pts[2].x, f.pts[2].y);
+          ctx.lineTo(f.pts[3].x, f.pts[3].y);
           ctx.closePath();
-          ctx.fillStyle = q.fill;
+          ctx.fillStyle = f.fill;
           ctx.fill();
-          ctx.strokeStyle = q.stroke;
-          ctx.lineWidth = 0.6;
+          ctx.strokeStyle = opts.outline || colors.stroke;
+          ctx.lineWidth = opts.lineWidth || 0.75;
           ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function drawPill(x, y, text, bg, border, ink) {
+        ctx.save();
+        ctx.font = '600 10.5px "JetBrains Mono", monospace';
+        const tw = ctx.measureText(text).width;
+        const pw = tw + 12, ph = 20;
+        const rx = Math.max(6, Math.min(W - pw - 6, x - pw / 2));
+        const ry = Math.max(6, Math.min(H - ph - 6, y - ph / 2));
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(rx, ry, pw, ph, 3) : ctx.rect(rx, ry, pw, ph);
+        ctx.fillStyle = bg;
+        ctx.fill();
+        if (border) {
+          ctx.strokeStyle = border;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+        ctx.fillStyle = ink;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, rx + pw / 2, ry + ph / 2 + 0.5);
+        ctx.restore();
+      }
+
+      // -----------------------------------------------------------------
+      // VIEW 1: 3D Extruded Stacked Valuation Pillars (5x5 cityscape)
+      // -----------------------------------------------------------------
+      function drawPillarsView(pal, wSel, sSel) {
+        const zMin = 260, zMax = 560;
+        const wx = (w) => ((w - 0.080) / 0.020) * 1.52 - 0.76; // 8.0%..-0.76, 10.0%..+0.76, 10.5%..+1.14
+        const wy = (s) => (s / 12.0 - 0.5) * 1.44;
+        const wz = (ev) => ((Math.max(zMin, Math.min(zMax, ev)) - zMin) / (zMax - zMin) - 0.45) * 1.18;
+
+        const zBase = wz(zMin);
+        const zOffer = wz(MA.offerEv);
+        const bx0 = -1.00, bx1 = 1.00, by0 = -0.88, by1 = 0.88;
+
+        // Architectural base plinth
+        const floorPts = [
+          project(bx0, by0, zBase), project(bx1, by0, zBase),
+          project(bx1, by1, zBase), project(bx0, by1, zBase)
+        ];
+        ctx.beginPath();
+        floorPts.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+        ctx.closePath();
+        ctx.fillStyle = pal.plinthFill;
+        ctx.fill();
+        ctx.strokeStyle = pal.plinthEdge;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Back wall Z gridlines & ticks
+        ctx.font = '10px "JetBrains Mono", monospace';
+        [260, 340, 420, 500].forEach(ev => {
+          const z = wz(ev);
+          const pFL = project(bx0, by0, z);
+          const pBL = project(bx0, by1, z);
+          const pBR = project(bx1, by1, z);
+          ctx.strokeStyle = ev === zMin ? pal.plinthEdge : pal.gridLine;
+          ctx.lineWidth = ev === zMin ? 1 : 0.8;
+          ctx.beginPath();
+          ctx.moveTo(pFL.x, pFL.y);
+          ctx.lineTo(pBL.x, pBL.y);
+          ctx.lineTo(pBR.x, pBR.y);
+          ctx.stroke();
+          ctx.fillStyle = pal.axisText;
+          ctx.textAlign = 'right';
+          ctx.fillText(`€${ev}M`, pFL.x - 7, pFL.y + 3);
         });
 
-        // White highlight curve along selected synergy level
+        // Back crimson dashed frame edges at Z = €368M (drawn behind pillars)
+        const oFL = project(bx0, by0, zOffer);
+        const oFR = project(bx1, by0, zOffer);
+        const oBR = project(bx1, by1, zOffer);
+        const oBL = project(bx0, by1, zOffer);
+        ctx.save();
+        ctx.setLineDash([4, 3]);
+        ctx.strokeStyle = pal.crimsonWire;
+        ctx.lineWidth = 1.25;
         ctx.beginPath();
-        for (let i = 0; i <= 70; i++) {
-          const w = MA.wMin + (MA.wMax - MA.wMin) * i / 70;
-          const p = project(wx(w), wy(sSel), wz(maImpliedEv(w, sSel)));
-          i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y);
+        ctx.moveTo(oFL.x, oFL.y);
+        ctx.lineTo(oBL.x, oBL.y);
+        ctx.lineTo(oBR.x, oBR.y);
+        ctx.stroke();
+        ctx.restore();
+
+        // Find nearest grid cell to current slider inputs
+        let bestI = 0, bestJ = 0, bestDist = Infinity;
+        MA.waccGrid.forEach((wg, i) => {
+          MA.synGrid.forEach((sg, j) => {
+            const d = Math.pow((wg - wSel) / 0.005, 2) + Math.pow((sg - sSel) / 3.0, 2);
+            if (d < bestDist) { bestDist = d; bestI = i; bestJ = j; }
+          });
+        });
+
+        // Build 5x5 stacked columns and sort back-to-front by column depth
+        const halfX = 0.115, halfY = 0.105;
+        const cols = [];
+        for (let i = 0; i < MA.waccGrid.length; i++) {
+          const w = MA.waccGrid[i];
+          const cx = wx(w);
+          const baseEv = dcfEv(w);
+          for (let j = 0; j < MA.synGrid.length; j++) {
+            const s = MA.synGrid[j];
+            const cy = wy(s);
+            const synVal = synNpv(s, w);
+            const totalEv = baseEv + synVal;
+            const isActive = (i === bestI && j === bestJ);
+            const mid = project(cx, cy, zBase);
+            cols.push({ cx, cy, baseEv, synVal, totalEv, isActive, d: mid.d });
+          }
         }
-        ctx.strokeStyle = 'rgba(242,244,243,0.85)';
-        ctx.lineWidth = 1.6;
+        cols.sort((a, b) => b.d - a.d);
+
+        cols.forEach(c => {
+          const zMid = wz(c.baseEv);
+          const zTop = wz(c.totalEv);
+          const navyCol = c.isActive ? pal.navyHi : pal.navy;
+          const brassCol = c.isActive ? pal.brassHi : pal.brass;
+          const dimAlpha = c.isActive ? 1.0 : 0.88;
+
+          // Bottom block: Standalone DCF EV (Navy)
+          drawPrism(
+            c.cx - halfX, c.cx + halfX,
+            c.cy - halfY, c.cy + halfY,
+            zBase, zMid,
+            navyCol,
+            { alpha: dimAlpha, outline: c.isActive ? pal.calloutBorder : null, lineWidth: c.isActive ? 1.05 : 0.7 }
+          );
+
+          // Top stacked block: Synergy NPV Uplift (Warm Brass)
+          if (c.synVal > 0.4) {
+            drawPrism(
+              c.cx - halfX, c.cx + halfX,
+              c.cy - halfY, c.cy + halfY,
+              zMid, zTop,
+              brassCol,
+              { alpha: dimAlpha, outline: c.isActive ? pal.calloutBorder : null, lineWidth: c.isActive ? 1.15 : 0.7 }
+            );
+          }
+
+          // Active pillar top architectural crown highlight
+          if (c.isActive) {
+            const topRing = [
+              project(c.cx - halfX, c.cy - halfY, zTop),
+              project(c.cx + halfX, c.cy - halfY, zTop),
+              project(c.cx + halfX, c.cy + halfY, zTop),
+              project(c.cx - halfX, c.cy + halfY, zTop)
+            ];
+            ctx.beginPath();
+            topRing.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+            ctx.closePath();
+            ctx.strokeStyle = pal.calloutBorder;
+            ctx.lineWidth = 1.8;
+            ctx.stroke();
+          }
+        });
+
+        // Front crimson dashed frame edges at Z = €368M (drawn in front of pillars)
+        ctx.save();
+        ctx.setLineDash([4, 3]);
+        ctx.strokeStyle = pal.crimsonWire;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(oFL.x, oFL.y);
+        ctx.lineTo(oFR.x, oFR.y);
+        ctx.lineTo(oBR.x, oBR.y);
+        ctx.stroke();
+        ctx.restore();
+
+        // Offer EV perimeter badge
+        ctx.font = '600 9.5px "JetBrains Mono", monospace';
+        ctx.fillStyle = pal.crimson;
+        ctx.textAlign = 'left';
+        ctx.fillText('Offer €368M', oFR.x + 6, oFR.y + 3);
+
+        // X-axis ticks (WACC)
+        ctx.font = '10px "JetBrains Mono", monospace';
+        ctx.fillStyle = pal.axisText;
+        ctx.textAlign = 'center';
+        MA.waccGrid.forEach(w => {
+          const p = project(wx(w), by0, zBase);
+          ctx.fillText((w * 100).toFixed(1) + '%', p.x, p.y + 15);
+        });
+        const xTitle = project(0, by0, zBase);
+        ctx.fillStyle = pal.axisTitle;
+        ctx.fillText('WACC', xTitle.x, xTitle.y + 29);
+
+        // Y-axis ticks (Cost Synergies)
+        ctx.fillStyle = pal.axisText;
+        ctx.textAlign = 'left';
+        [0, 6, 12].forEach(s => {
+          const p = project(bx1, wy(s), zBase);
+          ctx.fillText(`€${s}M`, p.x + 8, p.y + 4);
+        });
+        const yTitle = project(bx1, by1 + 0.14, zBase);
+        ctx.fillStyle = pal.axisTitle;
+        ctx.fillText('synergies', yTitle.x + 6, yTitle.y + 4);
+
+        // Exact live scenario beacon & floating EV callout
+        const exactEv = dcfEv(wSel) + synNpv(sSel, wSel);
+        const bx = Math.max(-0.92, Math.min(0.95, wx(wSel)));
+        const by = wy(sSel);
+        const bz = wz(exactEv);
+        const tip = project(bx, by, bz);
+        const labelPt = project(bx, by, bz + 0.19);
+        const pulse = reduceMotion ? 0 : (Math.sin((performance.now() - t0) / 420) + 1) / 2;
+
+        ctx.strokeStyle = pal.calloutBorder;
+        ctx.lineWidth = 1.25;
+        ctx.beginPath();
+        ctx.moveTo(tip.x, tip.y);
+        ctx.lineTo(labelPt.x, labelPt.y + 10);
         ctx.stroke();
 
-        // Pulsing marker with drop line and EV label
-        const z = maImpliedEv(wSel, sSel);
-        const top = project(wx(wSel), wy(sSel), wz(z));
-        const base = project(wx(wSel), wy(sSel), wz(MA.zMin));
-        ctx.setLineDash([3, 3]);
-        ctx.strokeStyle = 'rgba(215,222,219,0.6)';
+        ctx.beginPath();
+        ctx.arc(tip.x, tip.y, 4.5 + pulse * 4, 0, Math.PI * 2);
+        ctx.strokeStyle = pal.calloutBorder;
+        ctx.globalAlpha = 0.55 - pulse * 0.45;
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+
+        ctx.beginPath();
+        ctx.arc(tip.x, tip.y, 3.8, 0, Math.PI * 2);
+        ctx.fillStyle = pal.calloutBorder;
+        ctx.fill();
+
+        drawPill(labelPt.x, labelPt.y, `€${exactEv.toFixed(1)}M`, pal.calloutBg, pal.calloutBorder, pal.calloutInk);
+      }
+
+      // -----------------------------------------------------------------
+      // VIEW 2: 3D Floating Football Field Prisms + Offer Glass Wall
+      // -----------------------------------------------------------------
+      function drawFootballView(pal, wSel, sSel) {
+        const evMin = 260, evMax = 540;
+        const ex = (ev) => ((Math.max(evMin, Math.min(evMax, ev)) - evMin) / (evMax - evMin)) * 2.0 - 1.0;
+        const xOffer = ex(MA.offerEv);
+        const zFloor = -0.34, zBar0 = -0.22, zBar1 = 0.04;
+        const yMin = -0.78, yMax = 0.78;
+
+        const dcfLo = dcfEv(wSel + 0.005);
+        const dcfHi = dcfEv(wSel - 0.005);
+        const synAtW = synNpv(sSel, wSel);
+
+        const bars = [
+          { name: 'Unaffected', lo: 293.5, hi: 303.5, rangeTxt: '€298.5M', y: -0.60, col: pal.slate },
+          { name: 'Trading Comps', lo: 318.0, hi: 383.0, rangeTxt: '€318–383M', y: -0.30, col: pal.slate },
+          { name: 'Standalone DCF', lo: dcfLo, hi: dcfHi, rangeTxt: `€${Math.round(dcfLo)}–${Math.round(dcfHi)}M`, y: 0.00, col: pal.navy },
+          { name: 'Precedent Deals', lo: 370.0, hi: 435.0, rangeTxt: '€370–435M', y: 0.30, col: pal.indigo },
+          { name: 'DCF + Synergies', lo: dcfLo + synAtW, hi: dcfHi + synAtW, rangeTxt: `€${Math.round(dcfLo + synAtW)}–${Math.round(dcfHi + synAtW)}M`, y: 0.60, col: pal.brassHi }
+        ];
+
+        // Architectural base deck & EV scale gridlines
+        const deck = [
+          project(-1, yMin, zFloor), project(1, yMin, zFloor),
+          project(1, yMax, zFloor), project(-1, yMax, zFloor)
+        ];
+        ctx.beginPath();
+        deck.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+        ctx.closePath();
+        ctx.fillStyle = pal.plinthFill;
+        ctx.fill();
+        ctx.strokeStyle = pal.plinthEdge;
         ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(top.x, top.y);
-        ctx.lineTo(base.x, base.y);
         ctx.stroke();
-        ctx.setLineDash([]);
 
-        const pulse = reduceMotion ? 0 : (Math.sin((performance.now() - t0) / 380) + 1) / 2;
+        ctx.font = '10px "JetBrains Mono", monospace';
+        [260, 320, 380, 440, 500].forEach(ev => {
+          const x = ex(ev);
+          const p0 = project(x, yMin, zFloor), p1 = project(x, yMax, zFloor);
+          ctx.strokeStyle = pal.gridLine;
+          ctx.lineWidth = 0.85;
+          ctx.beginPath();
+          ctx.moveTo(p0.x, p0.y);
+          ctx.lineTo(p1.x, p1.y);
+          ctx.stroke();
+          ctx.fillStyle = pal.axisText;
+          ctx.textAlign = 'center';
+          ctx.fillText(`€${ev}M`, p0.x, p0.y + 15);
+        });
+        const evTitle = project(0, yMin, zFloor);
+        ctx.fillStyle = pal.axisTitle;
+        ctx.textAlign = 'center';
+        ctx.fillText('Implied Enterprise Value (€M)', evTitle.x, evTitle.y + 29);
+
+        // Split bars at xOffer so the vertical crimson Offer Glass Wall slices cleanly from any angle
+        const barHalfY = 0.082;
+        const leftSegs = [], rightSegs = [], cuts = [];
+
+        bars.forEach(b => {
+          const x0 = ex(b.lo), x1 = ex(b.hi);
+          const y0 = b.y - barHalfY, y1 = b.y + barHalfY;
+          if (x1 <= xOffer) {
+            leftSegs.push({ x0, x1, y0, y1, col: b.col, d: project((x0 + x1) / 2, b.y, 0).d });
+          } else if (x0 >= xOffer) {
+            rightSegs.push({ x0, x1, y0, y1, col: b.col, d: project((x0 + x1) / 2, b.y, 0).d });
+          } else {
+            leftSegs.push({ x0, x1: xOffer, y0, y1, col: b.col, d: project((x0 + xOffer) / 2, b.y, 0).d });
+            rightSegs.push({ x0: xOffer, x1, y0, y1, col: b.col, d: project((xOffer + x1) / 2, b.y, 0).d });
+            cuts.push({ y0, y1 });
+          }
+        });
+
+        const dLeft = project(xOffer - 0.15, 0, 0).d;
+        const dRight = project(xOffer + 0.15, 0, 0).d;
+        const farSegs = dLeft > dRight ? leftSegs : rightSegs;
+        const nearSegs = dLeft > dRight ? rightSegs : leftSegs;
+
+        farSegs.sort((a, b) => b.d - a.d);
+        nearSegs.sort((a, b) => b.d - a.d);
+
+        // Step 1: Far side bar segments
+        farSegs.forEach(s => drawPrism(s.x0, s.x1, s.y0, s.y1, zBar0, zBar1, s.col));
+
+        // Step 2: Vertical translucent crimson Offer Glass Wall at €368.0M
+        const zWall0 = zFloor, zWall1 = 0.42;
+        const gPts = [
+          project(xOffer, yMin, zWall0),
+          project(xOffer, yMax, zWall0),
+          project(xOffer, yMax, zWall1),
+          project(xOffer, yMin, zWall1)
+        ];
+        ctx.save();
         ctx.beginPath();
-        ctx.arc(top.x, top.y, 6 + pulse * 6, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(242,244,243,${0.5 - pulse * 0.45})`;
+        gPts.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+        ctx.closePath();
+        ctx.fillStyle = pal.crimsonGlass;
+        ctx.fill();
+        ctx.strokeStyle = pal.crimsonWire;
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
+        // Architectural glass sheen line
+        const sh0 = project(xOffer, yMin + 0.12, zWall1 - 0.04);
+        const sh1 = project(xOffer, yMin + 0.56, zWall0 + 0.04);
+        ctx.strokeStyle = pal.crimsonSheen;
+        ctx.lineWidth = 2.2;
         ctx.beginPath();
-        ctx.arc(top.x, top.y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = '#f2f4f3';
-        ctx.fill();
-        ctx.strokeStyle = '#111615';
-        ctx.lineWidth = 2;
+        ctx.moveTo(sh0.x, sh0.y);
+        ctx.lineTo(sh1.x, sh1.y);
         ctx.stroke();
 
-        ctx.font = '600 11px "JetBrains Mono", monospace';
-        ctx.textAlign = 'left';
-        ctx.fillStyle = '#f2f4f3';
-        ctx.fillText(`€${z.toFixed(1)}M`, top.x + 10, top.y - 8);
+        // Highlight exact intersection slices where bars pierce the glass wall
+        cuts.forEach(c => {
+          const cp = [
+            project(xOffer, c.y0, zBar0), project(xOffer, c.y1, zBar0),
+            project(xOffer, c.y1, zBar1), project(xOffer, c.y0, zBar1)
+          ];
+          ctx.beginPath();
+          cp.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+          ctx.closePath();
+          ctx.strokeStyle = pal.crimson;
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
+        });
+        ctx.restore();
+
+        // Step 3: Near side bar segments
+        nearSegs.forEach(s => drawPrism(s.x0, s.x1, s.y0, s.y1, zBar0, zBar1, s.col));
+
+        // Step 4: Crisp architectural labels for each valuation bar and the Offer Glass Wall
+        const offerTag = project(xOffer, yMax * 0.15, zWall1 + 0.06);
+        drawPill(offerTag.x, offerTag.y, 'Offer €368M', pal.crimson, null, '#ffffff');
+
+        ctx.font = '600 9.5px "Inter", sans-serif';
+        bars.forEach(b => {
+          const leftPt = project(-1.02, b.y, (zBar0 + zBar1) / 2);
+          ctx.textAlign = 'right';
+          ctx.fillStyle = pal.axisTitle;
+          ctx.fillText(b.name, leftPt.x - 6, leftPt.y + 3);
+
+          const rightPt = project(ex(b.hi), b.y, zBar1 + 0.06);
+          ctx.font = '600 9.5px "JetBrains Mono", monospace';
+          ctx.textAlign = 'left';
+          ctx.fillStyle = pal.axisText;
+          ctx.fillText(b.rangeTxt, rightPt.x + 6, rightPt.y + 3);
+          ctx.font = '600 9.5px "Inter", sans-serif';
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const pal = getPalette();
+        const wSel = parseFloat(sW.value) / 100;
+        const sSel = parseFloat(sS.value);
+        if (activeView === 'pillars') drawPillarsView(pal, wSel, sSel);
+        else drawFootballView(pal, wSel, sSel);
       }
 
       function updateReadout() {
-        const w = parseFloat(sW.value);
-        const S = parseFloat(sS.value);
-        const ev = maImpliedEv(w, S);
-        const val = ev - MA.offerEv;
+        const wPct = parseFloat(sW.value);
+        const w = wPct / 100;
+        const syn = parseFloat(sS.value);
+        const ev = dcfEv(w) + synNpv(syn, w);
+        const netVal = ev - MA.offerEv;
         const px = (ev - MA.netDebt) / MA.shares;
-        const mult = MA.offerEv / (MA.normEbitda + S);
+        const mult = MA.offerEv / (MA.normEbitda + syn);
 
-        document.getElementById('maWaccLabel').textContent = (w * 100).toFixed(2) + '%';
-        document.getElementById('maSynLabel').textContent = '€' + S.toFixed(1) + 'M';
+        document.getElementById('maWaccLabel').textContent = wPct.toFixed(1) + '%';
+        document.getElementById('maSynLabel').textContent = '€' + syn.toFixed(1) + 'M';
 
-        const evEl = document.getElementById('maRoEv');
-        evEl.textContent = `€${ev.toFixed(1)}M`;
-        evEl.className = 'ro-val ' + (ev < MA.offerEv ? 'bad' : ev < MA.offerEv + 15 ? 'warn' : 'ok');
-
+        document.getElementById('maRoEv').textContent = `€${ev.toFixed(1)}M`;
         const valEl = document.getElementById('maRoVal');
-        valEl.textContent = (val >= 0 ? '+€' : '−€') + Math.abs(val).toFixed(1) + 'M';
-        valEl.className = 'ro-val ' + (val >= 0 ? 'ok' : 'bad');
+        valEl.textContent = (netVal >= 0 ? '+€' : '−€') + Math.abs(netVal).toFixed(1) + 'M';
+        valEl.className = 'ma-ro-val ' + (netVal >= 0 ? 'pos' : 'neg');
 
         document.getElementById('maRoPx').textContent = `€${px.toFixed(2)}`;
         document.getElementById('maRoMult').textContent = `${mult.toFixed(1)}x`;
 
-        // Camera subtly tracks slider inputs
-        yawTarget = -0.92 + 0.72 * (w - MA.wMin) / (MA.wMax - MA.wMin);
-        pitchTarget = 0.42 + 0.14 * (1 - (S - MA.sMin) / (MA.sMax - MA.sMin));
+        // Camera gently responds to slider adjustments in Pillars view
+        if (activeView === 'pillars') {
+          yawTarget = -0.84 + 0.44 * ((wPct - 8.0) / 2.5);
+          pitchTarget = 0.44 + 0.12 * (1 - syn / 12.0);
+        } else {
+          yawTarget = -0.26;
+          pitchTarget = 0.30;
+        }
       }
 
+      // View switcher buttons
+      viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const nextView = btn.dataset.maView;
+          if (!nextView || nextView === activeView) return;
+          activeView = nextView;
+          userYaw = 0;
+          userPitch = 0;
+          viewBtns.forEach(b => {
+            const isAct = b === btn;
+            b.classList.toggle('active', isAct);
+            b.setAttribute('aria-pressed', isAct ? 'true' : 'false');
+          });
+          updateReadout();
+          if (reduceMotion) {
+            yaw = yawTarget;
+            pitch = pitchTarget;
+            draw();
+          }
+        });
+      });
+
+      // Drag to rotate
       let dragging = false, lx = 0, ly = 0;
       canvas.addEventListener('pointerdown', (e) => {
         dragging = true;
         lx = e.clientX;
         ly = e.clientY;
-        canvas.setPointerCapture(e.pointerId);
+        try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
       });
       canvas.addEventListener('pointermove', (e) => {
         if (!dragging) return;
         userYaw += (e.clientX - lx) * 0.008;
         userPitch += (e.clientY - ly) * 0.006;
-        userYaw = Math.max(-0.6, Math.min(0.6, userYaw));
-        userPitch = Math.max(-0.2, Math.min(0.45, userPitch));
+        userYaw = Math.max(-0.75, Math.min(0.75, userYaw));
+        userPitch = Math.max(-0.18, Math.min(0.45, userPitch));
         lx = e.clientX;
         ly = e.clientY;
       });
@@ -1415,6 +1767,7 @@
 
       sW.addEventListener('input', updateReadout);
       sS.addEventListener('input', updateReadout);
+      if (darkMQ && darkMQ.addEventListener) darkMQ.addEventListener('change', draw);
 
       let visible = true;
       if ('IntersectionObserver' in window) {
@@ -1423,8 +1776,8 @@
 
       function loop(now) {
         if (visible) {
-          const sway = reduceMotion || dragging ? 0 : Math.sin((now - t0) / 4200) * 0.12;
-          const k = reduceMotion ? 1 : 0.08;
+          const sway = reduceMotion || dragging ? 0 : Math.sin((now - t0) / 4600) * 0.08;
+          const k = reduceMotion ? 1 : 0.09;
           yaw += (yawTarget + userYaw + sway - yaw) * k;
           pitch += (pitchTarget + userPitch - pitch) * k;
           draw();
